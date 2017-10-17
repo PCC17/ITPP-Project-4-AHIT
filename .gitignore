@@ -48,6 +48,7 @@ $RECYCLE.BIN/
 
 # Word temporary
 ~$*.doc*
+~$*.odt
 
 # Excel temporary
 ~$*.xls*
