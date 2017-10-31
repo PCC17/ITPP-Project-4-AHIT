@@ -1,0 +1,9 @@
+User:
+    email, username, password, firstName, lastName, settings, dateJoined, country
+PassCategory:
+    name, color, childs
+PassEntry:
+    name, color, link, image, username, password, notes, custom fields
+settings:
+    colorschema, PassCategory order
+

@@ -1,0 +1,6 @@
+/user
+    get/ -> get user info without password
+    post/ -> create user
+    delete/ -> delete user
+    put/ -> update user
+    
