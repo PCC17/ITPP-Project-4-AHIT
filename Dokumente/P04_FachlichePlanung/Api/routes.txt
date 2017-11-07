@@ -1,6 +1,13 @@
 /user
-    get/ -> get user info without password
-    post/ -> create user
-    delete/ -> delete user
-    put/ -> update user
+    get/    
+    post/  
+    delete/
+    put/   
+
+/settings/passCategory/order
+    get/    
+    post/   
+    delete/
+    put/   
+
     
