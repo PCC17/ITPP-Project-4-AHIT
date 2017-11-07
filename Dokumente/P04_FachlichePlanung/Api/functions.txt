@@ -1,2 +1,25 @@
+/user
+    getUserInformation{}
+    createUser{}
+    deleteUser{}
+    updateUser{}
 
+/login
+    login{}
+
+/passCategory
+    getCategory{}
+    createCategory{}
+    deleteCategory{}
+    updateCategory{}
+
+/passEntry
+    getPassEntry{}
+    createPassEntry{}
+    deletePassEntry{}
+    updatePassEntry{}
+
+/passEntry/move
+    movePassEntry(d1, d2){}
     
+
