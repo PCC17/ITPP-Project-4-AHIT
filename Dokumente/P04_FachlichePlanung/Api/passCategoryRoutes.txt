@@ -1,6 +1,0 @@
-/category
-    get/ -> get all categories 
-    post/ -> create category
-    delete/ -> delete category
-    put/ -> update category
-    

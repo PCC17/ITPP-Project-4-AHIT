@@ -1,9 +1,35 @@
+Full schema:
 User:
-    email, username, password, firstName, lastName, settings, dateJoined, country
-PassCategory:
-    name, color, childs
-PassEntry:
-    name, color, link, image, username, password, notes, custom fields
-settings:
-    colorschema, PassCategory order
+    email String
+    username String
+    password String
+    firstName String
+    lastName String
+    settings:
+        colorschema:
+            primaryColor    String
+            secondaryColor  String
+            fontColor       String
+            accentColor     String
+    dateJoined Date 
+    birthDate Date 
+    country enum
+    PassCategory:
+        order Number
+        name String
+        color enum
+        children: PassEntry:
+            order Number
+            name String
+            color enum
+            link String
+            image String (Path)
+            username String
+            password String
+            notes String
+            custom fields:
+                key String
+                value String
+
+
 

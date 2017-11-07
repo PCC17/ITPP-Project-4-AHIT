@@ -1,4 +1,0 @@
-/settings
-    get/ -> get settings
-    put/ -> update settings
-    

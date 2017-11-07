@@ -1,6 +1,0 @@
-/passentry
-    get/ -> get entry information
-    post/ -> create new entry
-    delete/ -> delete passEntry
-    put/ -> update passEntry
-    
