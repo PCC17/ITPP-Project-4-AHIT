@@ -1,13 +1,32 @@
-/user
+/user "id is devlivered in cookie"
     get/    
     post/  
     delete/
-    put/   
+    put/  
 
-/settings/passCategory/order
-    get/    
-    post/   
+/login
+    /post
+
+/passCategory/ASC ord DESC/favorites ja nein
+    get/ 
+
+/passCategory/order:id
+    get/
+    put/
+
+/passEntry
+    post/
+    get/
+    update/
     delete/
-    put/   
+
+/passEntry/:id
+    get/
+
+
+  
+
+
+
 
     

@@ -14,7 +14,7 @@ User:
     dateJoined Date 
     birthDate Date 
     country enum
-    PassCategory:
+    PassCategory: //"favourites" standard
         order Number
         name String
         color enum
@@ -30,6 +30,7 @@ User:
             custom fields:
                 key String
                 value String
+            isfavourite boolean
 
 
 
