@@ -7,10 +7,7 @@
 /login
     /post
 
-/passCategory/ASC ord DESC/favorites ja nein
-    get/ 
-
-/passCategory/order:id
+/passCategory
     get/
     put/
 
