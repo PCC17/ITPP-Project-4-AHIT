@@ -1,6 +1,6 @@
-<?php 
+﻿<?php 
 
 
-echo "hallo duda paulchen“;
+echo "hallo duda paulchen";
 
 ?>
