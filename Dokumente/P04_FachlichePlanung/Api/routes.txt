@@ -1,6 +1,6 @@
 /user 			"id and token is devlivered in cookie"
     get/    		"getting info about user"
-    post/  		"for creating new user (noi id or token needed)"
+    post/  		"for creating new user (no id or token needed)"
     delete/ 		"deleting an user"
     put/   		"updating user credentials"
 

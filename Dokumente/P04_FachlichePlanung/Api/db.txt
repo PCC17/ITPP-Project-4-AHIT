@@ -8,8 +8,6 @@ User:
     settings:
         colorschema:
             primaryColor    String
-            secondaryColor  String
-            fontColor       String
             accentColor     String
     dateJoined Date 
     birthDate Date 
@@ -17,11 +15,9 @@ User:
     PassCategory: //"favourites" standard
         order Number
         name String
-        color enum
         children: PassEntry:
             order Number
             name String
-            color enum
             link String
             image String (Path)
             username String
