@@ -1,27 +1,28 @@
-/user "id is devlivered in cookie"
-    get/    
-    post/  
-    delete/
-    put/  
+/user 			"id and token is devlivered in cookie"
+    get/    		"getting info about user"
+    post/  		"for creating new user (noi id or token needed)"
+    delete/ 		"deleting an user"
+    put/   		"updating user credentials"
 
 /login
-    /post
+    /post		"for creating new user"
 
 /passCategory
-    get/
-    put/
+    post/		"create a new passCategory"
+    get/		"get all passCategories"
+    put/		"update a passCategory"
+
+/passCategory:id	"get a specifi passCategory"
 
 /passEntry
-    post/
-    get/
-    update/
-    delete/
+    post/		"create a new passEntry"
+    get/		"get all passEntries"
+    update/		"update a passEntry"
+    delete/		"delete a passEntry"
 
-/passEntry/:id
-    get/
-
-
-  
+/passEntry:id
+    get/		"get a specific passEntry"
+    
 
 
 
