@@ -1,8 +1,9 @@
 var express = require('express'),
     app = express(),
-    port = process.env.PORT || 3001,
+    port = 3001,
     mongoose = require('mongoose'),
     Task = require('./user/model'),
+    Task = require('./country/model'),
     bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;

@@ -1,19 +1,33 @@
 'use strict';
 
+var messages_state = require('../messages/state');
 
-var mongoose = require('mongoose'), IOT_DeviceCollection = mongoose.model('ModelUser');
+
+var mongoose = require('mongoose'),
+    Collection_User = mongoose.model('ModelUser'),
+    Collection_Country = mongoose.model('ModelCountry');
 
 
-//route /iot/all/status/:state
-exports.standard = function (req, res) {
-    IOT_DeviceCollection.find({ online: req.params.state }, function (err, task) {
-        if (err)
-            res.send(messages.getError());
+exports.debug_createSampleCountry = function (req, res) {
+    var country = new Collection_Country(req.body);
+    country.save(function (err, task) {
+        if(err)
+            res.send(err);
         else
-            res.send(task);
+            res.send(messages_state.getSuccess());
     });
 }
-
+exports.debug_createSampleUser = function (req, res) {
+    Collection_User.Insert({
+        "name": "Austria1",
+        "code": "aut",
+    }, function (err, task) {
+        if (err)
+            console.log(err);
+        else
+            console.log("hello");
+    });
+}
 
 
 

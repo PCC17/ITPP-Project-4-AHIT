@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "PassInAPI", "PassInAPI.njsproj", "{ED0E4795-166C-48CA-A07E-CB7F808864EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED0E4795-166C-48CA-A07E-CB7F808864EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED0E4795-166C-48CA-A07E-CB7F808864EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED0E4795-166C-48CA-A07E-CB7F808864EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED0E4795-166C-48CA-A07E-CB7F808864EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A011F3F-A699-4882-B941-28EA730D16A9}
+	EndGlobalSection
+EndGlobal

@@ -2,7 +2,8 @@
 module.exports = function (app) {
     var controller = require('./controller');
     // IOT Routes
-    app.route('/iot/all/status/:state')
-        .get(controller.list_all_iot_devices_with_state)
-        .put(controller.set_state_of_all_iot_devices);
+    app.route('/debug/createSampleUser')
+        .post(controller.debug_createSampleUser),
+    app.route('/debug/createSampleCountry')
+        .post(controller.debug_createSampleCountry);;
 };
