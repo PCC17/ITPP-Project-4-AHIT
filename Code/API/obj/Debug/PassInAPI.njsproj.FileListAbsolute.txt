@@ -1,0 +1,3 @@
+D:\Dokumente\Cloud Storages\Nextcloud\HTL 4 AHIT\ITPP\GitHub\ITPP-Project-4-AHIT\Code\API\obj\Debug\PassInAPI.njsprojResolveAssemblyReference.cache
+D:\Dokumente\Cloud Storages\Nextcloud\HTL 4 AHIT\ITPP\GitHub\ITPP-Project-4-AHIT\Code\API\obj\Debug\PassInAPI.njsproj.CoreCompileInputs.cache
+D:\Dokumente\Cloud Storages\Nextcloud\HTL 4 AHIT\ITPP\GitHub\ITPP-Project-4-AHIT\Code\API\bin\Microsoft.NodejsTools.WebRole.dll
