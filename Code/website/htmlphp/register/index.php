@@ -27,42 +27,42 @@
         <div class="form-group row">
           <label for="inputFirstName" class="col-sm-3 col-form-label">First Name</label>
           <div class="col-sm-9">
-            <input type="name" class="form-control" id="inputFirstName" placeholder="Max" required>
+            <input type="name" class="form-control" id="inputFirstName" placeholder="John" required>
           </div>
         </div>
 
         <div class="form-group row">
           <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
           <div class="col-sm-9">
-            <input type="name" class="form-control" id="inputLastName" placeholder="Mustermann" required>
+            <input type="name" class="form-control" id="inputLastName" placeholder="Doe" required>
           </div>
         </div>
 
         <div class="form-group row">
           <label for="inputUsername" class="col-sm-3 col-form-label">Username</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputUsername" placeholder="maxmustermann" required>
+            <input type="text" class="form-control" id="inputUsername" placeholder="johndoe" required>
           </div>
         </div>
 
         <div class="form-group row">
           <label for="inputEmail" class="col-sm-3 col-form-label">Email address</label>
           <div class="col-sm-9">
-            <input type="email" class="form-control" id="inputEmail" placeholder="max.mustermann@email.com" required>
+            <input type="email" class="form-control" id="inputEmail" placeholder="john.doe@email.com" required>
           </div>
         </div>
 
         <div class="form-group row">
           <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
           <div class="col-sm-9">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Musterpassword123" required>
+            <input type="password" class="form-control" id="inputPassword" placeholder="samplepassword" required>
           </div>
         </div>
 
         <div class="form-group row">
           <label for="inputRepeatPassword" class="col-sm-3 col-form-label">Repeat password</label>
           <div class="col-sm-9">
-            <input type="password" class="form-control" id="inputRepeatPassword" placeholder="Musterpassword123" required>
+            <input type="password" class="form-control" id="inputRepeatPassword" placeholder="samplepassword" required>
           </div>
         </div>
 
