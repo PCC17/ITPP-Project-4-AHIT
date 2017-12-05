@@ -1,0 +1,17 @@
+.nav-brand{
+	color: #ff3344;
+	padding-left: 8%;
+	float-left;
+}
+.nav-welcome{
+	margin-left: 10%;
+	float-left; 
+}
+
+.nav-search{
+	margin-left: 20%;
+	float-left;
+}
+.nav-settings{
+	float-right
+}
