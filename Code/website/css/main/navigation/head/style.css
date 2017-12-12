@@ -25,20 +25,7 @@
 
 .sidebar{
 	font-family: 'Open Sans', sans-serif;
-	padding-top: 50px;
+	padding-top: 2%;
 	height: 92%;
 }
-#container {
-                position:absolute;
-                background-color: blue;
-                }
-            #elem{
-                position: absolute;
-                background-color: green;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -o-user-select: none;
-                -ms-user-select: none;
-                -khtml-user-select: none;     
-                user-select: none;
-            }
+
