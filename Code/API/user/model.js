@@ -32,9 +32,13 @@ var schema_user = new Schema({
 });
 
 
+schema_user.methods.validPassword = function (password) {
+    if (password == this.local.password)
+        return true;
+    return false;
+};
 
-// the schema is useless so far
-// we need to create a model using it
+
 var ModelUser = mongoose.model('ModelUser', schema_user);
 
 // make this available to our users in our Node applications

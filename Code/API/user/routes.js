@@ -4,6 +4,13 @@ module.exports = function (app) {
     // IOT Routes
     app.route('/debug/createSampleUser')
         .post(controller.debug_createSampleUser),
-    app.route('/debug/createSampleCountry')
-        .post(controller.debug_createSampleCountry);;
+    app.route('/debug/insertAllCountries')
+            .get(controller.debug_insertAllCountries);
+
+
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect: '/profile', // redirect to the secure profile section
+        failureRedirect: '/login', // redirect back to the signup page if there is an error
+        failureFlash: true // allow flash messages
+    }));
 };

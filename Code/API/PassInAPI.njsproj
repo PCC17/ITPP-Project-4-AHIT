@@ -20,6 +20,9 @@
     <Compile Include="country\model.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="data\sample.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="messages\state.js">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,7 @@
   <ItemGroup>
     <Folder Include="country\" />
     <Folder Include="messages\" />
+    <Folder Include="data\" />
     <Folder Include="PassInAPI" />
     <Folder Include="PassInAPI\PassInAPI" />
     <Folder Include="user" />
