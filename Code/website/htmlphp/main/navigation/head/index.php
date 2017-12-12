@@ -30,28 +30,32 @@ include "../includes/top.php";
 
 
 <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
+          <ul class="nav nav-pills m14 js-sortable sortable list flex flex-column list-reset" data-sortable-id="1" aria-dropeffect="move">
+            <li class="nav-item p1 mb1 navy" data-item-sortable-id="1" draggable="true" role="option" aria-grabbed="false">
               <a class="nav-link active" href="#">Favoriten<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item p1 mb1 navy" data-item-sortable-id="1" draggable="true" role="option" aria-grabbed="false">
               <a class="nav-link" href="#">Kategorie 1</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item p1 mb1 navy" data-item-sortable-id="1" draggable="true" role="option" aria-grabbed="false">
               <a class="nav-link" href="#">Kategorie 2</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item p1 mb1 navy" data-item-sortable-id="1" draggable="true" role="option" aria-grabbed="false">
               <a class="nav-link" href="#">Kategorie 3</a>
             </li>
           </ul>
   </nav>
        
+  <div class="main">
 
+
+	</div>
 
 </body>
 
-
+<script src="../../js/html.sortable.min.js"></script>
 <script src="../../js/navigation.js"></script>
+
 <?php
 include "../includes/bottom.php";
 ?>
