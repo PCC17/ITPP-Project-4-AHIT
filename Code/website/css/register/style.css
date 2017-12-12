@@ -2,6 +2,7 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #fff;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .form-signin {
@@ -9,6 +10,10 @@ body {
   padding: 50px;
   margin: 0 auto;
   background-color: #eee;
+}
+
+.heading-font {
+  font-family: 'Roboto', sans-serif;
 }
 
 .shadow {
