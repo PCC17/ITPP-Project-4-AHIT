@@ -1,4 +1,11 @@
+.navbar{
+	font-family: 'Open Sans', sans-serif;
+	background-color: #e2e2e2;
+	height: 8%;
+}
+
 .nav-brand{
+
 	color: #ff3344;
 	padding-left: 8%;
 	float-left;
@@ -15,3 +22,23 @@
 .nav-settings{
 	float-right
 }
+
+.sidebar{
+	font-family: 'Open Sans', sans-serif;
+	padding-top: 50px;
+	height: 92%;
+}
+#container {
+                position:absolute;
+                background-color: blue;
+                }
+            #elem{
+                position: absolute;
+                background-color: green;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -o-user-select: none;
+                -ms-user-select: none;
+                -khtml-user-select: none;     
+                user-select: none;
+            }
