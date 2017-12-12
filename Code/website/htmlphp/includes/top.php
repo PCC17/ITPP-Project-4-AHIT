@@ -10,5 +10,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../../dependencies/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
 
   </head>
