@@ -1,5 +1,5 @@
 
-
-sortable('.sortable', {
-});
-
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );

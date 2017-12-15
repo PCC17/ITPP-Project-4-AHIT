@@ -30,17 +30,17 @@ include "../includes/top.php";
 
 
 <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
-          <ul class="nav nav-pills m14 js-sortable sortable list flex flex-column list-reset" data-sortable-id="1" aria-dropeffect="move">
-            <li class="nav-item p1 mb1 navy" data-item-sortable-id="1" draggable="true" role="option" aria-grabbed="false">
+          <ul class="nav nav-pills flex-column" id="sortable">
+            <li class="nav-item p1 mb1 navy">
               <a class="nav-link active" href="#">Favoriten<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item p1 mb1 navy" data-item-sortable-id="1" draggable="true" role="option" aria-grabbed="false">
+            <li class="nav-item navy">
               <a class="nav-link" href="#">Kategorie 1</a>
             </li>
-            <li class="nav-item p1 mb1 navy" data-item-sortable-id="1" draggable="true" role="option" aria-grabbed="false">
+            <li class="nav-item navy">
               <a class="nav-link" href="#">Kategorie 2</a>
             </li>
-            <li class="nav-item p1 mb1 navy" data-item-sortable-id="1" draggable="true" role="option" aria-grabbed="false">
+            <li class="nav-item navy">
               <a class="nav-link" href="#">Kategorie 3</a>
             </li>
           </ul>
@@ -53,7 +53,7 @@ include "../includes/top.php";
 
 </body>
 
-<script src="../../js/html.sortable.min.js"></script>
+<script src="../../dependencies/jqueryui/external/jquery.1.7.0/"></script>
 <script src="../../js/navigation.js"></script>
 
 <?php
