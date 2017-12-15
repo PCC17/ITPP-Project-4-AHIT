@@ -31,7 +31,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://10.0.0.21', { useMongoClient: true });
+mongoose.connect('mongodb://10.8.0.6', { useMongoClient: true });
 
 
 

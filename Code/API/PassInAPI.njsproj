@@ -26,6 +26,9 @@
     <Compile Include="messages\state.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="passport\login.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="server.js" />
     <Compile Include="user\controller.js" />
     <Compile Include="user\model.js" />
@@ -35,6 +38,7 @@
     <Folder Include="country\" />
     <Folder Include="messages\" />
     <Folder Include="data\" />
+    <Folder Include="passport\" />
     <Folder Include="PassInAPI" />
     <Folder Include="PassInAPI\PassInAPI" />
     <Folder Include="user" />
