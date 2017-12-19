@@ -11,11 +11,10 @@ include "../includes/top.php";
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button type="button" id="sidebarCollapse">toggler</button>
-  <a class="navbar-brand nav-brand" href="#">passIn</a>
+  <i class="fa fa-bars fa-2x btn btn-lg btn-primary"  id="sidebarCollapse" aria-hidden="true"></i>
+  <a class="navbar-brand nav-brand" href="">passIn</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -27,6 +26,10 @@ include "../includes/top.php";
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
+
+  <a href="">
+  <i class="fa fa-cogs fa-2x btn btn-lg btn-primary"  id="sidebarCollapse" aria-hidden="true"></i>
+  </a>
 </nav>
 
 <div class="wrapper">
