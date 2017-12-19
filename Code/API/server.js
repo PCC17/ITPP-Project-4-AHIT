@@ -1,20 +1,34 @@
 var express = require('express'),
     app = express(),
     port = 3001,
-    mongoose = require('mongoose'),
     Task = require('./user/model'),
     Task = require('./country/model'),
     bodyParser = require('body-parser');
 
 
+
 var passport = require('passport');
-var flash = require('connect-flash');
+//var flash = require('connect-flash');
+require('./authentication/passport')(passport);
 
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+var mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://root:qwertgfdsa@ds141284.mlab.com:41284/projectitpp', function (err) {
+    if (err)
+    {
+        console.log('Connection error');
+    }
+    else
+    {
+        console.log('Connected to mongodb')
+    }
+});
 
 
 // require('./config/passport')(passport); // pass passport for configuration
@@ -30,8 +44,7 @@ app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secre
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://10.8.0.6', { useMongoClient: true });
+
 
 
 
@@ -39,11 +52,11 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
+   // next();
 });
 
 var userroutes = require('./user/routes');
-userroutes(app);
+userroutes(app, passport);
 app.listen(port);
 
 console.log('PassIn API started at port: ' + port);

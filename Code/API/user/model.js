@@ -3,8 +3,12 @@ var Schema = mongoose.Schema;
 
 // create a schema
 var schema_user = new Schema({
+    local: {
+        email: { type: String, required: true, unique: true },
+        password: { type: String, required: true },
+    },
+
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true, select: false },
     username: { type: String, required: true },
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
@@ -32,10 +36,13 @@ var schema_user = new Schema({
 });
 
 
+schema_user.methods.generateHash = function (password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+// checking if password is valid
 schema_user.methods.validPassword = function (password) {
-    if (password == this.local.password)
-        return true;
-    return false;
+    return password == this.local.password;
 };
 
 

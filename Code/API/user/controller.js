@@ -3,17 +3,18 @@
 var messages_state = require('../messages/state');
 var sampleData = require('../data/sample');
 
-var mongoose = require('mongoose'),
-    ModelUser = mongoose.model('ModelUser'),
-    ModelCountry = mongoose.model('ModelCountry');
+var mongoose = require('mongoose');
+var ModelUser = mongoose.model('ModelUser');
+var ModelCountry = mongoose.model('ModelCountry');
 
-
-
+exports.debug_restricted = function (req, res) {
+    res.send("hellllllllllloooo");
+}
 
 exports.debug_insertAllCountries = function (req, res) {
     ModelCountry.remove({});
-    var array = sampleData.getCountries();
-    ModelCountry.insertMany(array, function (err, task) {
+    var arr = sampleData.getCountries();
+    ModelCountry.insertMany(arr, function (err, task) {
         if (err)
             res.send(err);
         else
@@ -21,6 +22,8 @@ exports.debug_insertAllCountries = function (req, res) {
     });
 }
 exports.debug_createSampleUser = function (req, res) {
+    console.log(JSON.stringify(sampleData.getUser()));
+
     var user = new ModelUser(sampleData.getUser());
     user.save(function (err, results) {
         if (err) {
@@ -39,6 +42,7 @@ exports.debug_createSampleUser = function (req, res) {
 exports.login = function (req, res) {
     passport.authenticate('local', { failureRedirect: '/login' }),
         function (req, res) {
+            console.log("yes");
             res.redirect('/');
         }
 }
