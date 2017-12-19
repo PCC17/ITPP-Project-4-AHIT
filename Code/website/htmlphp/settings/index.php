@@ -1,5 +1,3 @@
 <?php
-
-echo "here are the settings";
-
+require "navigation/index.php";
 ?>
