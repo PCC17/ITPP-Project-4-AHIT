@@ -28,6 +28,10 @@ body {
   font-weight: 400;
 }
 
+.custom-control-indicator {
+  background-color: #fff;
+}
+
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;

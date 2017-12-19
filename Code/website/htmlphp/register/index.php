@@ -63,9 +63,6 @@
         </div>
 
         <div class="checkbox">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" required>I have read and accept the <a href="" data-toggle="modal" data-target="#ppModal">privacy policy</a>
-          </label>
           <label class="custom-control custom-checkbox form-check-label">
             <input type="checkbox" class="custom-control-input form-check-input" required>
             <span class="custom-control-indicator"></span>
