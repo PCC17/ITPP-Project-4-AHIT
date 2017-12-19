@@ -5,6 +5,10 @@ include "../includes/top.php";
 <head>
 	<link href="../../dependencies/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../css/main/navigation/head/style.css">
+
+    <script>
+
+  </script>
 </head>
 <body>
 
@@ -30,10 +34,13 @@ include "../includes/top.php";
 
 
 <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
-          <ul class="nav nav-pills flex-column" id="sortable">
+          
+          <ul class="nav nav-pills flex-column">
             <li class="nav-item p1 mb1 navy">
               <a class="nav-link active" href="#">Favoriten<span class="sr-only">(current)</span></a>
             </li>
+          </ul>
+          <ul class="nav nav-pills flex-column" id="sortable">
             <li class="nav-item navy">
               <a class="nav-link" href="#">Kategorie 1</a>
             </li>
@@ -53,9 +60,12 @@ include "../includes/top.php";
 
 </body>
 
-<script src="../../dependencies/jqueryui/external/jquery.1.7.0/"></script>
-<script src="../../js/navigation.js"></script>
+
 
 <?php
 include "../includes/bottom.php";
 ?>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script src="../../js/navigation.js"></script>
