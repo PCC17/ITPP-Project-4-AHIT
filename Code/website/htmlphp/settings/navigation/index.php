@@ -5,6 +5,7 @@ include "../includes/top.php";
 
 <head>
   <link href="../../css/settings/style.css" rel="stylesheet">
+  <link href="../../dependencies/bootstrap-colorpicker.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -36,7 +37,7 @@ include "../includes/top.php";
             </li>
           </ul>
   </nav>
-  
+
   <?php include "body/general.php" ?>
 
 </div>
@@ -47,4 +48,3 @@ include "../includes/top.php";
 <script src="../../dependencies/bootstrap-colorpicker.min.js"></script>
 <script src="../../dependencies/bootstrap-formhelpers.js"></script>
 <script src="../../js/settings.js"></script>
-

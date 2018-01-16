@@ -7,6 +7,7 @@ $(document).ready(function () {
 
 
 $(function () {
-    $('#cp2, #cp3a, #cp3b').colorpicker();
-    $('#cp4').colorpicker({"color": "#16813D"});
+  $('#cp10').colorpicker({
+    useAlpha: false
+  });
 });
