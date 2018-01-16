@@ -1,7 +1,7 @@
-<?php include "navigation/nav.php"; ?>
-
 <div id="content">
-
+<article id="export">
+<h3>Export your password</h3>
+<p>If you choose to export your passwords you can import them in another password manager or wos was i</p>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
   Export
 </button>
@@ -17,8 +17,8 @@
       </div>
       <div class="modal-body">
        <div class="form-group">
-      <label for="exampleSelect1">format</label>
-       <select class="form-control" id="exampleSelect1">
+      <label for="selectFormat">format</label>
+       <select class="form-control" id="selectFormat">
            <option>.csv</option>
            <option>.json</option>
        </select>
@@ -26,10 +26,22 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Export</button>
+        <button type="button" class="btn btn-primary">Finish</button>
       </div>
     </div>
   </div>
 </div>
+</article>
+
+<br><br>
+
+<article id="import">
+  <h3>Import your passwords</h3>
+  <p>if you zxbdu</p>
+
+  <button type="button" class="btn btn-primary">
+  Import
+  </button>
+</article>
 
 </div>
