@@ -1,5 +1,6 @@
 <?php
 include "../includes/top.php";
+
 ?>
 
 <head>
@@ -43,4 +44,7 @@ include "../includes/top.php";
 </body>
 
 <?php include "../includes/bottom.php"; ?>
+<script src="../../dependencies/bootstrap-colorpicker.min.js"></script>
+<script src="../../dependencies/bootstrap-formhelpers.js"></script>
 <script src="../../js/settings.js"></script>
+
