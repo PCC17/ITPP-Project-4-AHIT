@@ -1,6 +1,5 @@
 <?php
 include "../includes/top.php";
-
 ?>
 
 <head>
@@ -24,27 +23,18 @@ include "../includes/top.php";
   <nav class="sidebar" id="sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Overview <span class="sr-only">(current)</span></a>
+              <a class="nav-link active" href="general.php">General Settings <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Reports</a>
+              <a class="nav-link" href="account.php">Account Settings</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Analytics</a>
+              <a class="nav-link" href="import-export.php">Import / Export</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Export</a>
+              <a class="nav-link" href="about.php">About</a>
             </li>
           </ul>
   </nav>
 
-  <?php include "body/general.php" ?>
-
 </div>
-
-</body>
-
-<?php include "../includes/bottom.php"; ?>
-<script src="../../dependencies/bootstrap-colorpicker.min.js"></script>
-<script src="../../dependencies/bootstrap-formhelpers.js"></script>
-<script src="../../js/settings.js"></script>

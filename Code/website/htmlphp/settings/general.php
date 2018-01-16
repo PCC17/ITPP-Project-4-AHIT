@@ -1,3 +1,5 @@
+<?php include "navigation/nav.php"; ?>
+
 <div id="content">
  <h3>Choose your personal color!</h3>
 
@@ -13,3 +15,5 @@
 <select class="form-control bfh-fontsizes" data-fontsize="12"></select>
 
 </div>
+
+<?php include "navigation/footer.php"; ?>

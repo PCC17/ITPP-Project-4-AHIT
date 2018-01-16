@@ -1,3 +1,1 @@
-<?php
-require "navigation/index.php";
-?>
+<?php include "general.php" ?>
