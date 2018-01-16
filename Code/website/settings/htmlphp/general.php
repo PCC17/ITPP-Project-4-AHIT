@@ -16,4 +16,7 @@
 
 </div>
 
+
 <?php include "navigation/footer.php"; ?>
+<script src="../../dependencies/bootstrap-colorpicker.min.js"></script>
+<script src="../../js/settings.js"></script>
