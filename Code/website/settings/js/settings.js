@@ -5,22 +5,31 @@ $(document).ready(function () {
   });
 });
 
-
 $(function () {
-  $('#cp10').colorpicker({
-    useAlpha: false,
+  $('#cp_div').colorpicker({
+    inline: true,
     container: true,
-     customClass: 'colorpicker-2x',
-     sliders: {
+    useAlpha: false,
+    format: "hex",
+    customClass: 'colorpicker-2x',
+    sliders: {
         saturation: {
           maxLeft: 200,
-          maxTop: 200
+          maxTop: 200,
+          callLeft: 'setSaturationRatio',
+          callTop: 'setBrightnessRatio'
         },
         hue: {
-          maxTop: 200
+          maxLeft: 0,
+          maxTop: 200,
+          callLeft: false,
+          callTop: 'setHueRatio'
         },
         alpha: {
-          maxTop: 200
+          maxLeft: 0,
+          maxTop: 200,
+          callLeft: false,
+          callTop: 'setAlphaRatio'
         }
       }
   });
