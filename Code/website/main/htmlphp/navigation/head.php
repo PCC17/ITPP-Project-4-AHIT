@@ -1,10 +1,6 @@
-<?php
-include "../includes/top.php";
-?>
-
 <head>
 	<link href="../../dependencies/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../../css/main/navigation/head/style.css">
+	<link rel="stylesheet" type="text/css" href="css/navigation/head/style.css">
 </head>
 
 <body>
@@ -65,11 +61,5 @@ include "../includes/top.php";
 </body>
 
 
-
-<?php
-include "../includes/bottom.php";
-?>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<script src="../../js/navigation.js"></script>

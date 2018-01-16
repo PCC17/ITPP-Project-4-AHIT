@@ -1,11 +1,12 @@
 <?php
+include '../includes/top.php';
 
-include 'navigation/head/index.php';
-include 'navigation/aside/index.php';
-include 'navigation/add/index.php';
-include '../footer/index.php'
+include 'htmlphp/navigation/add.php';
+include 'htmlphp/navigation/aside.php';
+include 'htmlphp/navigation/head.php';
+include 'htmlphp/footer/index.php';
 
-
-
-
+include '../includes/bottom.php';
 ?>
+
+<script src="js/navigation.js"></script>
