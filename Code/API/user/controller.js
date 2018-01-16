@@ -23,7 +23,7 @@ exports.debug_insertAllCountries = function (req, res) {
 }
 exports.debug_createSampleUser = function (req, res) {
     console.log(JSON.stringify(sampleData.getUser()));
-
+    console.log("dfgdfg");
     var user = new ModelUser(sampleData.getUser());
     user.save(function (err, results) {
         if (err) {
@@ -37,7 +37,7 @@ exports.debug_createSampleUser = function (req, res) {
     });
 }
 
-// user functions
+// login user
 
 exports.login = function (req, res) {
     passport.authenticate('local', { failureRedirect: '/login' }),
@@ -46,6 +46,8 @@ exports.login = function (req, res) {
             res.redirect('/');
         }
 }
+
+
 
 
 

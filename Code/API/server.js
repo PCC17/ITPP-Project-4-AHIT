@@ -1,14 +1,14 @@
 var express = require('express'),
     app = express(),
-    port = 3001,
-    Task = require('./user/model'),
-    Task = require('./country/model'),
+    port = 3005,
+    Task = require('./user/model.js'),
+    Task = require('./country/model.js'),
     bodyParser = require('body-parser');
 
 
 
 var passport = require('passport');
-//var flash = require('connect-flash');
+var flash = require('connect-flash');
 require('./authentication/passport')(passport);
 
 var morgan = require('morgan');
@@ -19,7 +19,7 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://root:qwertgfdsa@ds141284.mlab.com:41284/projectitpp', function (err) {
+mongoose.connect('mongodb://root:qwertgfdsa@ds141284.mlab.com:41284/projectitpp', { useMongoClient: true}, function (err) {
     if (err)
     {
         console.log('Connection error');
@@ -31,9 +31,9 @@ mongoose.connect('mongodb://root:qwertgfdsa@ds141284.mlab.com:41284/projectitpp'
 });
 
 
-// require('./config/passport')(passport); // pass passport for configuration
+//require('./config/passport')(passport); // pass passport for configuration
 
-// set up our express application
+//set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -52,7 +52,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
-   // next();
+    next();
 });
 
 var userroutes = require('./user/routes');

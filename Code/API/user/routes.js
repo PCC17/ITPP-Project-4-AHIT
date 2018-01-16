@@ -1,43 +1,35 @@
 'use strict';
 var messages_state = require('../messages/state');
+var controller = require('./controller');
+//var bcrypt = require('bcrypt-nodejs');
+
+
 module.exports = function (app, passport) {
-    var controller = require('./controller');
     // IOT Routes
     //restricted area
     app.route('/debug/restricted')
-        .get(isLoggedIn, controller.debug_restricted),
+        .get(isLoggedIn, controller.debug_restricted);
     app.route('/debug/createSampleUser')
-        .post(controller.debug_createSampleUser),
+        .get(controller.debug_createSampleUser);
     app.route('/debug/insertAllCountries')
-            .get(isLoggedIn, controller.debug_insertAllCountries);
-
+        .get(isLoggedIn, controller.debug_insertAllCountries);
+    app.route('/login')
+        .post(passport.authenticate('local-login'));
 
     // signup login logout
+    
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/profile', // redirect to the secure profile section
-        failureRedirect: '/signup', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
+        failureRedirect: '/signin', // redirect back to the signup page if there is an error
     }));
+    /*
+    app.post('/register')
+        .post(controller.)*/
+  /*  app.post('/login', passport.authenticate('local-login', {
+        
+    }));*/
 
-
-    app.post('/login', function (req, res, next) {
-        passport.authenticate('local-login', function (err, user, info) {
-            if (err) {
-                return res.send(messages_state.getError());
-            }
-            // Redirect if it fails
-            if (!user) {
-                return res.send(messages_state.getError());
-            }
-            req.logIn(user, function (err) {
-                if (err)
-                {
-                    return res.send(messages_state.getError());
-                }
-                return res.send(messages_state.getSuccess());
-            });
-        })(req, res, next);
-    });
+   
 
 
     app.route('/logout').get(
