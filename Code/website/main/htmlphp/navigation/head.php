@@ -14,7 +14,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link nav-welcome" href="#">Guten Morgen lieber User</a>
+        <a class="nav-link nav-welcome" href="#">Good Morning Mr. User</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 nav-search">
@@ -34,18 +34,18 @@
   <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar" id="sidebar">       
       <ul class="nav nav-pills flex-column">
         <li class="nav-item p1 mb1 navy my-nav-left">
-           <a class="nav-link" href="#">Favoriten</i><i class="fa fa-star icon-favourite" aria-hidden="true"></i></a>
+           <a class="nav-link" href="#">Favorites</i><i class="fa fa-star icon-favourite" aria-hidden="true"></i></a>
         </li>
       </ul>
       <ul class="nav nav-pills flex-column" id="sortable">
        <li class="nav-item navy my-nav-left">
-         <a class="nav-link" href="#">Kategorie 1</a>
+         <a class="nav-link" href="#">Category 1</a>
        </li>
        <li class="nav-item navy my-nav-left">
-         <a class="nav-link" href="#">Kategorie 2</a>
+         <a class="nav-link" href="#">Category 2</a>
        </li>
        <li class="nav-item navy my-nav-left">
-         <a class="nav-link" href="#">Kategorie 3</a>
+         <a class="nav-link" href="#">Category 3s</a>
        </li>
      </ul>
   </nav>

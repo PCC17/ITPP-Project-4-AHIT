@@ -1,7 +1,7 @@
 <?php
 include "../includes/top.php";
 include "htmlphp/navigation/nav.php";
-include "htmlphp/general.php";
+include "htmlphp/import-export.php";
 include "htmlphp/navigation/footer.php";
 include "../includes/bottom.php";
 ?>

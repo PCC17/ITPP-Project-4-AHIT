@@ -1,5 +1,7 @@
 <head>
   <link href="css/style.css" rel="stylesheet">
+  <link href="../dependencies/bootstrap-colorpicker.min.css" rel="stylesheet">
+  
 </head>
 
 <body>
