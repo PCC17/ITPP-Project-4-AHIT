@@ -14,8 +14,15 @@ module.exports = function (app, passport) {
     app.route('/debug/insertAllCountries')
         .get(isLoggedIn, controller.debug_insertAllCountries);
     app.route('/login')
-        .post(passport.authenticate('local-login'));
+        .post(passport.authenticate('local-login', {
+            successRedirect: '/success', // redirect to the secure profile section
+            failureRedirect: '/failure', // redirect back to the signup page if there is an error
+        }));
 
+    app.route('/failure')
+        .get(controller.failure);
+    app.route('/success')
+        .get(controller.success);
     // signup login logout
     
     app.post('/signup', passport.authenticate('local-signup', {

@@ -8,7 +8,7 @@ var ModelUser = mongoose.model('ModelUser');
 var ModelCountry = mongoose.model('ModelCountry');
 
 exports.debug_restricted = function (req, res) {
-    res.send("hellllllllllloooo");
+    res.send("Secret Area");
 }
 
 exports.debug_insertAllCountries = function (req, res) {
@@ -23,7 +23,6 @@ exports.debug_insertAllCountries = function (req, res) {
 }
 exports.debug_createSampleUser = function (req, res) {
     console.log(JSON.stringify(sampleData.getUser()));
-    console.log("dfgdfg");
     var user = new ModelUser(sampleData.getUser());
     user.save(function (err, results) {
         if (err) {
@@ -35,6 +34,16 @@ exports.debug_createSampleUser = function (req, res) {
             res.send(messages_state.getSuccess());
         }
     });
+}
+
+exports.success = function (req, res) {
+    res.send(messages_state.getSuccess());
+        
+}
+
+exports.failure = function (req, res) {
+    res.send(messages_state.getError());
+
 }
 
 // login user
