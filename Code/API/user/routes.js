@@ -26,18 +26,9 @@ module.exports = function (app, passport) {
     // signup login logout
     
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/profile', // redirect to the secure profile section
-        failureRedirect: '/signin', // redirect back to the signup page if there is an error
+        successRedirect: '/success', // redirect to the secure profile section
+        failureRedirect: '/failure', // redirect back to the signup page if there is an error
     }));
-    /*
-    app.post('/register')
-        .post(controller.)*/
-  /*  app.post('/login', passport.authenticate('local-login', {
-        
-    }));*/
-
-   
-
 
     app.route('/logout').get(
         function (req, res) {
@@ -55,6 +46,6 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
-    // if they aren't redirect them to the home page
-    res.redirect('/');
+    res.status(401);
+    res.send('You are not authorized!');
 }
