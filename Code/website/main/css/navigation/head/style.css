@@ -36,6 +36,9 @@
     color: black;
     cursor: pointer;
 }
+.nav-icon {
+    cursor: pointer;
+}
 
 .sidebar{
 	font-family: 'Open Sans', sans-serif;

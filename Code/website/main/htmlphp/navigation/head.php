@@ -7,7 +7,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <i class="fa fa-bars fa-2x" id="sidebarCollapse nav-icon" aria-hidden="true"></i>
+  <i class="fa fa-bars fa-2x nav-icon" id="sidebarCollapse" aria-hidden="true"></i>
   <span class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   </span>
   <a class="navbar-brand nav-brand" href="">passIn</a>
