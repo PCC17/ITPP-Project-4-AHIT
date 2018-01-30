@@ -1,6 +1,6 @@
 <head>
   <link href="../dependencies/bootstrap-colorpicker.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
+  <link href="css/navigation.css" rel="stylesheet">
 </head>
 
 <body>

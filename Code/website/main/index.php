@@ -4,7 +4,7 @@ include '../includes/top.php';
 include 'htmlphp/navigation/add.php';
 include 'htmlphp/navigation/aside.php';
 include 'htmlphp/navigation/head.php';
-include 'htmlphp/body/index.php';
+include 'htmlphp/navigation/add.php';
 include 'htmlphp/footer/index.php';
 
 include '../includes/bottom.php';
