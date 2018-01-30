@@ -11,8 +11,8 @@
   <span class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   </span>
   <a class="navbar-brand nav-brand" href="">passIn</a>
-  
-  <i class="fa fa-plus fa-2x nav-plus" id="nav-icon" data-toggle="modal" data-target="#modalPlus" aria-hidden="true"></i></a>
+
+  <i class="fa fa-plus fa-2x nav-plus nav-icon" data-toggle="modal" data-target="#modalPlus" aria-hidden="true"></i></a>
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">

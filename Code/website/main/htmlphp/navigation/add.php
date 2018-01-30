@@ -9,12 +9,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <button type="button" class="close" data-toggle="categoryModal" data-dismiss="modal" aria-label="Category">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <button type="button" class="close" data-toggle="entryModal" data-dismiss="modal" aria-label="Entry">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="#categoryModal">Category</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="#entryModal">Entry</button>
       </div>
     </div>
   </div>
