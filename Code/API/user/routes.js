@@ -6,28 +6,49 @@ var controller = require('./controller');
 
 module.exports = function (app, passport) {
     // IOT Routes
+
     //restricted area
+
+    //debug area
     app.route('/debug/restricted')
         .get(isLoggedIn, controller.debug_restricted);
     app.route('/debug/createSampleUser')
         .get(controller.debug_createSampleUser);
     app.route('/debug/insertAllCountries')
         .get(isLoggedIn, controller.debug_insertAllCountries);
-    app.route('/login')
-        .post(passport.authenticate('local-login', {
-            successRedirect: '/success', // redirect to the secure profile section
-            failureRedirect: '/failure', // redirect back to the signup page if there is an error
-        }));
+    //end debug area
 
+    //category and area
+
+    app.route('/category')
+        .post(isLoggedIn, controller.createCategory);
+    app.route('/category')
+        .put(isLoggedIn, controller.updateCategory);
+    app.route('/category')
+        .delete(isLoggedIn, controller.deleteCategory);
+
+
+    //end category and area
+
+    //end restricted area
+
+    //success and failure routes
     app.route('/failure')
         .get(controller.failure);
     app.route('/success')
         .get(controller.success);
-    // signup login logout
-    
+    //end success and failure routes
+
+
+    //login signup logout area
+    app.route('/login')
+        .post(passport.authenticate('local-login', {
+            successRedirect: '/success',
+            failureRedirect: '/failure',
+        }));    
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/success', // redirect to the secure profile section
-        failureRedirect: '/failure', // redirect back to the signup page if there is an error
+        successRedirect: '/success',
+        failureRedirect: '/failure', 
     }));
 
     app.route('/logout').get(
@@ -36,7 +57,7 @@ module.exports = function (app, passport) {
             res.send(messages_state.getSuccess());
         }
     );
-    //----------------
+    //end login signup logout area
 };
 
 // route middleware to make sure a user is logged in

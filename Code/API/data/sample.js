@@ -30,6 +30,25 @@
     }]
 }
 
+var category = {
+    name: "test",
+    order: 0,
+    passEntry: [{
+        name: "google",
+        order: 0,
+        link: "apple.com",
+        image: "bilduno",
+        username: "hans",
+        password: "hans2",
+        notes: "herbert",
+        customFields: [{
+            key: "1",
+            value: "dflklg",
+        }],
+        isfavourite: "false",
+    }]
+};
+
 var countries =
     [
         { name: "Afghanistan", code: "AF" },
@@ -283,4 +302,8 @@ exports.getUser = function () {
 
 exports.getCountries = function () {
     return countries;
+}
+
+exports.getCategory = function () {
+    return category;
 }

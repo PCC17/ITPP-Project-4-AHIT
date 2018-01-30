@@ -18,10 +18,10 @@ var schema_user = new Schema({
     birthDate: { type: Date, required: true },
     countryId: { type: mongoose.Schema.Types.ObjectId, ref: 'ModelCountry' },
     passCategory: [{
-        name: { type: String, required: true },
+        name: { type: String, required: true, unique: true },
         order: { type: String, required: true, unique: true },
         passEntry: [{
-            name: { type: String, required: true },
+            name: { type: String, required: true, unique: true},
             order: { type: String, required: true, unique: true },
             link: { type: String, required: true },
             image: { type: String, required: true },
