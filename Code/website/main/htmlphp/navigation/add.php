@@ -79,3 +79,32 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title heading-font" id="modalTitle">Add / Edit Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Modal Body -->
+       <div class="form-group row">
+            <label for="categoryName" class="col-sm-3 col-form-label">Category Name</label>
+            <div class="col-sm-9">
+              <input type="name" class="form-control" id="categoryName" placeholder="categoryname" required>
+            </div>
+       </div>
+
+        <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+       </div>
+    </div>
+  </div>
+</div>
