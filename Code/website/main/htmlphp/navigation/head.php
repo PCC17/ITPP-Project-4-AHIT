@@ -7,10 +7,11 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <i class="fa fa-bars fa-2x btn btn-lg btn-primary"  id="sidebarCollapse" aria-hidden="true"></i>
+  <i class="fa fa-bars fa-2x" id="sidebarCollapse" aria-hidden="true"></i>
   <a class="navbar-brand nav-brand" href="">passIn</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  </button>
+  <span class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  </span>
+  <i class="fa fa-plus fa-2x nav-plus" aria-hidden="true"></i>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -23,8 +24,9 @@
     </form>
   </div>
 
-  <a href="">
-  <i class="fa fa-cogs fa-2x btn btn-lg btn-primary"  id="sidebarCollapse" aria-hidden="true"></i>
+
+  <a href="" id="settings-icon">
+  <i class="fa fa-cogs fa-2x"  id="sidebarCollapse" aria-hidden="true"></i>
   </a>
 </nav>
 
@@ -45,7 +47,7 @@
          <a class="nav-link" href="#">Category 2</a>
        </li>
        <li class="nav-item navy my-nav-left">
-         <a class="nav-link" href="#">Category 3s</a>
+         <a class="nav-link" href="#">Category 3</a>
        </li>
      </ul>
   </nav>

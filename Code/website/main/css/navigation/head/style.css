@@ -10,12 +10,17 @@
 .nav-brand{
 
 	color: #ff3344;
-	margin-left: 8%;
+	margin-left: 4%;
 	float-left;
 }
 .nav-welcome{
-	margin-left: 10%;
+	margin-left: 20%;
 	float-left; 
+}
+
+.nav-plus {
+    float: left;
+    margin-left: 2.5%;
 }
 
 .nav-search{
@@ -63,6 +68,10 @@
 
 #sidebar.active {
     margin-left: -250px;
+}
+
+#settings-icon {
+    color: black;
 }
 
 /* ---------------------------------------------------
