@@ -1,6 +1,6 @@
 <?php require "../includes/top.php"; ?>
   <head>
-    <link href="../../css/register/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
 
   <body>
@@ -96,5 +96,5 @@
 
     </div>
   </body>
-<?php require "../../js/register.js";
+<?php require "js/register.js";
 require "../includes/bottom.php"; ?>

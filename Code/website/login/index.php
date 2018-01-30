@@ -1,6 +1,6 @@
 <?php require "../includes/top.php" ?>
   <head>
-    <link href="../../css/login/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
 
   <body>
