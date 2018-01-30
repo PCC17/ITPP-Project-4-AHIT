@@ -32,6 +32,10 @@
 	float-right
 }
 
+#nav-icon{
+    color: black;
+}
+
 .sidebar{
 	font-family: 'Open Sans', sans-serif;
 	padding-top: 2%;

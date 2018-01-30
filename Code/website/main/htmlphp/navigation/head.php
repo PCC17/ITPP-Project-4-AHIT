@@ -7,11 +7,11 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <i class="fa fa-bars fa-2x" id="sidebarCollapse" aria-hidden="true"></i>
+  <a href="" id="nav-icon"><i class="fa fa-bars fa-2x" id="sidebarCollapse" aria-hidden="true"></i></a>
   <a class="navbar-brand nav-brand" href="">passIn</a>
   <span class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   </span>
-  <i class="fa fa-plus fa-2x nav-plus" aria-hidden="true"></i>
+  <a href="" id="nav-icon" class="nav-plus"></a><i class="fa fa-plus fa-2x" data-toggle="modal" data-target="#modalPlus" aria-hidden="true"></i></a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
