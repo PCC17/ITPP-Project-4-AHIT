@@ -1,10 +1,9 @@
+<link href="css/general.css" rel="stylesheet"></link>
+
 <div id="content">
  <h3>Choose your personal color</h3>
 
- <div id="cp_div" class="colorpicker-component">
-   <input type="text" class="form-control" value="#ff0000"></input>
-   <br>
- </div>
+ 
 
   <br>
 

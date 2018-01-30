@@ -1,5 +1,4 @@
 <head>
-  <link href="../dependencies/bootstrap-colorpicker.min.css" rel="stylesheet">
   <link href="css/navigation.css" rel="stylesheet">
 </head>
 
@@ -19,18 +18,17 @@
   <nav class="sidebar" id="sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link active" href="general.php">General Settings <span class="sr-only">(current)</span></a>
+              <a class="nav-link active" data-toggle="pill" href="#pills-general" role="tab" aria-controls="pills-general">General Settings <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="account.php">Account Settings</a>
+              <a class="nav-link" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account">Account Settings</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="import-export.php">Import / Export</a>
+              <a class="nav-link" data-toggle="pill" href="#pills-importexport" role="tab" aria-controls="pills-importexport">Import / Export</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="about.php">About</a>
+              <a class="nav-link" data-toggle="pill" href="#pills-about" role="tab" aria-controls="pills-about">About</a>
             </li>
           </ul>
   </nav>
-
 </div>
