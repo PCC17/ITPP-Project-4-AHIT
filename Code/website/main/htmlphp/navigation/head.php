@@ -1,6 +1,6 @@
 <head>
-	<link href="../../dependencies/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/navigation/head/style.css">
+	<link rel="stylesheet" type="text/css" href="../dependencies/jquery-ui.min.css">
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 <div class="wrapper">
 
   <div class="left">
-  <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar" id="sidebar">       
+  <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar" id="sidebar">
       <ul class="nav nav-pills flex-column">
         <li class="nav-item p1 mb1 navy my-nav-left">
            <a class="nav-link" href="#">Favorites</i><i class="fa fa-star icon-favourite" aria-hidden="true"></i></a>
@@ -52,14 +52,10 @@
   </div>
 
   </div class="right">
-      
+
   </div>
 
 </div>
 
 
 </body>
-
-
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
