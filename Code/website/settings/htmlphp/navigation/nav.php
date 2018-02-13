@@ -3,15 +3,14 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md fixed-top">
 
   <i class="btn btn-secondary fa fa-bars fa-2x" id="sidebarCollapse" aria-hidden="true"></i>
 
   <a class="navbar-brand nav-brand" href="#">passIn</a>
 
-  <a class="btn btn-secondary" href="../main">
-    <i class="fa fa-home fa-2x" aria-hidden="true"></i>
-  </a>
+  <a class="fa fa-home fa-2x" aria-hidden="true" href="../main"></a>
+
 </nav>
 
 <div class="wrapper">

@@ -4,6 +4,39 @@ body {
 
 .navbar {
   max-width: 100%; /* 100vw */
+  font-family: 'Open Sans', sans-serif;
+	background-color: #e2e2e2;
+	height: 8%;
+}
+
+.bg-inverse{
+	background-color: #292b2c;
+}
+
+.nav-brand{
+	color: #ff3344;
+	margin-left: 4%;
+	float-left;
+}
+
+.nav-welcome{
+	margin-left: 20%;
+	float-left;
+}
+
+.nav-plus {
+    float: left;
+    margin-left: 2.5%;
+}
+
+.nav-search {
+	margin-left: 20%;
+	float-left;
+	margin-right: 5%;
+}
+
+.nav-settings {
+	float-right
 }
 
 .nav-link {
@@ -22,7 +55,7 @@ body {
     min-width: 250px;
     max-width: 250px;
     transition: all 0.3s;
-    background-color: #111;
+    background-color: #e2e2e2;
 }
 
 #sidebar.active {

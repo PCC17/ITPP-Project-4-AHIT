@@ -6,5 +6,10 @@ $( function() {
 $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');
-        });
     });
+});
+
+$('.searchicon').click(function () {
+    $('.search').toggleClass('expanded');
+    $('.search').focus();
+});

@@ -3,6 +3,8 @@ include "../includes/top.php";
 include "htmlphp/navigation/nav.php";
 ?>
 
+<div id="content">
+
 <div class="tab-content" id="tabContent">
   <div class="tab-pane fade show active" id="pills-general" role="tabpanel" aria-labelledby="v-pills-home-tab"><?php include "htmlphp/general.php" ?></div>
   <div class="tab-pane fade" id="pills-account" role="tabpanel" aria-labelledby="v-pills-profile-tab"><?php include "htmlphp/account.php" ?></div>
