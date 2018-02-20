@@ -3,18 +3,18 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md fixed-top">
+<nav class="navbar navbar-expand-md fixed-top d-flex justify-content-between mdb-color lighten-5">
 
-  <i class="btn btn-secondary fa fa-bars fa-2x" id="sidebarCollapse" aria-hidden="true"></i>
+  <span class="fa fa-bars fa-2x nav-item" id="sidebarCollapse" aria-hidden="true"></span>
 
-  <a class="navbar-brand nav-brand" href="#">passIn</a>
+  <span class="navbar-brand nav-brand">passIn</span>
 
-  <a class="fa fa-home fa-2x" aria-hidden="true" href="../main"></a>
+  <span class="fa fa-home fa-2x nav-item" aria-hidden="true"><a href="../main"></a></span>
 
 </nav>
 
 <div class="wrapper">
-  <nav class="sidebar" id="sidebar">
+  <nav class="sidebar mdb-color lighten-4" id="sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
               <a class="nav-link active" data-toggle="pill" href="#pills-general" role="tab" aria-controls="pills-general">General Settings <span class="sr-only">(current)</span></a>
