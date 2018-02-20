@@ -1,3 +1,3 @@
-<footer class="footer" style="position: absolute; bottom: 0; text-align: right; padding-right: 3%; background-color: #f8f9fa; width: 100%; height: 5%;">
+<footer class="footer blue-grey lighten-5" style="clear:both; position: sticky; bottom: 0; text-align: right; padding-right: 3%; width: 100%;">
 	<span class="text-muted">&copy; Copyright passIn</span>
 </footer>
