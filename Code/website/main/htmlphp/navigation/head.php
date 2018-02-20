@@ -1,11 +1,11 @@
 <head>
-	<link rel="stylesheet" type="text/css" href="css/navigation/head/style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="../dependencies/jquery-ui.min.css">
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between blue-grey lighten-5">
   <i class="fa fa-bars fa-2x nav-icon" id="sidebarCollapse" aria-hidden="true"></i>
   <span class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   </span>
@@ -24,30 +24,3 @@
 
 </nav>
 
-<div class="wrapper">
-
-  <nav class="bg-light sidebar" id="sidebar">
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item p1 mb1 navy my-nav-left">
-           <a class="nav-link" href="#">Favorites</i><i class="fa fa-star icon-favourite" aria-hidden="true"></i></a>
-        </li>
-      </ul>
-      <ul class="nav nav-pills flex-column" id="sortable">
-       <li class="nav-item navy my-nav-left">
-         <a class="nav-link" href="#">Category 1</a>
-       </li>
-       <li class="nav-item navy my-nav-left">
-         <a class="nav-link" href="#">Category 2</a>
-       </li>
-       <li class="nav-item navy my-nav-left">
-         <a class="nav-link" href="#">Category 3</a>
-       </li>
-     </ul>
-  </nav>
-
-</div>
-
-<p>adksfbaklsjdfhakjsdfhasdkjfsdhf</p>
-
-
-</body>

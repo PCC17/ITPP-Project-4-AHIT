@@ -3,7 +3,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-md fixed-top d-flex justify-content-between mdb-color lighten-5">
+<nav class="navbar navbar-expand-md fixed-top d-flex justify-content-between blue-grey lighten-5">
 
   <span class="fa fa-bars fa-2x nav-item" id="sidebarCollapse" aria-hidden="true"></span>
 
@@ -14,7 +14,7 @@
 </nav>
 
 <div class="wrapper">
-  <nav class="sidebar mdb-color lighten-4" id="sidebar">
+  <nav class="sidebar blue-grey lighten-4" id="sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
               <a class="nav-link active" data-toggle="pill" href="#pills-general" role="tab" aria-controls="pills-general">General Settings <span class="sr-only">(current)</span></a>

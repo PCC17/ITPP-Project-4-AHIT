@@ -1,6 +1,8 @@
 .navbar{
 	font-family: 'Open Sans', sans-serif;
 	background-color: #e2e2e2;
+	height: 3.5rem;
+	z-index: 2;
 }
 
 .navbar-brand {
@@ -40,9 +42,6 @@
 .searchicon {
 }
 
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
 #sidebar {
   position: fixed;
     padding-top: 50px;
@@ -51,6 +50,7 @@
     max-width: 250px;
     transition: all 0.3s;
     background-color: #e2e2e2;
+    z-index: 1;
 }
 
 #sidebar.active {
@@ -68,6 +68,10 @@
   margin-left: 0px;
 }
 
+.footer{ position: absolute;
+	bottom: 0;
+	color: red;
+}
 
 /* ---------------------------------------------------
     MEDIAQUERIES
