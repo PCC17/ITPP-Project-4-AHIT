@@ -1,4 +1,4 @@
-<div id="content">
+<div>
 
       <!-- Account Settings -->
       <form class="form-signin" id="needs-validation" novalidate>

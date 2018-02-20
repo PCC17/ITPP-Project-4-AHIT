@@ -9,7 +9,7 @@
 
   <span class="navbar-brand nav-brand">passIn</span>
 
-  <span class="fa fa-home fa-2x nav-item" aria-hidden="true"><a href="../main"></a></span>
+  <a class="fa fa-home fa-2x nav-item" aria-hidden="true" href="../main"></a>
 
 </nav>
 

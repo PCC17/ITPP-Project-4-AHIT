@@ -1,4 +1,4 @@
-<div id="content">
+<div>
 <article id="export">
 <h3>Export your password</h3>
 <p>If you choose to export your passwords you can import them in another password manager or wos was i</p>
@@ -37,11 +37,15 @@
 
 <article id="import">
   <h3>Import your passwords</h3>
-  <p>if you zxbdu</p>
+  <p>Import your passwords from .csv or .json file</p>
 
-  <button type="button" class="btn btn-primary">
-  Import
-  </button>
+  <form>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary" id="import-button">Select file</button>
+        <input id="import-input" type="file" name="file" accept=".pdf">
+      <button type="submit" class="btn btn-primary">Import</button>
+    </div>
+  </form>
 </article>
 
 </div>

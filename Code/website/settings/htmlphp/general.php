@@ -1,9 +1,9 @@
 <link href="css/general.css" rel="stylesheet"></link>
 
-<div id="content">
+<div>
  <h3>Choose your personal color</h3>
 
- 
+
 
   <br>
 

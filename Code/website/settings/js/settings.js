@@ -34,3 +34,7 @@ $(function () {
       }
   });
 });
+
+$('#import-button').click(function() {
+    $('#import-input').click();
+});
