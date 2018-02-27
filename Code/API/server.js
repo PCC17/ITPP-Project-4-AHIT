@@ -29,7 +29,9 @@ mongoose.connect('mongodb://root:qwertgfdsa@ds141284.mlab.com:41284/projectitpp'
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Headers', '"Origin, X-Requested-With, Content-Type, Accept"');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost');
+    res.setHeader('Access-Control-Max-Age', '86400');
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });

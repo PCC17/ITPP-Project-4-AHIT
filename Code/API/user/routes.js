@@ -22,6 +22,8 @@ module.exports = function (app, passport) {
     //end debug area
 
     //category area
+    app.route('/categories')
+        .get(authenticate, controller.getCategories);
     app.route('/category')
         .post(authenticate, controller.createCategory);
     app.route('/category')
@@ -78,6 +80,7 @@ authenticate.use(function (req, res, next) {
         // verifies secret and checks exp
         jwt.verify(token, config.secret, function (err, decoded) {
             if (err) {
+                console.log("not logged in user tried something");
                 return res.send(messages_state.getError());
             } else {
                 // if everything is good, save to request for use in other routes
