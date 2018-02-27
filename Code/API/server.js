@@ -5,15 +5,18 @@ var express = require('express'),
     Task = require('./country/model.js'),
     bodyParser = require('body-parser');
 
-app.use(bodyParser.json());
+
+
+var passport = require('passport');
+var flash = require('connect-flash');
+require('./authentication/passport')(passport);
 
 var morgan = require('morgan');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var auth = require('./authentication/routes.js');
-var userroutes = require('./user/routes');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
 
-require('./authentication/auth.js')(passport);
+var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://root:qwertgfdsa@ds141284.mlab.com:41284/projectitpp', { useMongoClient: true}, function (err) {
@@ -27,21 +30,33 @@ mongoose.connect('mongodb://root:qwertgfdsa@ds141284.mlab.com:41284/projectitpp'
     }
 });
 
+
+//require('./config/passport')(passport); // pass passport for configuration
+
+//set up our express application
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
+
+
+
+
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', '"Origin, X-Requested-With, Content-Type, Accept"');
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost');
-    res.setHeader('Access-Control-Max-Age', '86400');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
 
-app.use(morgan('dev')); 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(passport.initialize());
-
+var userroutes = require('./user/routes');
 userroutes(app, passport);
-auth(app);
 app.listen(port);
 
 console.log('PassIn API started at port: ' + port);

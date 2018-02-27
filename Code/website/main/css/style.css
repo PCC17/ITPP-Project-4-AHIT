@@ -114,8 +114,10 @@
 }
 
 @media (max-width: 768px) {
-	.nav-welcome, .navbar-brand, .navbar-text {
+	.nav-welcome {
 		display: none;
 	}
-
+	.navbar-brand {
+		display: none;
+	}
 }
