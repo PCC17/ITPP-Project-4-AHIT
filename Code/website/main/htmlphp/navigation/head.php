@@ -18,7 +18,10 @@
     </span>
 
 
+<<<<<<< HEAD
   
+=======
+>>>>>>> bf7da594e28d1ee514be10caa0289243abd6b2f2
   <input class="nav-search search form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
   <i class="searchicon fa fa-search fa-2x nav-icon"></i>
 
@@ -26,4 +29,3 @@
   <a class="fa fa-cogs fa-2x nav-icon" aria-hidden="true" href="../settings"></a>
 
 </nav>
-

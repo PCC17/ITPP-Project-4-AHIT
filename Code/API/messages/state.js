@@ -8,3 +8,8 @@ exports.getSuccess = function () {
 exports.getError = function () {
     return JSON.stringify(errorMessage);
 }
+
+
+exports.getSuccessJson = function () {
+    return succesMessage;
+}
