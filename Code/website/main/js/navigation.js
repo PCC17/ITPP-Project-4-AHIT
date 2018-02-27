@@ -14,3 +14,4 @@ $('.searchicon').click(function () {
     $('.search').toggleClass('expanded');
     $('.search').focus();
 });
+
