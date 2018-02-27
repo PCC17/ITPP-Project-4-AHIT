@@ -90,23 +90,41 @@ exports.deleteCategory = function (req, res) {
     );
 
 }
+exports.getCategories = function (req, res) {
+    var email = req.payload.email;
+
+    ModelUser.findOne({ 'local.email': email },
+       
+        function (err, user) {
+            if (err)
+                res.send(messages_state.getError());
+            else if (user) {
+                console.log(JSON.stringify(user.passCategory));
+                res.send(JSON.stringify(user.passCategory));
+            }
+        }
+    );
+
+}
 
 //end create update delete category area
 
 //create update delete entry area
 
 exports.createEntry = function (req, res) {
-    var email = req.payload.email;
-    ModelUser.findOne({ 'local.email': email }, 'user', 'passCategory', { 'passCategory.name': req.params.category }, 
+ /*   var email = req.payload.email;
+    ModelUser.findOne({ 'local.email': email},, {} }, req.params.category }, 
         function (err, category) {
+            console.log("hier bin ich wieder");
             if (err)
             {
                 console.log(err);
+               
                 res.send(messages_state.getError());
             }
             else if (category)
             {
-                console.log(category);
+                console.log("hier bin ihc");
                 var entry = req.body;
                 user.category.addToSet(entry);
                 category.update(function (err, results) {
@@ -122,7 +140,7 @@ exports.createEntry = function (req, res) {
                     }
                 });
             }
-        })
+        })*/
 }
 exports.updateEntry = function (req, res) {
     var email = req.payload.email;
