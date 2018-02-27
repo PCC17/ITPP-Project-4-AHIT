@@ -17,10 +17,11 @@
     Guten Morgen User
     </span>
 
-<div style="display: inline">
+
+  
   <input class="nav-search search form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
   <i class="searchicon fa fa-search fa-2x nav-icon"></i>
-</div>
+
 
   <a class="fa fa-cogs fa-2x nav-icon" aria-hidden="true" href="../settings"></a>
 
