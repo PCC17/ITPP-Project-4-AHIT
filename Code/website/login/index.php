@@ -7,10 +7,8 @@
 
     <div class="container">
 
-      <div class="form-signin rounded shadow">
+      <form class="form-signin rounded shadow" id="needs-validation" novalidate>
         <h2 class="form-signin-heading text-center" id="login-heading">Login</h2>
-
-
 
         <div class="form-group">
           <label for="inputEmail">Email address</label>
@@ -28,7 +26,7 @@
         <button type="button" class="btn btn-lg btn-primary btn-block" onclick="login(document.getElementById('inputEmail').value, document.getElementById('inputPassword').value)">Login</button>
         <p class="text-center">Not yet registered? <a href="../register/">Register</a></p>
         <p class="text-center"><a href="#">Forgot your password?</a></p>
-      </div>
+      </form>
 
     </div>
   </body>

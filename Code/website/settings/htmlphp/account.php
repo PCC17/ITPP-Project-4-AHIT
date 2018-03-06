@@ -44,6 +44,13 @@
           </div>
         </div>
 
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="cancel" class="btn btn-secondary">Cancel</button>
+      </form>
+
+        <br>
+
+      <form class="form-signin" id="needs-validation" novalidate>
         <h3 class="form-signin-heading heading-font">Reset Password</h3>
 
         <div class="form-group row">
@@ -70,7 +77,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-primary">Save</button>
         <button type="cancel" class="btn btn-secondary">Cancel</button>
       </form>
 

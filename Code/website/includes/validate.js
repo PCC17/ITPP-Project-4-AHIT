@@ -1,5 +1,6 @@
 // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
+function validate()
+{
   'use strict';
 
   window.addEventListener('load', function() {
@@ -12,7 +13,7 @@
       form.classList.add('was-validated');
     }, false);
   }, false);
-})();
+}
 
 var password = document.getElementById("inputPassword")
   , confirm_password = document.getElementById("inputRepeatPassword");

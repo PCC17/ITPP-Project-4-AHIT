@@ -1,3 +1,22 @@
+$(document).ready(function() {
+    console.log( "ready!" );
+    colorNav(blue)
+});
+
+function colorNav(color) {
+  console.log("coloring nav");
+}
+
+<a href="#" class="btn btn-default" id="cp4">Change background color</a>
+<script>
+    $(function() {
+        $('#cp4').colorpicker().on('changeColor', function(e) {
+            $('body')[0].style.backgroundColor = e.color.toString(
+                'rgba');
+        });
+    });
+</script>
+
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);

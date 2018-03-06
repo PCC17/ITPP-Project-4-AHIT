@@ -90,12 +90,12 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-lg btn-primary btn-block" onclick="register(document.getElementById('inputFirstName').value, document.getElementById('inputLastName').value, document.getElementById('inputUsername').value, document.getElementById('inputLastName').value, document.getElementById('inputEmail').value, document.getElementById('inputPassword').value)">Register</button>
+        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="register(document.getElementById('inputFirstName').value, document.getElementById('inputLastName').value, document.getElementById('inputUsername').value, document.getElementById('inputLastName').value, document.getElementById('inputEmail').value, document.getElementById('inputPassword').value)">Register</button>
         <p class="text-center">Already registered? <a href="../login/">Login</a></p>
       </form>
 
     </div>
   </body>
-  <script src="js/validate.js"></script>
+  <script src="../includes/validate.js"></script>
   <script src="js/register.js"></script>
 <?php require "../includes/bottom.php"; ?>

@@ -20,3 +20,4 @@ include "../includes/bottom.php";
 ?>
 
 <script src="js/settings.js"></script>
+<script src="../includes/validate.js"></script>
