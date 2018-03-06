@@ -18,11 +18,11 @@ var schema_user = new Schema({
     birthDate: { type: Date, required: true },
     countryId: { type: mongoose.Schema.Types.ObjectId, ref: 'ModelCountry' },
     passCategory: [{
-        name: { type: String, required: true, unique: true },
-        order: { type: String, required: true, unique: true },
+        name: { type: String, required: true  },
+        order: { type: String, required: true},
         passEntry: [{
-            name: { type: String, required: true, unique: true},
-            order: { type: String, required: true, unique: true },
+            name: { type: String, required: true},
+            order: { type: String, required: true},
             link: { type: String, required: true },
             image: { type: String, required: true },
             username: { type: String, required: true },
@@ -43,7 +43,7 @@ schema_user.methods.generateHash = function (password) {
 };
 
 // checking if password is valid
-schema_user.methods.validPassword = function (password) {
+schema_user.methods.comparePassword = function (password) {
     return password == this.local.password;
 };
 
