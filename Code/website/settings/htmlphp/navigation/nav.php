@@ -28,6 +28,10 @@
             <li class="nav-item">
               <a class="nav-link" data-toggle="pill" href="#pills-about" role="tab" aria-controls="pills-about">About</a>
             </li>
+            <hr>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="pill" href="#pills-logout" role="tab" aria-controls="pills-logout" onclick="logout()">Logout</a>
+            </li>
           </ul>
   </nav>
 </div>

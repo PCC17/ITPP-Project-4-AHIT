@@ -58,7 +58,7 @@
           <label for="inputRepeatPassword" class="col-sm-3 col-form-label">Repeat password</label>
           <div class="col-sm-9">
             <input type="password" class="form-control" id="inputRepeatPassword" placeholder="samplepassword" required>
-            <div class="invalid-feedback">Please provide a valid password.</div>
+            <div class="invalid-feedback">Passwords don't match.</div>
           </div>
         </div>
 
@@ -90,11 +90,12 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" onclick="register(document.getElementById('inputFirstName').value, document.getElementById('inputLastName').value, document.getElementById('inputUsername').value, document.getElementById('inputLastName').value, document.getElementById('inputEmail').value, document.getElementById('inputPassword').value)">Register</button>
         <p class="text-center">Already registered? <a href="../login/">Login</a></p>
       </form>
 
     </div>
   </body>
-<?php require "js/register.js";
-require "../includes/bottom.php"; ?>
+  <script src="js/validate.js"></script>
+  <script src="js/register.js"></script>
+<?php require "../includes/bottom.php"; ?>
