@@ -1,31 +1,26 @@
-<script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-
-  window.addEventListener('load', function() {
-    var form = document.getElementById('needs-validation');
-    form.addEventListener('submit', function(event) {
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      form.classList.add('was-validated');
-    }, false);
-  }, false);
-})();
-
-var password = document.getElementById("inputPassword")
-  , confirm_password = document.getElementById("inputRepeatPassword");
-
-function validatePassword(){
-  if(password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Passwords Don't Match");
-  } else {
-    confirm_password.setCustomValidity('');
-  }
+function register(firstname, lastname, username, email, password)
+{
+  console.log("HELOOOOO");
+    $.ajax({
+        type: 'POST',
+        url: 'http://10.0.0.21:3005/signup',
+        data: { firstname: firstname, lastname: lastname, username: username, email: email, password: password },
+        dataType: 'json',
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (data) {
+            console.log(data);
+            if(data['status'] == "success")
+            {
+                console.log("Register was successful");
+                document.cookie='token='+data['token'];
+                window.location = "../main";
+            }
+            else if (data['status'] == "error")
+            {
+              console.log("Register FAILED!!!");
+            }
+        }
+    });
 }
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
-</script>

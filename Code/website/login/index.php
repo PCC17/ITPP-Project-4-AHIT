@@ -8,14 +8,9 @@
     <div class="container">
 
       <div class="form-signin rounded shadow">
-        <h2 class="form-signin-heading text-center">Login</h2>
+        <h2 class="form-signin-heading text-center" id="login-heading">Login</h2>
 
-        <div class="alert alert-danger alert-dismissible fade" role="alert" id="errorAlert">
-          Email or password not correct!
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+
 
         <div class="form-group">
           <label for="inputEmail">Email address</label>

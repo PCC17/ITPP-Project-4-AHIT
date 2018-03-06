@@ -19,11 +19,11 @@ function login(email, password)
             }
             else if (data['status'] == "error")
             {
-              addClass('#errorAlert', 'show');
+              console.log("LOGIN FAILED!!!");
+              var erroralert = "<div class=\"alert-danger alert-dismissible fade show\" role=\"alert\" id=\"errorAlert\">Email or password not correct!<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>";
+              document.getElementById("login-heading").after(erroralert);
+              //document.getElementById("errorAlert").classList.add("show");
             }
-        },
-        error: function(error) {
-          console.log(error);
         }
     });
 }
