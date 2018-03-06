@@ -10,9 +10,7 @@
   <span class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   </span>
   <a class="navbar-brand" href="">passIn</a>
-
-  <i class="fa fa-plus fa-2x nav-plus nav-icon" data-toggle="modal" data-target="#modalPlus" aria-hidden="true"></i></a>
-
+  <?php ?>
     <span class="navbar-text">
     Guten Morgen User
     </span>

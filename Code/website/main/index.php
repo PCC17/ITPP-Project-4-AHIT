@@ -14,3 +14,4 @@ include '../includes/bottom.php';
 <script src="../dependencies/html.sortable.min.js"></script>
 
 <script src="js/navigation.js"></script>
+<script src="js/main.js"></script>
