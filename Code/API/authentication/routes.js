@@ -2,9 +2,35 @@
 var messages_state = require('../messages/state');
 var mongoose = require('mongoose');
 
+var express = require('express');
 var ModelUser = mongoose.model('ModelUser');
 var jwt = require('jsonwebtoken');  
 var config = require('./config.js');
+
+var authenticate = express.Router();
+authenticate.use(function (req, res, next) {
+
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+    // decode token
+    if (token) {
+
+        // verifies secret and checks exp
+        jwt.verify(token, config.secret, function (err, decoded) {
+            if (err) {
+                console.log("not logged in user tried something");
+                return res.send(messages_state.getError());
+            } else {
+                // if everything is good, save to request for use in other routes
+                req.payload = decoded;
+                next();
+            }
+        });
+
+    } else {
+        return res.status(403).send(messages_state.getError());
+    }
+});
 
 module.exports = function (app) {
     app.post('/authenticate', function (req, res) {
@@ -14,7 +40,7 @@ module.exports = function (app) {
             if (err) {
                 res.send(messages_state.getError());
             }
-            if (!user) {
+            else if (!user) {
                 res.send(messages_state.getError());
             } else {
                 // Check if password matches
@@ -31,5 +57,12 @@ module.exports = function (app) {
                 }
             }
         });
+    });
+
+    app.route('/checkToken')
+    .get(authenticate, 
+    function(req, res)
+    {
+        res.send(messages_state.getSuccess());
     });
 }

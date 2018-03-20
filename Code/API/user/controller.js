@@ -41,6 +41,13 @@ exports.debug_createSampleUser = function (req, res) {
 
 //end debug area
 
+//color area
+exports.debug_restricted = function (req, res) {
+    res.send("Secret Area");
+}
+
+//end color area
+
 //create update delete category area
 
 exports.createCategory = function (req, res) {
@@ -170,12 +177,56 @@ exports.getCategories = function (req, res) {
 //end create update delete category area
 
 //create update delete entry area
+exports.updateEntry = function (req, res) {
+    var email = req.payload.email;
+    ModelUser.findOneAndUpdate({
+        'local.email': email, 'passCategory.passEntry.name': req.body.name
+    }, { $set: { "passCategory.$.name": req.body.newname } },
+        function (err, doc) {
+            if (err || doc == null) {
+                console.log("234567");
+                console.log(err);
+                res.send(messages_state.getError());
+            }
+            else if (doc) {
+                res.send(messages_state.getSuccess());
+            }
+        });
+}
+exports.getForCategoryEntries = function (req, res) {
+    var email = req.payload.email;
 
+    ModelUser.findOne({ 'local.email': email },
+
+        function (err, user) {
+            if (err)
+                res.send(messages_state.getError());
+            else if (user) {
+                console.log(JSON.stringify(user.passCategory.passEntry));
+                res.send(JSON.stringify(user.passCategory));
+            }
+        }
+    );
+}
+exports.getEntries = function (req, res) {
+    var email = req.payload.email;
+
+    ModelUser.findOne({ 'local.email': email },
+
+        function (err, user) {
+            if (err)
+                res.send(messages_state.getError());
+            else if (user) {
+                console.log(JSON.stringify(user.passCategory.passEntry));
+                res.send(JSON.stringify(user.passCategory));
+            }
+        }
+    );
+}
 exports.createEntry = function (req, res) {
     var email = req.payload.email;
    ModelUser.findOne({ 'local.email': email },
        function (err, user) {
-           console.log(req);
            
            if (err) {
                console.log(err);

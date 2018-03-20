@@ -11,6 +11,7 @@ module.exports = function (app, passport) {
     // IOT Routes
 
     //restricted area
+    
 
     //debug area
     app.route('/debug/restricted')
@@ -33,6 +34,10 @@ module.exports = function (app, passport) {
     //end category area
 
     //entry area
+    app.route('/entries')
+        .get(authenticate, controller.getEntries);
+    app.route('/:category/entries')
+        .get(authenticate, controller.getForCategoryEntries);
     app.route('/:category/entry')
         .post(authenticate, controller.createEntry);
     app.route('/:category/entry')
