@@ -1,8 +1,3 @@
-$(document).ready(function() {
-    console.log( "ready!" );
-});
-
-// Example starter JavaScript for disabling form submissions if there are invalid fields
 function validate()
 {
   'use strict';
@@ -31,7 +26,7 @@ function validatePassword(){
 }
 
 password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
+//confirm_password.onkeyup = validatePassword;
 
 
 function login(email, password)
@@ -50,7 +45,7 @@ function login(email, password)
             if(data['status'] == "success")
             {
                 console.log("Login was successful");
-                document.cookie='token='+data['token'];
+                setCookie("token",data['token'],5);
                 window.location = "../main";
             }
             else if (data['status'] == "error")
