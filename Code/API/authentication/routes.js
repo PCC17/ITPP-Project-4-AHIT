@@ -1,33 +1,68 @@
 'use strict';
 var messages_state = require('../messages/state');
-var User = require('../user/model.js');  
+var mongoose = require('mongoose');
+
+var express = require('express');
+var ModelUser = mongoose.model('ModelUser');
 var jwt = require('jsonwebtoken');  
 var config = require('./config.js');
 
-module.exports = function (app) {
-    app.post('/authenticate', function (req,res){ 
-        User.findOne({
-            'local.email': req.body.email
-        }, function(err, user) {
-                if (err) throw err;
-                if (!user) {
-                    //res.send(messages_state.getError());
-                    res.send(req.body.email);
-                } else {
-                // Check if password matches
-                    if(user.comparePassword(req.body.password)) {
-                        var payload = {id: user.id, email: user.local.email};
-                        var token = jwt.sign(payload, config.secret, {
-                            expiresIn: 10080 // in seconds
-                        });
-                        var ret = messages_state.getSuccessJson();
-                        ret['token'] = token;
-                        res.send(JSON.stringify(ret));
-                        } else {
-                            res.send(messages_state.getError());
-                        }
-                    }
-                });
+var authenticate = express.Router();
+authenticate.use(function (req, res, next) {
+
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+    // decode token
+    if (token) {
+
+        // verifies secret and checks exp
+        jwt.verify(token, config.secret, function (err, decoded) {
+            if (err) {
+                console.log("not logged in user tried something");
+                return res.send(messages_state.getError());
+            } else {
+                // if everything is good, save to request for use in other routes
+                req.payload = decoded;
+                next();
             }
-        );
+        });
+
+    } else {
+        return res.status(403).send(messages_state.getError());
+    }
+});
+
+module.exports = function (app) {
+    app.post('/authenticate', function (req, res) {
+        ModelUser.findOne({
+            'local.email': req.body.email
+        }, function (err, user) {
+            if (err) {
+                res.send(messages_state.getError());
+            }
+            else if (!user) {
+                res.send(messages_state.getError());
+            } else {
+                // Check if password matches
+                if (user.comparePassword(req.body.password)) {
+                    var payload = { id: user.id, email: user.local.email };
+                    var token = jwt.sign(payload, config.secret, {
+                        expiresIn: 10080 // in seconds
+                    });
+                    var ret = JSON.parse(JSON.stringify(messages_state.getSuccessJson()));
+                    ret['token'] = token;
+                    res.send(JSON.stringify(ret));
+                } else {
+                    res.send(messages_state.getError());
+                }
+            }
+        });
+    });
+
+    app.route('/checkToken')
+    .get(authenticate, 
+    function(req, res)
+    {
+        res.send(messages_state.getSuccess());
+    });
 }

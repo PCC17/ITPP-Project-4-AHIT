@@ -3,6 +3,27 @@ var bcrypt = require('bcrypt');
 
 var Schema = mongoose.Schema;
 
+var schema_pass_entry = new Schema({
+    name: { type: String, required: true },
+    order: { type: String, required: true },
+    link: { type: String, required: true },
+    image: { type: String, required: true },
+    username: { type: String, required: true },
+    password: { type: String, required: true },
+    notes: { type: String, required: true },
+    customFields: [{
+        key: { type: String, required: true },
+        value: { type: String, required: true },
+    }],
+    isfavourite: { type: Boolean, default: false }
+});
+
+var schema_pass_category = new Schema( {
+    name: { type: String, required: true },
+    order: { type: String, required: true},
+    passEntry: [schema_pass_entry]
+});
+
 // create a schema
 var schema_user = new Schema({
     local: {
@@ -11,30 +32,13 @@ var schema_user = new Schema({
     },
 
     email: { type: String, required: true, unique: true },
-    username: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     joined: { type: Date, default: Date.now },
     birthDate: { type: Date, required: true },
     countryId: { type: mongoose.Schema.Types.ObjectId, ref: 'ModelCountry' },
-    passCategory: [{
-        name: { type: String, required: true  },
-        order: { type: String, required: true},
-        passEntry: [{
-            name: { type: String, required: true},
-            order: { type: String, required: true},
-            link: { type: String, required: true },
-            image: { type: String, required: true },
-            username: { type: String, required: true },
-            password: { type: String, required: true },
-            notes: { type: String, required: true },
-            customFields: [{
-                key: { type: String, required: true },
-                value: { type: String, required: true },
-            }],
-            isfavourite: { type: Boolean, default: false },
-        }]
-    }]
+    passCategory: [schema_pass_category]
 });
 
 
@@ -49,6 +53,9 @@ schema_user.methods.comparePassword = function (password) {
 
 
 var ModelUser = mongoose.model('ModelUser', schema_user);
-
+var ModelPassCategory = mongoose.model('ModelPassCategory', schema_pass_category);
+var ModelPassEntry = mongoose.model('ModelPassEntry', schema_pass_entry);
 // make this available to our users in our Node applications
-module.exports = ModelUser;
+module.exports += ModelUser;
+module.exports += ModelPassCategory;
+module.exports += ModelPassEntry;
