@@ -11,7 +11,7 @@ domCategories();
 }
 
 
-$(document).ready(function () { 
+$(document).ready(function () {
     getCategories();
 });
 
@@ -30,15 +30,15 @@ var _cfKey = cfKey;
 var _cfValue= cfValue;
 var _peIsFavourite = peIsFavourite;
 
-$.post("http://10.0.0.21:3005/category?token="+getCookie("token"), {"name": "tesgfhjt6","order": 0,"passEntry": [{"name": "google","order": 0,"link": "apple.com","image": "bilduno","username": "hans","password":"hans2","notes": "herbert","customFields": [{"key": "1","value": "dflklg"}],"isfavourite": "false"}]}) 
+$.post("http://10.0.0.21:3005/category?token="+getCookie("token"), {"name": "tesgfhjt6","order": 0,"passEntry": [{"name": "google","order": 0,"link": "apple.com","image": "bilduno","username": "hans","password":"hans2","notes": "herbert","customFields": [{"key": "1","value": "dflklg"}],"isfavourite": "false"}]})
 
 }
 
 function domCategories(){
     console.log(categories);
     for(var i = 0; i < categories.length; i++)
-    {   
-        var catname = document.createElement('li'); 
+    {
+        var catname = document.createElement('li');
         catname.className = 'nav-item navy my-nav-left';
         catname.id = categories[i].name;
         list.appendChild(catname);
@@ -53,7 +53,19 @@ function domCategories(){
 }
 
 function domEntries() {
-
+    console.log(categories);
+    for(var i = 0; i < categories.length; i++)
+    {
+        var catname = document.createElement('li');
+        catname.className = 'nav-item navy my-nav-left';
+        catname.id = categories[i].name;
+        list.appendChild(catname);
+        var catnameChild = document.createElement('a');
+        catnameChild.innerHTML = categories[i].name;
+        catnameChild.className = 'nav-link';
+        catnameChild.innerHTML = categories[i].name;
+        var y = document.getElementById(categories[i].name);
+        y.appendChild(catnameChild);
 }
 
 function favEntries() {
@@ -197,4 +209,3 @@ $.ajax({
 
 })
 }
-

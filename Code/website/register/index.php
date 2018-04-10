@@ -47,6 +47,14 @@
         </div>
 
         <div class="form-group row">
+          <label for="inputEmail" class="col-sm-3 col-form-label">Birthdate</label>
+          <div class="col-sm-9">
+            <input type="date" class="form-control" id="inputBirthdate" placeholder="DD-MM-YYYY" required>
+            <div class="invalid-feedback">Please provide a valid date.</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
           <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
           <div class="col-sm-9">
             <input type="password" class="form-control" id="inputPassword" placeholder="samplepassword" required>
@@ -90,7 +98,7 @@
           </div>
         </div>
 
-        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="register(document.getElementById('inputFirstName').value, document.getElementById('inputLastName').value, document.getElementById('inputUsername').value, document.getElementById('inputLastName').value, document.getElementById('inputEmail').value, document.getElementById('inputPassword').value)">Register</button>
+        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="register(document.getElementById('inputFirstName').value, document.getElementById('inputLastName').value, document.getElementById('inputUsername').value, document.getElementById('inputEmail').value, document.getElementById('inputBirthdate').value, document.getElementById('inputPassword').value)">Register</button>
         <p class="text-center">Already registered? <a href="../login/">Login</a></p>
       </form>
 
