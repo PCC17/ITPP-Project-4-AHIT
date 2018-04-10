@@ -40,3 +40,27 @@ function setCookie(cname, cvalue, exdays) {
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
+function checkToken()
+{
+    if(!getCookie("token")=="")
+    {
+        $.ajax({
+            type: 'GET',
+            url: 'http://10.0.0.21:3005/checkToken?token='+getCookie("token"),
+            xhrFields: { withCredentials: true },
+            dataType: 'json',
+            success: function (data) {
+                console.log("spitzen token");
+                if(data['status'] == "error")
+                {
+                    window.location = "../main";
+                }
+            }
+        });
+    }
+    else
+    {
+        window.location = "../login";
+    }
+}
