@@ -195,18 +195,22 @@ exports.updateEntry = function (req, res) {
 }
 exports.getForCategoryEntries = function (req, res) {
     var email = req.payload.email;
-
-    ModelUser.findOne({ 'local.email': email },
-
+    ModelUser.findOne({
+        'local.email': email
+    },
         function (err, user) {
-            if (err)
+            if (err || user == null) {
+                console.log(err);
                 res.send(messages_state.getError());
-            else if (user) {
-                console.log(JSON.stringify(user.passCategory.passEntry));
-                res.send(JSON.stringify(user.passCategory));
             }
-        }
-    );
+            else {
+                for (var i = 0; i < user.passCategory.length; i++) {
+                    if (user.passCategory[i].name == req.params.category) {
+                        res.send(user.passCategory[i].passEntry);
+                    }
+                }
+            }
+        });
 }
 exports.getEntries = function (req, res) {
     var email = req.payload.email;
@@ -310,6 +314,7 @@ exports.failure = function (req, res) {
 
 // login user
 exports.signup = function (req, res) {
+    console.log("ich bin da");
     ModelUser.findOne({ 'local.email': req.body.email },
         function (err, user) {
             if (err)
@@ -322,10 +327,12 @@ exports.signup = function (req, res) {
                 
                 console.log(userJson);
                 userJson.joinedDate = "27-01-2000";
-                userJson.local["email"] = userJson.email;
-                userJson.local["password"] = userJson.password;
+                var lo = { "email": userJson.email, "password": userJson.password };
+                
+                userJson["local"] = lo;
                 console.log(userJson);
                 var user = new ModelUser(userJson);
+                user.local.password = user.generateHash(user.local.password);
                 console.log(user);
               
                 console.log(user);

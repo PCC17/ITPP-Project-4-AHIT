@@ -16,7 +16,8 @@ var userroutes = require('./user/routes');
 require('./authentication/auth.js')(passport);
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://root:ansti123@ds157538.mlab.com:57538/pro', { useMongoClient: true}, function (err) {
+//mongoose.connect('mongodb://root:ansti123@ds157538.mlab.com:57538/pro', { useMongoClient: true}, function (err) {
+mongoose.connect('mongodb://192.168.56.3/pro', { useMongoClient: true }, function (err) {
     if (err)
     {
         console.log('Connection error');
