@@ -1,23 +1,26 @@
-var categories;
-var entries;
+var categories = [];
+var entries = [];
 var list = document.getElementById('sortable');
 
 function getCategories()
 {
 $.get("http://10.0.0.21:3005/categories?token="+getCookie("token"), function(data){
-console.log("succes");
-categories = JSON.parse(data);
+console.log(data);
+categories = data;
 domCategories();
 });
 }
 
 
 $(document).ready(function () {
+<<<<<<< HEAD
     checkToken();
     getCategories();
+=======
+>>>>>>> b4a9450b1573aa95ff431ddb3d1fa8790823f874
     //addCatgory();
     //addEntry("ASDF", "entriy12", 1, "www.ahdjd,com", "coolesImage", "UserNamen", "SicheresPassword", "notizen", "Liste", "InhaltderListe", "true");
-    getEntries('ASDF');
+    getEntries();
 });
 
 function addCatgory(name,order,peName,peOrder,peLink, peImage, peUsername, pePassword, peNotes, cfKey, cfValue, peIsFavourite){
@@ -94,17 +97,70 @@ function domEntries() {
 }
 }
 
-function favEntries() {
+function checkfavEntries() {
+    var favEntries = [];
+    console.log(categories);
+    for(var i = 0; i< entries.length; i++)
+    {
+      if(element.isfavourite == true)
+      {
+        favEntries.push(element);
+      }
+    }
+    console.log(favEntries);
+    for(var i = 0; i < entries.length; i++)
+    {
+        var entry = document.createElement('article');
+        entry.className = 'entry';
+        var card = document.createElement('div');
+        card.className = 'card';
+        entry.appendChild(card);
+        var cardheader = document.createElement('div');
+        cardheader.className = 'card-header';
+        cardheader.innerHTML = favEntries[i].name;
+        card.appendChild(cardheader);
+        var cardbody = document.createElement('ul');
+        cardbody.className = 'list-group list-group-flush';
+        card.appendChild(cardbody);
+
+        var cardentry1 = document.createElement('li');
+        cardentry1.className = 'list-group-item';
+        cardentry1.innerHTML = favEntries[i].username;
+        cardbody.appendChild(cardentry1);
+
+        var cardentry2 = document.createElement('li');
+        cardentry2.className = 'list-group-item';
+        cardentry2.innerHTML = favEntries[i].password;
+        cardbody.appendChild(cardentry2);
+
+        var cardentry3 = document.createElement('li');
+        cardentry3.className = 'list-group-item';
+        cardentry3.innerHTML = favEntries[i].notes;
+        cardbody.appendChild(cardentry3);
+
+        var content = document.getElementById('content');
+        content.appendChild(entry);
+}
 
 }
 
-function getEntries(catname) {
-var _catname = catname;
-$.get("http://10.0.0.21:3005/"+_catname+"/entries?token="+getCookie("token"), function(data){
-console.log(data);
-entries = JSON.parse(data);
-domEntries();
+
+function getEntries() {
+getCategories();
+console.log(categories);
+for(var i = 0; i < categories.length; i++)
+{
+
+  var _catname = categories[i].name;
+  console.log(_catname);
+  $.get("http://10.0.0.21:3005/"+_catname+"/entries?token="+getCookie("token"), function(data){
+    console.log(data);
+    window.entries.push(data);
+    console.log(entries);
 });
+}
+domEntries();
+checkfavEntries();
 }
 
 function addEntry(category, name, order, link, image, username, password, notes, cfKey, cfValue, favourtie) {
@@ -236,4 +292,16 @@ $.ajax({
     }
 
 })
+}
+
+
+function checkFavCat(){
+  var favEntries;
+  for(var i = 0; i<categories.length; i++)
+  {
+
+    {
+      favCategories.push
+    }
+  }
 }
