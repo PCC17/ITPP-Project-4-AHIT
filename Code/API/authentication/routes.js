@@ -12,16 +12,13 @@ authenticate.use(function (req, res, next) {
 
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
-    // decode token
     if (token) {
 
-        // verifies secret and checks exp
         jwt.verify(token, config.secret, function (err, decoded) {
             if (err) {
                 console.log("not logged in user tried something");
                 return res.send(messages_state.getError());
             } else {
-                // if everything is good, save to request for use in other routes
                 req.payload = decoded;
                 next();
             }
@@ -43,11 +40,10 @@ module.exports = function (app) {
             else if (!user) {
                 res.send(messages_state.getError());
             } else {
-                // Check if password matches
                 if (user.comparePassword(req.body.password)) {
                     var payload = { id: user.id, email: user.local.email };
                     var token = jwt.sign(payload, config.secret, {
-                        expiresIn: 10080 // in seconds
+                        expiresIn: 10080 
                     });
                     var ret = JSON.parse(JSON.stringify(messages_state.getSuccessJson()));
                     ret['token'] = token;

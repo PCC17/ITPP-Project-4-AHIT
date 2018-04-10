@@ -48,7 +48,7 @@ schema_user.methods.generateHash = function (password) {
 
 // checking if password is valid
 schema_user.methods.comparePassword = function (password) {
-    return password == this.local.password;
+    return bcrypt.compareSync(password, this.local.password);
 };
 
 
