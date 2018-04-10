@@ -1,4 +1,5 @@
 var categories;
+var entries;
 var list = document.getElementById('sortable');
 
 function getCategories()
@@ -13,6 +14,9 @@ domCategories();
 
 $(document).ready(function () {
     getCategories();
+    //addCatgory();
+    //addEntry("ASDF", "entriy12", 1, "www.ahdjd,com", "coolesImage", "UserNamen", "SicheresPassword", "notizen", "Liste", "InhaltderListe", "true");
+    getEntries('ASDF');
 });
 
 function addCatgory(name,order,peName,peOrder,peLink, peImage, peUsername, pePassword, peNotes, cfKey, cfValue, peIsFavourite){
@@ -30,7 +34,7 @@ var _cfKey = cfKey;
 var _cfValue= cfValue;
 var _peIsFavourite = peIsFavourite;
 
-$.post("http://10.0.0.21:3005/category?token="+getCookie("token"), {"name": "tesgfhjt6","order": 0,"passEntry": [{"name": "google","order": 0,"link": "apple.com","image": "bilduno","username": "hans","password":"hans2","notes": "herbert","customFields": [{"key": "1","value": "dflklg"}],"isfavourite": "false"}]})
+$.post("http://10.0.0.21:3005/category?token="+getCookie("token"), {"name": "ASDF","order": 0,"passEntry": [{"name": "google","order": 0,"link": "apple.com","image": "bilduno","username": "hans","password":"hans2","notes": "herbert","customFields": [{"key": "1","value": "dflklg"}],"isfavourite": "false"}]})
 
 }
 
@@ -53,19 +57,40 @@ function domCategories(){
 }
 
 function domEntries() {
-    console.log(categories);
-    for(var i = 0; i < categories.length; i++)
+    console.log(entries);
+    for(var i = 0; i < entries.length; i++)
     {
-        var catname = document.createElement('li');
-        catname.className = 'nav-item navy my-nav-left';
-        catname.id = categories[i].name;
-        list.appendChild(catname);
-        var catnameChild = document.createElement('a');
-        catnameChild.innerHTML = categories[i].name;
-        catnameChild.className = 'nav-link';
-        catnameChild.innerHTML = categories[i].name;
-        var y = document.getElementById(categories[i].name);
-        y.appendChild(catnameChild);
+        var entry = document.createElement('article');
+        entry.className = 'entry';
+        var card = document.createElement('div');
+        card.className = 'card';
+        entry.appendChild(card);
+        var cardheader = document.createElement('div');
+        cardheader.className = 'card-header';
+        cardheader.innerHTML = entries[i].name;
+        card.appendChild(cardheader);
+        var cardbody = document.createElement('ul');
+        cardbody.className = 'list-group list-group-flush';
+        card.appendChild(cardbody);
+
+        var cardentry1 = document.createElement('li');
+        cardentry1.className = 'list-group-item';
+        cardentry1.innerHTML = entries[i].username;
+        cardbody.appendChild(cardentry1);
+
+        var cardentry2 = document.createElement('li');
+        cardentry2.className = 'list-group-item';
+        cardentry2.innerHTML = entries[i].password;
+        cardbody.appendChild(cardentry2);
+
+        var cardentry3 = document.createElement('li');
+        cardentry3.className = 'list-group-item';
+        cardentry3.innerHTML = entries[i].notes;
+        cardbody.appendChild(cardentry3);
+
+        var content = document.getElementById('content');
+        content.appendChild(entry);
+}
 }
 
 function favEntries() {
@@ -76,6 +101,8 @@ function getEntries(catname) {
 var _catname = catname;
 $.get("http://10.0.0.21:3005/"+_catname+"/entries?token="+getCookie("token"), function(data){
 console.log(data);
+entries = JSON.parse(data);
+domEntries();
 });
 }
 

@@ -15,7 +15,7 @@ function register(firstname, lastname, username, email, birthdate, password)
             {
                 console.log("Register was successful");
                 document.cookie='token='+data['token'],5;
-                window.location = "../main";
+                window.location = "../login";
             }
             else if (data['status'] == "error")
             {
