@@ -29,10 +29,10 @@ function addCategory(name){
       success: function(data)
       {
           console.log(data);
+          getCategories();
           if(['status'] == "success")
           {
               console.log("success");
-
           }
 
           else if(['status'] == "error")
@@ -65,6 +65,8 @@ $.post(url+"/category?token="+getCookie("token"), {"name": "ASDF","order": 0,"pa
 }
 
 function domCategories(){
+    var t = document.getElementById("sortable");
+    t.innerHTML="";
     console.log(categories);
     console.log(categories.length);
     for(var i = 0; i < categories.length; i++)
@@ -74,8 +76,9 @@ function domCategories(){
         catname.id = categories[i].name;
         list.appendChild(catname);
         var catnameChild = document.createElement('a');
-        catnameChild.innerHTML = categories[i].name;
         catnameChild.className = 'nav-link';
+        catnameChild.setAttribute("data-toggle", "pill");
+        catnameChild.href = "#" + categories[i].name;
         catnameChild.innerHTML = categories[i].name;
         var y = document.getElementById(categories[i].name);
         y.appendChild(catnameChild);
@@ -83,7 +86,19 @@ function domCategories(){
 }
 
 function domEntries() {
-    console.log(entries);
+  var t = document.getElementById("content")
+  for (var j = 0; j < categories.length; j++) {
+    var tabcontent = document.createElement('div');
+    tabcontent.className = 'tab-content';
+    tabcontent.id = "tabContent";
+    t.appendChild(tabcontent);
+
+    var tabpane = document.createElement('div');
+    tabpane.className = 'tab-pane fade';
+    tabpane.id = categories[j];
+    tabcontent.appendChild(tabpane);
+
+    var entries = categories[j].passEntry;
     for(var i = 0; i < entries.length; i++)
     {
         var entry = document.createElement('article');
@@ -116,7 +131,8 @@ function domEntries() {
 
         var content = document.getElementById('content');
         content.appendChild(entry);
-}
+      }
+    }
 }
 
 function checkfavEntries() {
@@ -179,20 +195,20 @@ domEntries();
 checkfavEntries();
 }
 
-function addEntry(category, name, order, link, image, username, password, notes, cfKey, cfValue, favourtie) {
+function addEntry(category, name, link, username, password, notes, isFavourite, cfKey, cfValue) {
 //addEntry("546", "entriy12", 1, "www.ahdjd,com", "coolesImage", "UserNamen", "SicheresPassword", "notizen", "Liste", "InhaltderListe", "true");
 
 var _category = category;
 var _peName = name;
-var _peOrder = order;
+var _peOrder = entries.length + 1;
 var _peLink = link;
-var _peImage = image;
+var _peImage = null;
 var _peUsername = username;
 var _pePassword = password;
 var _peNotes = notes;
 var _cfKey = cfKey;
 var _cfValue= cfValue;
-var _peIsFavourite = favourtie;
+var _peIsFavourite = isFavourite;
 $.ajax({
 
     dataType: 'json',
@@ -311,9 +327,12 @@ $.ajax({
 }
 
 function getCategoryOptions() {
+  var select = document.getElementById("inputSelect");
+  select.innerHTML="";
   for (var i = 0; i < categories.length; i++) {
     var option = document.createElement('option');
     option.innerHTML = categories[i].name;
+    select.appendChild(option);
   }
 }
 

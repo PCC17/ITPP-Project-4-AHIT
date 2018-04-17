@@ -67,7 +67,7 @@
 }
 
 .searchBlock{
-	max-height: 
+	max-height:
 }
 #content {
     margin-left: 250px;
@@ -88,6 +88,11 @@
 	float: left;
 	margin-bottom: 15px;
 
+}
+
+.modal-dialog {
+	max-height: 90%;
+	overflow: auto;
 }
 
 
