@@ -101,8 +101,10 @@ function domEntries() {
     var entries = categories[j].passEntry;
     for(var i = 0; i < entries.length; i++)
     {
+      console.log(entries[i]);
         var entry = document.createElement('article');
         entry.className = 'entry';
+        tabpane.appendChild(entry);
         var card = document.createElement('div');
         card.className = 'card';
         entry.appendChild(card);

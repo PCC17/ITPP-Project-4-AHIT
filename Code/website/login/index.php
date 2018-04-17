@@ -10,6 +10,8 @@
       <form class="form-signin rounded shadow" id="needs-validation" novalidate>
         <h2 class="form-signin-heading text-center" id="login-heading">Login</h2>
 
+        <div id="errorAlertDiv"></div>
+
         <div class="form-group">
           <label for="inputEmail">Email address</label>
           <input type="email" class="form-control" id="inputEmail" placeholder="Email address" required>

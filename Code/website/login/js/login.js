@@ -51,9 +51,25 @@ function login(email, password)
             else if (data['status'] == "error")
             {
               console.log("LOGIN FAILED!!!");
-              var erroralert = "<div class=\"alert-danger alert-dismissible fade show\" role=\"alert\" id=\"errorAlert\">Email or password not correct!<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div>";
-              document.getElementById("login-heading").after(erroralert);
-              //document.getElementById("errorAlert").classList.add("show");
+
+              var t = document.getElementById("errorAlertDiv");
+
+              var alert = document.createElement('div');
+              alert.className = 'alert alert-danger alert-dismissible fade show';
+              alert.id = "errorAlert";
+              alert.innerHTML = "Email or Passwort wrong";
+              t.appendChild(alert);
+
+              var dismissbtn = document.createElement('button');
+              dismissbtn.className = 'close';
+              dismissbtn.setAttribute("type", "button");
+              dismissbtn.setAttribute("data-dismiss", "alert");
+              alert.appendChild(dismissbtn);
+
+              var span = document.createElement("span");
+              span.setAttribute("aria-hidden", "true");
+              span.innerHTML = "&times;";
+              dismissbtn.appendChild(span);
             }
         }
     });
