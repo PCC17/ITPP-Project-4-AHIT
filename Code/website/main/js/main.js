@@ -8,22 +8,43 @@ $.get(url+"/categories?token="+getCookie("token"), function(data){
 console.log(data);
 categories = data;
 domCategories();
+getEntries();
 });
 }
 
 
 $(document).ready(function () {
-<<<<<<< HEAD
     checkToken();
     getCategories();
-=======
->>>>>>> b4a9450b1573aa95ff431ddb3d1fa8790823f874
-    //addCatgory();
-    //addEntry("ASDF", "entriy12", 1, "www.ahdjd,com", "coolesImage", "UserNamen", "SicheresPassword", "notizen", "Liste", "InhaltderListe", "true");
-    getEntries();
 });
 
-function addCatgory(name,order,peName,peOrder,peLink, peImage, peUsername, pePassword, peNotes, cfKey, cfValue, peIsFavourite){
+function addCategory(name,order){
+  $.ajax({
+      dataType: 'json',
+      type: 'POST',
+      url: url+"/category?token="+getCookie("token"),
+      data: {"name": name,
+              "order": order},
+      success: function(data)
+      {
+          console.log(data);
+          if(['status'] == "success")
+          {
+              console.log("success");
+
+          }
+
+          else if(['status'] == "error")
+          {
+              console.log("error");
+          }
+      }
+
+  })
+}
+
+
+function addCatgoryWithEntry(name,order,peName,peOrder,peLink, peImage, peUsername, pePassword, peNotes, cfKey, cfValue, peIsFavourite){
 
 var _name = name;
 var _order = order;
@@ -144,20 +165,15 @@ function checkfavEntries() {
 
 }
 
-
 function getEntries() {
-getCategories();
 console.log(categories);
 for(var i = 0; i < categories.length; i++)
 {
-
   var _catname = categories[i].name;
   console.log(_catname);
-  $.get(url+_catname+"/entries?token="+getCookie("token"), function(data){
-    console.log(data);
-    window.entries.push(data);
-    console.log(entries);
-});
+  $.get(url+_catname+"/entries?token="+getCookie("token"), function(data){console.log(data)});
+
+
 }
 domEntries();
 checkfavEntries();
@@ -181,7 +197,7 @@ $.ajax({
 
     dataType: 'json',
     type: 'POST',
-    url: url+"/"_category+"/entry?token="+getCookie("token"),
+    url: url+"/"+_category+"/entry?token="+getCookie("token"),
     data: {"name": _peName,
             "order": _peOrder,
             "link": _peLink,
