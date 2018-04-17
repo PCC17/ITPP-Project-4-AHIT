@@ -41,4 +41,30 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+<<<<<<< HEAD
 var url = "http://10.0.0.25:3005";
+=======
+function checkToken()
+{
+    if(!getCookie("token")=="")
+    {
+        $.ajax({
+            type: 'GET',
+            url: 'http://10.0.0.21:3005/checkToken?token='+getCookie("token"),
+            xhrFields: { withCredentials: true },
+            dataType: 'json',
+            success: function (data) {
+                console.log("spitzen token");
+                if(data['status'] == "error")
+                {
+                    window.location = "../main";
+                }
+            }
+        });
+    }
+    else
+    {
+        window.location = "../login";
+    }
+}
+>>>>>>> master

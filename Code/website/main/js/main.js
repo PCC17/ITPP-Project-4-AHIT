@@ -13,6 +13,11 @@ domCategories();
 
 
 $(document).ready(function () {
+<<<<<<< HEAD
+    checkToken();
+    getCategories();
+=======
+>>>>>>> b4a9450b1573aa95ff431ddb3d1fa8790823f874
     //addCatgory();
     //addEntry("ASDF", "entriy12", 1, "www.ahdjd,com", "coolesImage", "UserNamen", "SicheresPassword", "notizen", "Liste", "InhaltderListe", "true");
     getEntries();

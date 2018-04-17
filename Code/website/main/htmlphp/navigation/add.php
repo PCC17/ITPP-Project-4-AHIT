@@ -80,7 +80,7 @@
   </div>
 </div>
 
-
+<!-- categoryModal -->
 <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
