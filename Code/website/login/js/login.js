@@ -34,7 +34,7 @@ function login(email, password)
   console.log("HELOOOOO");
     $.ajax({
         type: 'POST',
-        url: 'http://10.0.0.21:3005/authenticate',
+        url: url + '/authenticate',
         data: { email: email, password: password },
         dataType: 'json',
         xhrFields: {

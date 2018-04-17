@@ -3,7 +3,7 @@ function register(firstname, lastname, username, email, birthdate, password)
   console.log("Registering started");
     $.ajax({
         type: 'POST',
-        url: 'http://10.0.0.21:3005/signup',
+        url: url + '/signup',
         data: { "firstname": firstname, "lastname": lastname, "username": username, "email": email, "birthDate": birthdate, "password": password },
         dataType: 'json',
         xhrFields: {

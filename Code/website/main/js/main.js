@@ -4,7 +4,7 @@ var list = document.getElementById('sortable');
 
 function getCategories()
 {
-$.get("http://10.0.0.21:3005/categories?token="+getCookie("token"), function(data){
+$.get(url+"/categories?token="+getCookie("token"), function(data){
 console.log(data);
 categories = data;
 domCategories();
@@ -33,7 +33,7 @@ var _cfKey = cfKey;
 var _cfValue= cfValue;
 var _peIsFavourite = peIsFavourite;
 
-$.post("http://10.0.0.21:3005/category?token="+getCookie("token"), {"name": "ASDF","order": 0,"passEntry": [{"name": "google","order": 0,"link": "apple.com","image": "bilduno","username": "hans","password":"hans2","notes": "herbert","customFields": [{"key": "1","value": "dflklg"}],"isfavourite": "false"}]})
+$.post(url+"/category?token="+getCookie("token"), {"name": "ASDF","order": 0,"passEntry": [{"name": "google","order": 0,"link": "apple.com","image": "bilduno","username": "hans","password":"hans2","notes": "herbert","customFields": [{"key": "1","value": "dflklg"}],"isfavourite": "false"}]})
 
 }
 
@@ -148,7 +148,7 @@ for(var i = 0; i < categories.length; i++)
 
   var _catname = categories[i].name;
   console.log(_catname);
-  $.get("http://10.0.0.21:3005/"+_catname+"/entries?token="+getCookie("token"), function(data){
+  $.get(url+_catname+"/entries?token="+getCookie("token"), function(data){
     console.log(data);
     window.entries.push(data);
     console.log(entries);
@@ -176,7 +176,7 @@ $.ajax({
 
     dataType: 'json',
     type: 'POST',
-    url: "http://10.0.0.21:3005/"+_category+"/entry?token="+getCookie("token"),
+    url: url+"/"_category+"/entry?token="+getCookie("token"),
     data: {"name": _peName,
             "order": _peOrder,
             "link": _peLink,
@@ -214,7 +214,7 @@ $.ajax({
 
     dataType: 'json',
     type: 'PUT',
-    url: 'http://10.0.0.21:3005/category?token='+getCookie("token"),
+    url: url+ '/category?token='+getCookie("token"),
     data: {'name': _name, 'newname': _newName, 'neworder': _orderNumber},
     success: function(data)
     {
@@ -242,7 +242,7 @@ $.ajax({
 
     dataType: 'json',
     type: 'PUT',
-    url: 'http://10.0.0.21:3005/category?token='+getCookie("token"),
+    url: url +'/category?token='+getCookie("token"),
     data: {'name': _name, 'neworder': _orderNumber},
     success: function(data)
     {
@@ -269,7 +269,7 @@ $.ajax({
 
     dataType: 'json',
     type: 'PUT',
-    url: 'http://10.0.0.21:3005/category?token='+getCookie("token"),
+    url: url +'/category?token='+getCookie("token"),
     data: {'name': _name, 'newname': _newName},
     success: function(data)
     {
