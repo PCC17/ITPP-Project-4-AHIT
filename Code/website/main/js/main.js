@@ -6,7 +6,7 @@ function getCategories()
 {
 $.get(url+"/categories?token="+getCookie("token"), function(data){
 console.log(data);
-categories = data;
+categories = JSON.parse(data);
 domCategories();
 getEntries();
 });
@@ -65,6 +65,7 @@ $.post(url+"/category?token="+getCookie("token"), {"name": "ASDF","order": 0,"pa
 
 function domCategories(){
     console.log(categories);
+    console.log(categories.length);
     for(var i = 0; i < categories.length; i++)
     {
         var catname = document.createElement('li');
@@ -77,7 +78,6 @@ function domCategories(){
         catnameChild.innerHTML = categories[i].name;
         var y = document.getElementById(categories[i].name);
         y.appendChild(catnameChild);
-
     }
 }
 
@@ -170,7 +170,6 @@ console.log(categories);
 for(var i = 0; i < categories.length; i++)
 {
   var _catname = categories[i].name;
-  console.log(_catname);
   $.get(url+_catname+"/entries?token="+getCookie("token"), function(data){console.log(data)});
 
 
