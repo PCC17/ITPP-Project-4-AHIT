@@ -18,7 +18,8 @@ $(document).ready(function () {
     getCategories();
 });
 
-function addCategory(name,order){
+function addCategory(name){
+  var order = categories.length + 1;
   $.ajax({
       dataType: 'json',
       type: 'POST',
@@ -307,6 +308,13 @@ $.ajax({
     }
 
 })
+}
+
+function getCategoryOptions() {
+  for (var i = 0; i < categories.length; i++) {
+    var option = document.createElement('option');
+    option.innerHTML = categories[i].name;
+  }
 }
 
 

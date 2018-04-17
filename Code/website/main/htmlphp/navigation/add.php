@@ -35,9 +35,7 @@
             <label for="inputSelect" class="col-sm-3 col-form-label">Choose Category</label>
             <div class="col-sm-9">
               <select class="form-control" id="inputSelect">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+                <script>getCategoryOptions();</script>
               </select>
             </div>
           </div>
@@ -73,7 +71,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary" onclick="addEntry(document.getElementById('inputEntryName').value, document.getElementById('inputUsername').value, document.getElementById('inputPassword').value, document.getElementById('textNotes').value)">Save</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -100,7 +98,7 @@
        </div>
 
         <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary" onclick="addCategory(document.getElementById('categoryName').value)">Save</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
 
