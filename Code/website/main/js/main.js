@@ -104,7 +104,6 @@ function domEntries() {
       console.log(entries[i]);
         var entry = document.createElement('article');
         entry.className = 'entry';
-        tabpane.appendChild(entry);
         var card = document.createElement('div');
         card.className = 'card';
         entry.appendChild(card);
@@ -132,7 +131,7 @@ function domEntries() {
         cardbody.appendChild(cardentry3);
 
         var content = document.getElementById('content');
-        content.appendChild(entry);
+        tabpane.appendChild(entry);
       }
     }
 }
