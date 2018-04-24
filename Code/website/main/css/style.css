@@ -25,6 +25,10 @@
 	margin-left: 5%;
 }
 
+.mycard {
+	width: 15rem;
+}
+
 .wrapper {
     display: flex;
     align-items: stretch;
