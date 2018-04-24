@@ -21,7 +21,9 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title heading-font" id="modalTitle">Add / Edit Entry</h5>
+        <h5 class="modal-title heading-font" id="modalTitle">
+          <i id="AddEdit"></i>  <i>Entry</i>
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -29,7 +31,6 @@
       <div class="modal-body">
         <!-- Modal Body -->
         <form class="form-signin">
-          <h3 class="form-signin-heading heading-font">New Entry</h3>
 
           <div class="form-group row">
             <label for="inputSelect" class="col-sm-3 col-form-label">Choose Category</label>
@@ -97,7 +98,9 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title heading-font" id="modalTitle">Add / Edit Category</h5>
+        <h5 class="modal-title heading-font" id="modalTitle">
+          <i id="AddEdit"></i>  <i>Category </i>
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

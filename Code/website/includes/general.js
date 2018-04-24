@@ -40,7 +40,7 @@ function setCookie(cname, cvalue, exdays) {
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-var url = "http://homepcc.noip.me:4445";
+var url = "http://10.0.0.25:3005";
 function checkToken()
 {
     if(!getCookie("token")=="")
@@ -64,3 +64,5 @@ function checkToken()
         window.location = "../login";
     }
 }
+
+var addEdit = 1;

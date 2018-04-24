@@ -73,15 +73,21 @@ function domCategories(){
     {
         var catname = document.createElement('li');
         catname.className = 'nav-item navy my-nav-left';
-        catname.id = categories[i].name;
         list.appendChild(catname);
         var catnameChild = document.createElement('a');
         catnameChild.className = 'nav-link';
         catnameChild.setAttribute("data-toggle", "pill");
+        catnameChild.setAttribute("role", "tab");
         catnameChild.href = "#" + categories[i].name;
         catnameChild.innerHTML = categories[i].name;
-        var y = document.getElementById(categories[i].name);
-        y.appendChild(catnameChild);
+        catname.appendChild(catnameChild);
+
+        var editicon = document.createElement('i');
+        editicon.setAttribute("data-toggle", "modal");
+        editicon.setAttribute("href", "#categoryModal");
+        editicon.className = 'fa fa-star icon-sidebar';
+        //editicon.href = "#categoryModal";
+        catnameChild.appendChild(editicon);
     }
 }
 
