@@ -64,3 +64,5 @@ function checkToken()
         window.location = "../login";
     }
 }
+
+var addEdit = 1;

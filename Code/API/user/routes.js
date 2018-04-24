@@ -2,7 +2,7 @@
 var messages_state = require('../messages/state');
 var controller = require('./controller');
 var express = require('express');
-var jwt = require('jsonwebtoken');  
+var jwt = require('jsonwebtoken');
 var config = require('../authentication/config.js');
 //var bcrypt = require('bcrypt-nodejs');
 
@@ -11,8 +11,6 @@ module.exports = function (app, passport) {
     // IOT Routes
 
     //restricted area
-    
-
     //debug area
     app.route('/debug/restricted')
         .get(authenticate, controller.debug_restricted);
@@ -55,13 +53,6 @@ module.exports = function (app, passport) {
         .get(controller.success);
     //end success and failure routes
 
-
-    //login signup logout area
-    /*app.route('/login')
-        .post(passport.authenticate('local-login', {
-            successRedirect: '/success',
-            failureRedirect: '/failure',
-        }));    */
     app.route('/signup')
         .post(controller.signup);
 
@@ -103,7 +94,7 @@ authenticate.use(function (req, res, next) {
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 

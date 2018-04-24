@@ -1,18 +1,3 @@
-<script>
-var addEdit = 1;
-function checkAddEdit(numb)
-{
-  if(numb == 0)
-    {return "Edit";}
-  if(numb == 1)
-    {return "Add";}
-
-    return "Add";
-
-}
-</script>
-
-
 <!-- OpenModal -->
 <div class="modal fade" id="modalPlus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-md" role="document">
@@ -37,7 +22,7 @@ function checkAddEdit(numb)
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title heading-font" id="modalTitle">
-          <?php echo "<script>document.write(checkAddEdit(addEdit))</script>"?> Entry
+          <i id="AddEdit"></i>  <i>Entry</i>
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -114,7 +99,7 @@ function checkAddEdit(numb)
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title heading-font" id="modalTitle">
-          <?php echo "<script>document.write(checkAddEdit(addEdit))</script>"?> Category
+          <i id="AddEdit"></i>  <i>Category </i>
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

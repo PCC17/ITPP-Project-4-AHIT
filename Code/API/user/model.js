@@ -6,14 +6,14 @@ var Schema = mongoose.Schema;
 var schema_pass_entry = new Schema({
     name: { type: String, required: true },
     order: { type: String, required: true },
-    link: { type: String, required: true },
-    image: { type: String, required: true },
+    link: { type: String, required: false },
+    image: { type: String, required: false },
     username: { type: String, required: true },
     password: { type: String, required: true },
-    notes: { type: String, required: true },
+    notes: { type: String, required: false },
     customFields: [{
-        key: { type: String, required: true },
-        value: { type: String, required: true },
+        key: { type: String, required: false },
+        value: { type: String, required: false },
     }],
     isfavourite: { type: Boolean, default: false }
 });
