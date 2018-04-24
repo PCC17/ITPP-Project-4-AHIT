@@ -1,3 +1,18 @@
+<script>
+var addEdit = 1;
+function checkAddEdit(numb)
+{
+  if(numb == 0)
+    {return "Edit";}
+  if(numb == 1)
+    {return "Add";}
+
+    return "Add";
+
+}
+</script>
+
+
 <!-- OpenModal -->
 <div class="modal fade" id="modalPlus" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-md" role="document">
@@ -21,7 +36,9 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title heading-font" id="modalTitle">Add / Edit Entry</h5>
+        <h5 class="modal-title heading-font" id="modalTitle">
+          <?php echo "<script>document.write(checkAddEdit(addEdit))</script>"?> Entry
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -29,7 +46,6 @@
       <div class="modal-body">
         <!-- Modal Body -->
         <form class="form-signin">
-          <h3 class="form-signin-heading heading-font">New Entry</h3>
 
           <div class="form-group row">
             <label for="inputSelect" class="col-sm-3 col-form-label">Choose Category</label>
@@ -97,7 +113,9 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title heading-font" id="modalTitle">Add / Edit Category</h5>
+        <h5 class="modal-title heading-font" id="modalTitle">
+          <?php echo "<script>document.write(checkAddEdit(addEdit))</script>"?> Category
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

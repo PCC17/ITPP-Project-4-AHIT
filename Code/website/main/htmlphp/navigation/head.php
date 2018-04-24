@@ -11,7 +11,7 @@
   </span>
   <a class="navbar-brand" href="">passIn</a>
 
-	<i class="fa fa-plus fa-2x nav-icon" data-toggle="modal" data-dismiss="modal" href="#modalPlus"></i>
+	<i class="fa fa-plus fa-2x nav-icon" data-toggle="modal" data-dismiss="modal" href="#modalPlus" onclick="var addEdit = 1;"></i>
 
     <span class="navbar-text">
     Guten Morgen User
