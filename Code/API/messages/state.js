@@ -5,7 +5,9 @@ exports.getSuccess = function () {
     return JSON.stringify(succesMessage)
 }
 
-exports.getError = function () {
+exports.getError = function (msg) {
+    var a = JSON.parse(JSON.stringify(errorMessage));
+    a["errorMessage"] = msg;
     return JSON.stringify(errorMessage);
 }
 

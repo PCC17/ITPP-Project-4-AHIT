@@ -15,9 +15,10 @@ var userroutes = require('./user/routes');
 
 require('./authentication/auth.js')(passport);
 
+morgan("tiny");
+
 mongoose.Promise = global.Promise;
-//mongoose.connect('mongodb://root:ansti123@ds157538.mlab.com:57538/pro', { useMongoClient: true}, function (err) {
-mongoose.connect('mongodb://192.168.56.3/pro', { useMongoClient: true }, function (err) {
+mongoose.connect('mongodb://192.168.99.100:32768/projectITP', { useMongoClient: true }, function (err) {
     if (err)
     {
         console.log('Connection error');
@@ -29,15 +30,19 @@ mongoose.connect('mongodb://192.168.56.3/pro', { useMongoClient: true }, functio
 });
 
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', '"Origin, X-Requested-With, Content-Type, Accept"');
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost');
-    res.setHeader('Access-Control-Max-Age', '86400');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
+  var allowedOrigins = ['http://10.0.0.22', 'http://localhost'];
+  var origin = req.headers.origin;
+  if(allowedOrigins.indexOf(origin) > -1){
+     res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', '"Origin, X-Requested-With, Content-Type, Accept"');
+  res.setHeader('Access-Control-Max-Age', '86400');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
 });
 
-app.use(morgan('dev')); 
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 

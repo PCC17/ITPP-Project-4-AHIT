@@ -19,21 +19,22 @@ exports.debug_insertAllCountries = function (req, res) {
     var arr = sampleData.getCountries();
     ModelCountry.insertMany(arr, function (err, task) {
         if (err)
+        {
             res.send(err);
+            console.log(err);
+        }
         else
             res.send(messages_state.getSuccess());
     });
 }
 exports.debug_createSampleUser = function (req, res) {
-    console.log(JSON.stringify(sampleData.getUser()));
     var user = new ModelUser(sampleData.getUser());
     user.save(function (err, results) {
         if (err) {
             console.log(err);
-            res.send(messages_state.getError());
+            res.send(messages_state.getError(err));
         }
         else {
-            console.log(messages_state.getSuccess());
             res.send(messages_state.getSuccess());
         }
     });
@@ -53,9 +54,8 @@ exports.debug_restricted = function (req, res) {
 exports.createCategory = function (req, res) {
     var email = req.payload.email;
     ModelUser.findOne({ 'local.email': email }, function (err, user) {
-        if (err) res.send(messages_state.getError());
+        if (err) res.send(messages_state.getError(err));
         var category = req.body;
-        console.log(user);
         var is_used = false;
         user.passCategory.forEach(function (entry) {
             if (entry.name == category.name)
@@ -69,18 +69,16 @@ exports.createCategory = function (req, res) {
             user.save(function (err, results) {
                 if (err) {
                     console.log(err);
-                    res.send(messages_state.getError());
+                    res.send(messages_state.getError(err));
                 }
                 else {
-
-                    console.log(results);
                     res.send(messages_state.getSuccess());
                 }
             });
         }
         else
         {
-            res.send(messages_state.getError());
+            res.send(messages_state.getError(err));
         }
     });
 }
@@ -88,9 +86,8 @@ exports.updateCategory = function (req, res) {
     var email = req.payload.email;
     ModelUser.findOne({ 'local.email': email }, function (err, user) {
         if (err)
-            res.send(messages_state.getError());
+            res.send(messages_state.getError(err));
         var category = req.body;
-        console.log(user);
         var is_used = false;
         user.passCategory.forEach(function (entry) {
             if (entry.name == req.body.newname) {
@@ -104,7 +101,7 @@ exports.updateCategory = function (req, res) {
             }, { $set: { "passCategory.$.name": req.body.newname, "passCategory.$.order": req.body.neworder } },
                 function (err, doc) {
                     if (err || doc == null) {
-                        res.send(messages_state.getError());
+                        res.send(messages_state.getError(err));
                     }
                     else if (doc) {
                         res.send(messages_state.getSuccess());
@@ -117,7 +114,7 @@ exports.updateCategory = function (req, res) {
             }, { $set: {"passCategory.$.order": req.body.neworder } },
                 function (err, doc) {
                     if (err || doc == null) {
-                        res.send(messages_state.getError());
+                        res.send(messages_state.getError(err));
                     }
                     else if (doc) {
                         res.send(messages_state.getSuccess());
@@ -130,7 +127,7 @@ exports.updateCategory = function (req, res) {
             }, { $set: { "passCategory.$.name": req.body.newname } },
                 function (err, doc) {
                     if (err || doc == null) {
-                        res.send(messages_state.getError());
+                        res.send(messages_state.getError(err));
                     }
                     else if (doc) {
                         res.send(messages_state.getSuccess());
@@ -138,7 +135,7 @@ exports.updateCategory = function (req, res) {
                 });
         }
         else {
-            res.send(messages_state.getError());
+            res.send(messages_state.getError(err));
         }
     });
  }
@@ -149,8 +146,8 @@ exports.deleteCategory = function (req, res) {
     ModelUser.findOneAndUpdate({ 'local.email': email },
         { $pull: { 'passCategory': { 'name': req.body.name } } },
         function (err, user) {
-            if (err) 
-                res.send(messages_state.getError());
+            if (err)
+                res.send(messages_state.getError(err));
             else if (user)
                 res.send(messages_state.getSuccess());
         }
@@ -161,12 +158,11 @@ exports.getCategories = function (req, res) {
     var email = req.payload.email;
 
     ModelUser.findOne({ 'local.email': email },
-       
+
         function (err, user) {
             if (err)
-                res.send(messages_state.getError());
+                res.send(messages_state.getError(err));
             else if (user) {
-                console.log(JSON.stringify(user.passCategory));
                 res.send(JSON.stringify(user.passCategory));
             }
         }
@@ -186,7 +182,7 @@ exports.updateEntry = function (req, res) {
             if (err || doc == null) {
                 console.log("234567");
                 console.log(err);
-                res.send(messages_state.getError());
+                res.send(messages_state.getError(err));
             }
             else if (doc) {
                 res.send(messages_state.getSuccess());
@@ -201,7 +197,7 @@ exports.getForCategoryEntries = function (req, res) {
         function (err, user) {
             if (err || user == null) {
                 console.log(err);
-                res.send(messages_state.getError());
+                res.send(messages_state.getError(err));
             }
             else {
                 for (var i = 0; i < user.passCategory.length; i++) {
@@ -219,7 +215,7 @@ exports.getEntries = function (req, res) {
 
         function (err, user) {
             if (err)
-                res.send(messages_state.getError());
+                res.send(messages_state.getError(err));
             else if (user) {
                 console.log(JSON.stringify(user.passCategory.passEntry));
                 res.send(JSON.stringify(user.passCategory));
@@ -228,13 +224,14 @@ exports.getEntries = function (req, res) {
     );
 }
 exports.createEntry = function (req, res) {
+  console.log("helloo" + JSON.stringify(req.body));
     var email = req.payload.email;
    ModelUser.findOne({ 'local.email': email },
        function (err, user) {
-           
+
            if (err) {
                console.log(err);
-               res.send(messages_state.getError());
+               res.send(messages_state.getError(err));
            }
            else if (user) {
                var arrayLength = user.passCategory.length;
@@ -252,7 +249,7 @@ exports.createEntry = function (req, res) {
                        function (err, results) {
                            if (err) {
                                console.log(err);
-                               res.send(messages_state.getError());
+                               res.send(messages_state.getError(err));
                            }
                            else if (results) {
                                console.log(results);
@@ -261,10 +258,10 @@ exports.createEntry = function (req, res) {
                        });
                }
                else {
-                   res.send(messages_state.getError());
+                   res.send(messages_state.getError(err));
                }
            }
-           
+
        });
 }
 exports.updateEntry = function (req, res) {
@@ -276,7 +273,7 @@ exports.updateEntry = function (req, res) {
             if (err || doc == null) {
                 console.log("234567");
                 console.log(err);
-                res.send(messages_state.getError());
+                res.send(messages_state.getError(err));
             }
             else if (doc) {
                 res.send(messages_state.getSuccess());
@@ -290,7 +287,7 @@ exports.deleteEntry = function (req, res) {
         { $pull: { 'passCategory': { 'name': req.body.name } } },
         function (err, user) {
             if (err)
-                res.send(messages_state.getError());
+                res.send(messages_state.getError(err));
             else if (user)
                 res.send(messages_state.getSuccess());
         }
@@ -304,55 +301,47 @@ exports.deleteEntry = function (req, res) {
 
 exports.success = function (req, res) {
     res.send(messages_state.getSuccess());
-        
+
 }
 
 exports.failure = function (req, res) {
-    res.send(messages_state.getError());
+    res.send(messages_state.getError(err));
 
 }
 
 // login user
 exports.signup = function (req, res) {
-    console.log("ich bin da");
     ModelUser.findOne({ 'local.email': req.body.email },
         function (err, user) {
             if (err)
-                res.send(messages_state.getError());
+                res.send(messages_state.getError(err));
             else if (user)
-                res.send(messages_state.getError());
+                res.send(messages_state.getError(err));
             else
             {
                 var userJson = req.body;
-                
+
                 console.log(userJson);
                 userJson.joinedDate = "27-01-2000";
                 var lo = { "email": userJson.email, "password": userJson.password };
-                
+
                 userJson["local"] = lo;
                 console.log(userJson);
                 var user = new ModelUser(userJson);
                 user.local.password = user.generateHash(user.local.password);
                 console.log(user);
-              
+
                 console.log(user);
                 user.save(function (err, results) {
-                    if (err) 
+                    if (err)
                     {
-                        res.send(messages_state.getError());
+                        res.send(messages_state.getError(err));
                         console.log(err);
                     }
-                    else 
+                    else
                         res.send(messages_state.getSuccess());
                 });
             }
         }
     );
 }
-
-
-
-
-
-
-
