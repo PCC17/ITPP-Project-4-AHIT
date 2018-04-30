@@ -7,6 +7,13 @@ function getCategories()
 $.get(url+"/categories?token="+getCookie("token"), function(data){
 console.log(data);
 categories = JSON.parse(data);
+for(var i = 0; i < categories.length; i++)
+{
+  for(var j = 0; j < categories[i].passEntry.length; j++)
+  {
+    categories[i].passEntry[j] = decryptValue(categories[i].passEntry[j], getCookie("password_local"));
+  }
+}
 domCategories();
 getEntries();
 });
@@ -194,9 +201,9 @@ console.log(categories);
 for(var i = 0; i < categories.length; i++)
 {
   var _catname = categories[i].name;
-  $.get(url+_catname+"/entries?token="+getCookie("token"), function(data){console.log(data)});
-
-
+  $.get(url+_catname+"/entries?token="+getCookie("token"), function(data) {
+    console.log(data)
+  });
 }
 domEntries();
 checkfavEntries();
@@ -211,7 +218,7 @@ var _peOrder = entries.length + 1;
 var _peLink = link;
 var _peImage = null;
 var _peUsername = username;
-var _pePassword = password;
+var _pePassword = encryptValue(password, getCookie("password_local"));
 var _peNotes = notes;
 var _cfKey = cfKey;
 var _cfValue= cfValue;

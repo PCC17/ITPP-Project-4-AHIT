@@ -14,8 +14,10 @@ function validate()
   }, false);
 }
 
-var password = document.getElementById("inputPassword")
-  , confirm_password = document.getElementById("inputRepeatPassword");
+var password = hashPasswordForSignin(document.getElementById("inputPassword"));
+var password_local = hashPasswordForLocal(document.getElementById("inputPassword"));
+setCookie("password_local",password_local['token'],5);
+var confirm_password = hashPasswordForSignin(document.getElementById("inputRepeatPassword"));
 
 function validatePassword(){
   if(password.value != confirm_password.value) {
