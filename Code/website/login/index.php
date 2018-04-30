@@ -32,5 +32,5 @@
 
     </div>
   </body>
-  <script src="js/login.js"></script>
 <?php require "../includes/bottom.php" ?>
+<script src="js/login.js"></script>

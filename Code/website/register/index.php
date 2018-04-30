@@ -105,5 +105,5 @@
     </div>
   </body>
   <script src="../includes/validate.js"></script>
-  <script src="js/register.js"></script>
 <?php require "../includes/bottom.php"; ?>
+<script src="js/register.js"></script>

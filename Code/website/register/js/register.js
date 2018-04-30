@@ -4,7 +4,7 @@ function register(firstname, lastname, username, email, birthdate, password)
     $.ajax({
         type: 'POST',
         url: url + '/signup',
-        data: { "firstname": firstname, "lastname": lastname, "username": username, "email": email, "birthDate": birthdate, "password": password },
+        data: { "firstname": firstname, "lastname": lastname, "username": username, "email": email, "birthDate": birthdate, "password":hashPasswordForSignin(password) },
         dataType: 'json',
         xhrFields: {
             withCredentials: true
@@ -24,3 +24,4 @@ function register(firstname, lastname, username, email, birthdate, password)
         }
     });
 }
+8

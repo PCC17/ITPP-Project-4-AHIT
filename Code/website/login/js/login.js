@@ -14,9 +14,8 @@ function validate()
   }, false);
 }
 
-var password = hashPasswordForSignin(document.getElementById("inputPassword"));
-var password_local = hashPasswordForLocal(document.getElementById("inputPassword"));
-setCookie("password_local",password_local['token'],5);
+var password = hashPasswordForSignin(document.getElementById("inputPassword").value);
+
 var confirm_password = hashPasswordForSignin(document.getElementById("inputRepeatPassword"));
 
 function validatePassword(){
@@ -33,11 +32,12 @@ password.onchange = validatePassword;
 
 function login(email, password)
 {
-  console.log("HELOOOOO");
+  var password_local = hashPasswordForLocal(document.getElementById("inputPassword").value);
+  setCookie("password_local",password_local,5);
     $.ajax({
         type: 'POST',
         url: url + '/authenticate',
-        data: { email: email, password: password },
+        data: { email: email, password: hashPasswordForSignin(password) },
         dataType: 'json',
         xhrFields: {
             withCredentials: true

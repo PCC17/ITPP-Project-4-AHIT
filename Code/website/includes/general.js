@@ -40,7 +40,7 @@ function setCookie(cname, cvalue, exdays) {
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-var url = "http://10.0.0.25:3005";
+var url = "http://itp.lime-tree.eu:4445";
 function checkToken()
 {
     if(!getCookie("token")=="")

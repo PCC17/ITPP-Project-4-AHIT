@@ -18,7 +18,7 @@ require('./authentication/auth.js')(passport);
 morgan("tiny");
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://192.168.99.100:32768/projectITP', { useMongoClient: true }, function (err) {
+mongoose.connect('mongodb://10.0.0.1:27017', { useMongoClient: true }, function (err) {
     if (err)
     {
         console.log('Connection error');
@@ -30,7 +30,7 @@ mongoose.connect('mongodb://192.168.99.100:32768/projectITP', { useMongoClient: 
 });
 
 app.use(function (req, res, next) {
-  var allowedOrigins = ['http://10.0.0.22', 'http://localhost'];
+  var allowedOrigins = ['http://10.0.0.1', 'http://localhost', 'http://itp.lime-tree.eu'];
   var origin = req.headers.origin;
   if(allowedOrigins.indexOf(origin) > -1){
      res.setHeader('Access-Control-Allow-Origin', origin);
