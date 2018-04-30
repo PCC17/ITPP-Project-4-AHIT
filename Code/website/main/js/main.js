@@ -92,7 +92,7 @@ function domCategories(){
         var editicon = document.createElement('i');
         editicon.setAttribute("data-toggle", "modal");
         editicon.setAttribute("href", "#categoryModal");
-        editicon.className = 'fa fa-star icon-sidebar';
+        editicon.className = 'fa fa-edit icon-sidebar';
         //editicon.href = "#categoryModal";
         catnameChild.appendChild(editicon);
     }
@@ -100,15 +100,14 @@ function domCategories(){
 
 function domEntries() {
   var t = document.getElementById("content")
+  var tabcontent = document.createElement('div');
+  tabcontent.className = 'tab-content';
+  tabcontent.innerHTML = "";
+  t.appendChild(tabcontent);
   for (var j = 0; j < categories.length; j++) {
-    var tabcontent = document.createElement('div');
-    tabcontent.className = 'tab-content';
-    tabcontent.id = "tabContent";
-    t.appendChild(tabcontent);
-
     var tabpane = document.createElement('div');
     tabpane.className = 'tab-pane fade';
-    tabpane.id = categories[j];
+    tabpane.id = categories[j].name;
     tabcontent.appendChild(tabpane);
 
     var entries = categories[j].passEntry;
@@ -118,7 +117,7 @@ function domEntries() {
         var entry = document.createElement('article');
         entry.className = 'entry';
         var card = document.createElement('div');
-        card.className = 'card';
+        card.className = 'card mycard';
         entry.appendChild(card);
         var cardheader = document.createElement('div');
         cardheader.className = 'card-header';
@@ -128,20 +127,29 @@ function domEntries() {
         cardbody.className = 'list-group list-group-flush';
         card.appendChild(cardbody);
 
-        var cardentry1 = document.createElement('li');
-        cardentry1.className = 'list-group-item';
-        cardentry1.innerHTML = entries[i].username;
-        cardbody.appendChild(cardentry1);
+        var cardentryurl = document.createElement('li');
+        cardentryurl.className = 'list-group-item';
+        cardentryurl.innerHTML = "<b>URL:</b><br>";
+        var cardentrya = document.createElement('a');
+        cardentrya.href = entries[i].link;
+        cardentrya.innerHTML = entries[i].link;
+        cardentryurl.appendChild(cardentrya);
+        cardbody.appendChild(cardentryurl);
 
-        var cardentry2 = document.createElement('li');
-        cardentry2.className = 'list-group-item';
-        cardentry2.innerHTML = entries[i].password;
-        cardbody.appendChild(cardentry2);
+        var cardentryuser = document.createElement('li');
+        cardentryuser.className = 'list-group-item';
+        cardentryuser.innerHTML = "<b>Username:</b><br>" + entries[i].username;
+        cardbody.appendChild(cardentryuser);
 
-        var cardentry3 = document.createElement('li');
-        cardentry3.className = 'list-group-item';
-        cardentry3.innerHTML = entries[i].notes;
-        cardbody.appendChild(cardentry3);
+        var cardentrypw = document.createElement('li');
+        cardentrypw.className = 'list-group-item';
+        cardentrypw.innerHTML = "<b>Password:</b><br>" + entries[i].password;
+        cardbody.appendChild(cardentrypw);
+
+        var cardentrynotes = document.createElement('li');
+        cardentrynotes.className = 'list-group-item';
+        cardentrynotes.innerHTML = "<b>Notes:</b><br>" + entries[i].notes;
+        cardbody.appendChild(cardentrynotes);
 
         var content = document.getElementById('content');
         tabpane.appendChild(entry);
@@ -151,49 +159,6 @@ function domEntries() {
 
 function checkfavEntries() {
     var favEntries = [];
-    console.log(categories);
-    for(var i = 0; i< entries.length; i++)
-    {
-      if(element.isfavourite == true)
-      {
-        favEntries.push(element);
-      }
-    }
-    console.log(favEntries);
-    for(var i = 0; i < entries.length; i++)
-    {
-        var entry = document.createElement('article');
-        entry.className = 'entry';
-        var card = document.createElement('div');
-        card.className = 'card';
-        entry.appendChild(card);
-        var cardheader = document.createElement('div');
-        cardheader.className = 'card-header';
-        cardheader.innerHTML = favEntries[i].name;
-        card.appendChild(cardheader);
-        var cardbody = document.createElement('ul');
-        cardbody.className = 'list-group list-group-flush';
-        card.appendChild(cardbody);
-
-        var cardentry1 = document.createElement('li');
-        cardentry1.className = 'list-group-item';
-        cardentry1.innerHTML = favEntries[i].username;
-        cardbody.appendChild(cardentry1);
-
-        var cardentry2 = document.createElement('li');
-        cardentry2.className = 'list-group-item';
-        cardentry2.innerHTML = favEntries[i].password;
-        cardbody.appendChild(cardentry2);
-
-        var cardentry3 = document.createElement('li');
-        cardentry3.className = 'list-group-item';
-        cardentry3.innerHTML = favEntries[i].notes;
-        cardbody.appendChild(cardentry3);
-
-        var content = document.getElementById('content');
-        content.appendChild(entry);
-}
-
 }
 
 function getEntries() {
@@ -360,4 +325,13 @@ function checkFavCat(){
       favCategories.push
     }
   }
+}
+
+function checkAddEdit(numb)
+{
+  var ae = document.getElementById("AddEdit");
+  if(numb == 0)
+    {ae.innerHTML = "Edit";}
+  if(numb == 1)
+    {ae.innerHTML = "Add";}
 }
