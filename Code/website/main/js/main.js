@@ -11,7 +11,7 @@ for(var i = 0; i < categories.length; i++)
 {
   for(var j = 0; j < categories[i].passEntry.length; j++)
   {
-    categories[i].passEntry[j] = decryptValue(categories[i].passEntry[j], getCookie("password_local"));
+    categories[i].passEntry[j].password = decryptValue(categories[i].passEntry[j].password, getCookie("password_local"));
   }
 }
 domCategories();

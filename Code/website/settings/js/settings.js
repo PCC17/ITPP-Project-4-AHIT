@@ -3,11 +3,50 @@ $(document).ready(function () {
     $('#sidebar').toggleClass('active');
     $('#content').toggleClass('active');
   });
+  getAccount();
 });
 
 $('#import-button').click(function() {
     $('#import-input').click();
 });
+
+// Account Settings
+var user = [];
+function getAccount() {
+  $.get(url+"/user?token="+getCookie("token"), function(data){
+  console.log(data);
+  user = JSON.parse(data);
+  for(var i = 0; i < user.length; i++)
+  {
+    for(var j = 0; j < user[i].passEntry.length; j++)
+    {
+      user[i].passEntry[j] = decryptValue(user[i].passEntry[j], getCookie("password_local"));
+    }
+  }
+  domAccount();
+  });
+}
+
+function domAccount() {
+  var inputFirstName = document.getElementById("inputFirstName");
+  inputFirstName.setAttribute("placeholder", user.firstname);
+  var inputLastName = document.getElementById("inputLastName");
+  inputLastName.setAttribute("placeholder", user.lastname);
+  var inputUsername = document.getElementById("inputUsername");
+  inputUsername.setAttribute("placeholder", user.username);
+  var inputEmail = document.getElementById("inputEmail");
+  inputEmail.setAttribute("placeholder", user.email);
+
+  var inputCountrySelect = document.getElementById("inputCountrySelect");
+  inputCountrySelect.innerHTML="";
+  for (var i = 0; i < countries.length; i++) {
+    var option = document.createElement('option');
+    option.innerHTML = categories[i].name;
+    inputCountrySelect.appendChild(option);
+  }
+
+
+}
 
 // csv TO json
 //var csv is the CSV file with headers

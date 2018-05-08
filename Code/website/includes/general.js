@@ -40,7 +40,9 @@ function setCookie(cname, cvalue, exdays) {
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+
 var url = "http://itp.lime-tree.eu:4445";
+
 function checkToken()
 {
     if(!getCookie("token")=="")
@@ -54,7 +56,7 @@ function checkToken()
                 console.log("spitzen token");
                 if(data['status'] == "error")
                 {
-                    window.location = "../main";
+                    window.location = "../login";
                 }
             }
         });
