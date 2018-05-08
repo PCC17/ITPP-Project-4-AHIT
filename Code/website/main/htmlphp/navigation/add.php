@@ -22,7 +22,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title heading-font" id="modalTitle">
-          <i id="AddEdit"></i>  <i>Entry</i>
+          <i id="AddEditEntry"></i>  <i>Entry</i>
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -99,7 +99,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title heading-font" id="modalTitle">
-          <i id="AddEdit"></i>  <i>Category </i>
+          <i id="AddEditCat"></i>  <i>Category </i>
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

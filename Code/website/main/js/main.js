@@ -6,7 +6,7 @@ function getCategories()
 {
 $.get(url+"/categories?token="+getCookie("token"), function(data){
 console.log(data);
-categories = JSON.parse(data);
+categories = Object.keys(JSON.parse(data)).map(function (key) { return JSON.parse(data)[key];});
 for(var i = 0; i < categories.length; i++)
 {
   for(var j = 0; j < categories[i].passEntry.length; j++)
@@ -14,6 +14,11 @@ for(var i = 0; i < categories.length; i++)
     categories[i].passEntry[j].password = decryptValue(categories[i].passEntry[j].password, getCookie("password_local"));
   }
 }
+var categoriesArrey = Object.keys(categories).map(function (key) { return categories[key]; });
+var test3 = Object.entries(JSON.parse(data));
+console.log(test3);
+console.log(categories);
+console.log(typeof categories);
 domCategories();
 getEntries();
 });
@@ -74,8 +79,6 @@ $.post(url+"/category?token="+getCookie("token"), {"name": "ASDF","order": 0,"pa
 function domCategories(){
     var t = document.getElementById("sortable");
     t.innerHTML="";
-    console.log(categories);
-    console.log(categories.length);
     for(var i = 0; i < categories.length; i++)
     {
         var catname = document.createElement('li');
@@ -92,6 +95,7 @@ function domCategories(){
         var editicon = document.createElement('i');
         editicon.setAttribute("data-toggle", "modal");
         editicon.setAttribute("href", "#categoryModal");
+        editicon.setAttribute("onclick", "checkAddEdit(0);")
         editicon.className = 'fa fa-edit icon-sidebar';
         //editicon.href = "#categoryModal";
         catnameChild.appendChild(editicon);
@@ -111,6 +115,7 @@ function domEntries() {
     tabcontent.appendChild(tabpane);
 
     var entries = categories[j].passEntry;
+    console.log(entries);
     for(var i = 0; i < entries.length; i++)
     {
       console.log(entries[i]);
@@ -162,7 +167,6 @@ function checkfavEntries() {
 }
 
 function getEntries() {
-console.log(categories);
 for(var i = 0; i < categories.length; i++)
 {
   var _catname = categories[i].name;
@@ -329,9 +333,15 @@ function checkFavCat(){
 
 function checkAddEdit(numb)
 {
-  var ae = document.getElementById("AddEdit");
+  console.log("rwar");
+  var aeEntry = document.getElementById("AddEditEntry");
+  var aeCat = document.getElementById("AddEditCat");
   if(numb == 0)
-    {ae.innerHTML = "Edit";}
+    {aeEntry.innerHTML = "Edit";
+    aeCat.innerHTML = "Edit";
+  console.log("2");}
   if(numb == 1)
-    {ae.innerHTML = "Add";}
+    {aeEntry.innerHTML = "Add";
+    aeCat.innerHTML = "Add";
+  console.log("rwar");}
 }
