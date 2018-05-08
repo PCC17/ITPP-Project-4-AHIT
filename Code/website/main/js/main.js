@@ -24,7 +24,6 @@ getEntries();
 });
 }
 
-
 $(document).ready(function () {
     checkToken();
     getCategories();
@@ -55,7 +54,6 @@ function addCategory(name){
 
   })
 }
-
 
 function addCatgoryWithEntry(name,order,peName,peOrder,peLink, peImage, peUsername, pePassword, peNotes, cfKey, cfValue, peIsFavourite){
 
@@ -144,6 +142,10 @@ function domEntries() {
         var cardentryuser = document.createElement('li');
         cardentryuser.className = 'list-group-item';
         cardentryuser.innerHTML = "<b>Username:</b><br>" + entries[i].username;
+        var cardentryusercopy = document.createElement('i');
+        cardentryusercopy.className = 'fa fa-copy';
+        cardentryusercopy.setAttribute("onclick", "copyEntryUsername();")
+        cardentryuser.appendChild(cardentryusercopy);
         cardbody.appendChild(cardentryuser);
 
         var cardentrypw = document.createElement('li');
@@ -344,4 +346,16 @@ function checkAddEdit(numb)
     {aeEntry.innerHTML = "Add";
     aeCat.innerHTML = "Add";
   console.log("rwar");}
+}
+
+function copyEntryUsername() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  document.execCommand("Copy");
+}
+
+function copyEntryPassword() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  document.execCommand("Copy");
 }
