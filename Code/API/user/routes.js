@@ -10,6 +10,10 @@ var config = require('../authentication/config.js');
 module.exports = function (app, passport) {
     // IOT Routes
 
+    app.route('/user')
+        .get(authenticate, controller.getUser);
+    app.route('/countries')
+        .get(authenticate, controller.getCountries);
     //restricted area
     //debug area
     app.route('/debug/restricted')
@@ -19,6 +23,8 @@ module.exports = function (app, passport) {
     app.route('/debug/insertAllCountries')
         .get(authenticate, controller.debug_insertAllCountries);
     //end debug area
+
+
 
     //category area
     app.route('/categories')
@@ -43,6 +49,13 @@ module.exports = function (app, passport) {
     app.route('/:category/entry')
         .delete(authenticate, controller.deleteEntry);
     //end entry area
+
+    //export / import
+    app.route('/export')
+        .get(authenticate, controller.export);
+    app.route('/import')
+        .get(authenticate, controller.import);
+    //end export / import
 
     //end restricted area
 
