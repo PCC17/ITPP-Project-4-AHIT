@@ -115,7 +115,7 @@
        </div>
 
         <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="addCategory(document.getElementById('categoryName').value)">Save</button>
+        <button type="submit" id="submitAddEditBtn" class="btn btn-primary" data-dismiss="modal">Save</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
 

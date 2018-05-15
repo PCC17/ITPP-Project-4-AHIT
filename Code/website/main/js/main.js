@@ -1,6 +1,7 @@
 var categories = [];
 var entries = [];
 var list = document.getElementById('sortable');
+var currentcatname = "";
 
 function getCategories()
 {
@@ -93,7 +94,7 @@ function domCategories(){
         var editicon = document.createElement('i');
         editicon.setAttribute("data-toggle", "modal");
         editicon.setAttribute("href", "#categoryModal");
-        editicon.setAttribute("onclick", "checkAddEdit(0);")
+        editicon.setAttribute("onclick", "checkAddEdit(0);");
         editicon.className = 'fa fa-edit icon-sidebar';
         //editicon.href = "#categoryModal";
         catnameChild.appendChild(editicon);
@@ -125,6 +126,12 @@ function domEntries() {
         var cardheader = document.createElement('div');
         cardheader.className = 'card-header';
         cardheader.innerHTML = entries[i].name;
+        var cardentryedit = document.createElement('i');
+        cardentryedit.className = 'fa fa-edit entry-icon';
+        cardentryedit.setAttribute("href", "#entryModal");
+        cardentryedit.setAttribute("data-toggle", "modal");
+        cardentryedit.setAttribute("onclick", "checkAddEdit(0);");
+        cardheader.appendChild(cardentryedit);
         card.appendChild(cardheader);
         var cardbody = document.createElement('ul');
         cardbody.className = 'list-group list-group-flush';
@@ -141,16 +148,20 @@ function domEntries() {
 
         var cardentryuser = document.createElement('li');
         cardentryuser.className = 'list-group-item';
-        cardentryuser.innerHTML = "<b>Username:</b><br>" + entries[i].username;
+        cardentryuser.innerHTML = "<b>Username:</b><br><x id=\"cardEntryUser\">" + entries[i].username;
         var cardentryusercopy = document.createElement('i');
-        cardentryusercopy.className = 'fa fa-copy';
+        cardentryusercopy.className = 'fa fa-copy entry-icon';
         cardentryusercopy.setAttribute("onclick", "copyEntryUsername();")
         cardentryuser.appendChild(cardentryusercopy);
         cardbody.appendChild(cardentryuser);
 
         var cardentrypw = document.createElement('li');
         cardentrypw.className = 'list-group-item';
-        cardentrypw.innerHTML = "<b>Password:</b><br>" + entries[i].password;
+        cardentrypw.innerHTML = "<b>Password:</b><br><x id=\"cardEntryPassword\">" + entries[i].password;
+        var cardentrypwcopy = document.createElement('i');
+        cardentrypwcopy.className = 'fa fa-copy entry-icon';
+        cardentrypwcopy.setAttribute("onclick", "copyEntryPassword();")
+        cardentrypw.appendChild(cardentrypwcopy);
         cardbody.appendChild(cardentrypw);
 
         var cardentrynotes = document.createElement('li');
@@ -287,6 +298,7 @@ function updateCategoryName(name, newname){
 
 var _name = name;
 var _newName = newname;
+console.log(name + "       " + newname);
 $.ajax({
 
     dataType: 'json',
@@ -299,7 +311,6 @@ $.ajax({
         if(['status'] == "success")
         {
             console.log("success");
-
         }
 
         else if(['status'] == "error")
@@ -335,27 +346,66 @@ function checkFavCat(){
 
 function checkAddEdit(numb)
 {
-  console.log("rwar");
   var aeEntry = document.getElementById("AddEditEntry");
   var aeCat = document.getElementById("AddEditCat");
+  var submitBtn = document.getElementById("submitAddEditBtn");
   if(numb == 0)
     {aeEntry.innerHTML = "Edit";
     aeCat.innerHTML = "Edit";
-  console.log("2");}
+    getCategoryName(event);
+    console.log(currentcatname);
+    submitBtn.setAttribute("onclick", "updateCategoryName('"+currentcatname+"', document.getElementById('categoryName').value)");
+  }
   if(numb == 1)
     {aeEntry.innerHTML = "Add";
     aeCat.innerHTML = "Add";
-  console.log("rwar");}
+    submitBtn.setAttribute("onclick", "addCategory(document.getElementById('categoryName').value)");
+  }
 }
 
 function copyEntryUsername() {
-  var copyText = document.getElementById("myInput");
-  copyText.select();
-  document.execCommand("Copy");
+  var copytext = selectText('cardEntryUser');
+  document.execCommand("copy");
 }
 
 function copyEntryPassword() {
-  var copyText = document.getElementById("myInput");
-  copyText.select();
-  document.execCommand("Copy");
+  var copytext = selectText('cardEntryPassword');
+  document.execCommand("copy");
+}
+
+function selectText(element) {
+  var doc = document,
+  text = doc.getElementById(element)
+  var range, selection;
+
+  if(doc.body.createTextRange){
+   range = document.body.createTextRange();
+   range.moveToElementText(text);
+   range.select();
+  }
+  else if(window.getSelection){
+    selection = window.getSelection();
+    range = document.createRange();
+    range.selectNodeContents(text);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+
+return range;
+}
+
+function getCategoryName(e) {
+  if (!e)
+        e = window.event;
+    var sender = e.srcElement || e.target;
+
+    while (sender && sender.nodeName.toLowerCase() != "a")
+        sender = sender.parentNode;
+
+    var catnameval = sender.text;
+    var catname = document.getElementById("categoryName");
+    currentcatname = String(catname.value);
+    console.log(currentcatname);
+    catname.setAttribute("value", "");
+    catname.setAttribute("value", catnameval);
 }

@@ -94,6 +94,13 @@
 
 }
 
+.entry-icon {
+	float: right;
+	color: black;
+	cursor: pointer;
+	text-decoration: none;
+}
+
 .modal-dialog {
 	max-height: 90%;
 	overflow: auto;
