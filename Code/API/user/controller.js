@@ -72,6 +72,30 @@ exports.debug_restricted = function (req, res) {
 
 //end color area
 
+
+//export import area
+exports.import = function (req, res) {
+    res.send("Secret Area");
+}
+exports.export = function (req, res) {
+  var email = req.payload.email;
+  ModelUser.findOne({ 'local.email': email }, function (err, user) {
+    console.log(JSON.stringify(user.passCategory));
+    var str = "";
+    for (var i = 0; i < user.passCategory.length; i++) {
+      for (var j = 0; j < user.passCategory[i].passEntry.length; j++) {
+        str += user.passCategory[i].name + ";" + user.passCategory[i].passEntry[j].name  +
+         ";" + user.passCategory[i].passEntry[j].username +
+         ";" + user.passCategory[i].passEntry[j].password + ";" + user.passCategory[i].passEntry[j].link + "\n";
+      }
+    }
+
+    res.send(str);
+  });
+}
+
+//end export import area
+
 //create update delete category area
 
 exports.createCategory = function (req, res) {

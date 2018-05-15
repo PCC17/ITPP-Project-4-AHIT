@@ -50,6 +50,13 @@ module.exports = function (app, passport) {
         .delete(authenticate, controller.deleteEntry);
     //end entry area
 
+    //export / import
+    app.route('/export')
+        .get(authenticate, controller.export);
+    app.route('/import')
+        .get(authenticate, controller.import);
+    //end export / import
+
     //end restricted area
 
     //success and failure routes
