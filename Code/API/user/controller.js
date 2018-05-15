@@ -11,23 +11,26 @@ var ModelCountry = mongoose.model('ModelCountry');
 
 //debug area
 
-exports.getUser()= function (req, res) {
-    var a = array();
+exports.getUser= function (req, res) {
     var email = req.payload.email;
     ModelUser.findOne({ 'local.email': email }, function (err, user) {
-      a["username"]=user.username;
-      a["email"]=user.email;
-      a["firstname"]=user.firstname;
-      a["lastname"]=user.lastname;
-      a["countryId"]=user.conutryId;
-    }
-    res.send(a);
+      console.log(err);
+      var a = {
+        username:  user.username,
+        email:    user.email,
+        firstname:  user.firstname,
+        lastname: user.lastname
+      };
+      console.log(JSON.stringify(a));
+      res.send(JSON.stringify(a));
+    });
+
 }
 
-exports.getCountries()= function (req, res) {
+exports.getCountries= function (req, res) {
     ModelUser.findAll({}, function (err, countries) {
       res.send(countries);
-    }
+    });
 }
 
 exports.debug_restricted = function (req, res) {
