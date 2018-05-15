@@ -1,5 +1,8 @@
 var categories = [];
 var entries = [];
+var searching = false;
+var searchchanging = false;
+var entryNames = [];
 var list = document.getElementById('sortable');
 
 function getCategories()
@@ -18,7 +21,7 @@ var categoriesArrey = Object.keys(categories).map(function (key) { return catego
 var test3 = Object.entries(JSON.parse(data));
 console.log(test3);
 console.log(categories);
-console.log(typeof categories);
+
 domCategories();
 getEntries();
 });
@@ -55,11 +58,6 @@ function addCategory(name){
   })
 }
 
-<<<<<<<
-
-=======
-s
->>>>>>>
 function addCatgoryWithEntry(name,order,peName,peOrder,peLink, peImage, peUsername, pePassword, peNotes, cfKey, cfValue, peIsFavourite){
 
 var _name = name;
@@ -98,7 +96,7 @@ function domCategories(){
         var editicon = document.createElement('i');
         editicon.setAttribute("data-toggle", "modal");
         editicon.setAttribute("href", "#categoryModal");
-        editicon.setAttribute("onclick", "checkAddEdit(0);")
+        editicon.setAttribute("onclick", "checkAddEdit(0);");
         editicon.className = 'fa fa-edit icon-sidebar';
         //editicon.href = "#categoryModal";
         catnameChild.appendChild(editicon);
@@ -110,6 +108,7 @@ function domEntries() {
   var tabcontent = document.createElement('div');
   tabcontent.className = 'tab-content';
   tabcontent.innerHTML = "";
+  tabcontent.id = "tab-content";
   t.appendChild(tabcontent);
   for (var j = 0; j < categories.length; j++) {
     var tabpane = document.createElement('div');
@@ -118,7 +117,6 @@ function domEntries() {
     tabcontent.appendChild(tabpane);
 
     var entries = categories[j].passEntry;
-    console.log(entries);
     for(var i = 0; i < entries.length; i++)
     {
       console.log(entries[i]);
@@ -363,4 +361,161 @@ function copyEntryPassword() {
   var copyText = document.getElementById("myInput");
   copyText.select();
   document.execCommand("Copy");
+}
+
+function searchChanged() {
+
+  if(searching == true)
+  {
+    var input = document.getElementById("searchBar").value;
+
+    console.log(input.split(''));
+
+    for(var i = 0; i < entries.length; i++)
+    {
+      console.log(entries[i]);
+    }
+
+    if(input.length == 1)
+    {
+      for(var i = 0; i < entryNames.length; i++)
+      {
+        if(entryNames[i].includes(input))
+        console.log("nur ein char in input");
+      }
+    }
+    for(var i = 0; i < entryNames.length; i++)
+    {
+      if (entryNames[i].includes(input))
+      {
+        console.log(entryNames[i]);
+      }
+    }
+
+  }
+}
+function getEntryNames() {
+
+    for(var i = 0; i < categories.length; i++)
+    {
+      var entries = categories[i].passEntry;
+
+      for(var j = 0; i< entries.length; i++)
+      {
+      entryNames.push(entries[i].name);
+      }
+
+    }
+    console.log(entryNames);
+
+
+}
+
+function searchStart() {
+
+  getEntryNames();
+
+  if(searching == false)
+  {
+    searching = true;
+      var catname = document.createElement('li');
+      catname.className = 'nav-item navy my-nav-left';
+      catname.id = "searchedCat";
+      list.appendChild(catname);
+      var catnameChild = document.createElement('a');
+      catnameChild.className = 'nav-link';
+      catnameChild.setAttribute("data-toggle", "pill");
+      catnameChild.setAttribute("role", "tab");
+      catnameChild.href = "#" + "search";
+      catnameChild.innerHTML = "search";
+      catname.appendChild(catnameChild);
+
+      var editicon = document.createElement('i');
+      editicon.setAttribute("data-toggle", "modal");
+      editicon.setAttribute("href", "#categoryModal");
+      editicon.setAttribute("onclick", "checkAddEdit(0);")
+      editicon.className = 'fa fa-edit icon-sidebar';
+      //editicon.href = "#categoryModal";
+      catnameChild.appendChild(editicon);
+
+      var tabcontent = document.getElementById("tab-content");
+
+/*
+      var tabpane = document.createElement('div');
+      tabpane.className = 'tab-pane fade';
+      tabpane.id = categories[j].name;
+      tabcontent.appendChild(tabpane);
+*/
+
+/*
+var entry = document.createElement('article');
+entry.className = 'entry';
+var card = document.createElement('div');
+card.className = 'card mycard';
+entry.appendChild(card);
+var cardheader = document.createElement('div');
+cardheader.className = 'card-header';
+cardheader.innerHTML = entries[i].name;
+card.appendChild(cardheader);
+var cardbody = document.createElement('ul');
+cardbody.className = 'list-group list-group-flush';
+card.appendChild(cardbody);
+
+var cardentryurl = document.createElement('li');
+cardentryurl.className = 'list-group-item';
+cardentryurl.innerHTML = "<b>URL:</b><br>";
+var cardentrya = document.createElement('a');
+cardentrya.href = entries[i].link;
+cardentrya.innerHTML = entries[i].link;
+cardentryurl.appendChild(cardentrya);
+cardbody.appendChild(cardentryurl);
+
+var cardentryuser = document.createElement('li');
+cardentryuser.className = 'list-group-item';
+cardentryuser.innerHTML = "<b>Username:</b><br>" + entries[i].username;
+var cardentryusercopy = document.createElement('i');
+cardentryusercopy.className = 'fa fa-copy';
+cardentryusercopy.setAttribute("onclick", "copyEntryUsername();")
+cardentryuser.appendChild(cardentryusercopy);
+cardbody.appendChild(cardentryuser);
+
+var cardentrypw = document.createElement('li');
+cardentrypw.className = 'list-group-item';
+cardentrypw.innerHTML = "<b>Password:</b><br>" + entries[i].password;
+cardbody.appendChild(cardentrypw);
+
+var cardentrynotes = document.createElement('li');
+cardentrynotes.className = 'list-group-item';
+cardentrynotes.innerHTML = "<b>Notes:</b><br>" + entries[i].notes;
+cardbody.appendChild(cardentrynotes);
+
+var content = document.getElementById('content');
+tabpane.appendChild(entry);
+*/
+
+
+    }
+      var x = document.getElementById("searchBar");
+      searchInput = x.innerHTML;
+
+}
+
+function searchIconchange(){
+  searchchanging = true;
+  var y = document.getElementById("searchicon");
+
+  if(y.className == "searchicon fa fa-times fa-2x nav-icon" && searchchanging == true)
+  {
+    console.log("adw");
+    y.className = "searchicon fa fa-search fa-2x nav-icon";
+    var x = document.getElementById("searchedCat");
+    list.removeChild(x);
+    searchchanging = false;
+  }
+  if(y.className =="searchicon fa fa-search fa-2x nav-icon" && searchchanging == true)
+  {
+    console.log(2);
+    y.className = "searchicon fa fa-times fa-2x nav-icon";
+    searchchanging = false;
+  }
 }
