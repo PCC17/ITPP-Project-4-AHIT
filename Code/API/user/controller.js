@@ -10,6 +10,26 @@ var ModelPassEntry = mongoose.model('ModelUser');
 var ModelCountry = mongoose.model('ModelCountry');
 
 //debug area
+
+exports.getUser()= function (req, res) {
+    var a = array();
+    var email = req.payload.email;
+    ModelUser.findOne({ 'local.email': email }, function (err, user) {
+      a["username"]=user.username;
+      a["email"]=user.email;
+      a["firstname"]=user.firstname;
+      a["lastname"]=user.lastname;
+      a["countryId"]=user.conutryId;
+    }
+    res.send(a);
+}
+
+exports.getCountries()= function (req, res) {
+    ModelUser.findAll({}, function (err, countries) {
+      res.send(countries);
+    }
+}
+
 exports.debug_restricted = function (req, res) {
     res.send("Secret Area");
 }
