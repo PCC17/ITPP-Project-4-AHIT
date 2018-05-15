@@ -17,7 +17,7 @@
     Guten Morgen User
     </span>
 
-  <input class="nav-search search form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+  <input class="nav-search search form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchBar" onchange="">
   <i class="searchicon fa fa-search fa-2x nav-icon"></i>
 
 

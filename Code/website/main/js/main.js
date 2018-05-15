@@ -55,6 +55,11 @@ function addCategory(name){
   })
 }
 
+<<<<<<<
+
+=======
+s
+>>>>>>>
 function addCatgoryWithEntry(name,order,peName,peOrder,peLink, peImage, peUsername, pePassword, peNotes, cfKey, cfValue, peIsFavourite){
 
 var _name = name;
