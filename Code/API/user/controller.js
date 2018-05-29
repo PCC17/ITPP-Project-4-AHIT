@@ -130,6 +130,7 @@ exports.createCategory = function (req, res) {
     });
 }
 exports.updateCategory = function (req, res) {
+  console.log(req);
     var email = req.payload.email;
     ModelUser.findOne({ 'local.email': email }, function (err, user) {
         if (err)
