@@ -2,7 +2,7 @@
 <article id="export">
 <h3>Export your password</h3>
 <p>If you choose to export your passwords you can import them in another password manager or wos was i</p>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+<button type="button" class="btn btn-primary" onclick="exportRequest();">
   Export
 </button>
 

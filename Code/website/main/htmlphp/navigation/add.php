@@ -9,8 +9,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="#categoryModal">Category</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="#entryModal" onclick="getCategoryOptions()">Entry</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="#categoryModal" onclick="checkAddEditCategory(1);">Category</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="#entryModal"onclick="checkAddEditEntry(1);">Entry</button>
       </div>
     </div>
   </div>
@@ -115,7 +115,7 @@
        </div>
 
         <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="addCategory(document.getElementById('categoryName').value)">Save</button>
+        <button type="submit" id="submitAddEditBtn" class="btn btn-primary" data-dismiss="modal">Save</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
 

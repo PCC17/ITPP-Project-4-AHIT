@@ -29,13 +29,13 @@ function getAccount() {
 
 function domAccount() {
   var inputFirstName = document.getElementById("inputFirstName");
-  inputFirstName.setAttribute("placeholder", user.firstname);
+  inputFirstName.setAttribute("value", user.firstname);
   var inputLastName = document.getElementById("inputLastName");
-  inputLastName.setAttribute("placeholder", user.lastname);
+  inputLastName.setAttribute("value", user.lastname);
   var inputUsername = document.getElementById("inputUsername");
-  inputUsername.setAttribute("placeholder", user.username);
+  inputUsername.setAttribute("value", user.username);
   var inputEmail = document.getElementById("inputEmail");
-  inputEmail.setAttribute("placeholder", user.email);
+  inputEmail.setAttribute("value", user.email);
 
   var inputCountrySelect = document.getElementById("inputCountrySelect");
   inputCountrySelect.innerHTML="";
@@ -88,4 +88,11 @@ function logout()
     {
         window.location = "../login";
     }
+}
+
+function exportRequest(){
+  $.get(url+"/export?token="+getCookie("token"), function(data){
+    console.log("expooorttt");
+    console.log(data);
+  })
 }
