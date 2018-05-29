@@ -5,6 +5,7 @@ var searchchanging = false;
 var entryNames = [];
 var list = document.getElementById('sortable');
 var currentcatname = "";
+var entryObject = [];
 
 $(document).ready(function () {
     checkToken();
@@ -32,6 +33,7 @@ console.log(test3);
 console.log(categories);
 */
 domCategories();
+domEntries();
 });
 }
 
@@ -99,6 +101,8 @@ function domEntries() {
     for(var i = 0; i < entries.length; i++)
     {
       console.log(entries[i]);
+      entryObject = entries[i];
+      console.log(entryObject);
         var entry = document.createElement('article');
         entry.className = 'entry';
         var card = document.createElement('div');
@@ -111,7 +115,12 @@ function domEntries() {
         cardentryedit.className = 'fa fa-edit entry-icon';
         cardentryedit.setAttribute("href", "#entryModal");
         cardentryedit.setAttribute("data-toggle", "modal");
-        cardentryedit.setAttribute("onclick", "checkAddEditEntry(0, '"+entries[i].name+"');");
+        //cardentryedit.setAttribute("onclick", "checkAddEditEntry(0, '"+entryObject+"');");
+        cardentryedit.onclick = function () {
+          console.log(entryObject);
+            checkAddEditEntry(0, entryObject);
+            return false;
+        };
         cardheader.appendChild(cardentryedit);
         card.appendChild(cardheader);
         var cardbody = document.createElement('ul');
@@ -357,6 +366,7 @@ function checkFavCat(){
 
 function checkAddEditCategory(numb, catname)
 {
+  getCategoryOptions();
   var aeCat = document.getElementById("AddEditCat");
   var catField = document.getElementById("categoryName");
   var submitBtn = document.getElementById("submitAddEditBtn");
@@ -373,14 +383,25 @@ function checkAddEditCategory(numb, catname)
   }
 }
 
-function checkAddEditEntry(numb, entryname)
+function checkAddEditEntry(numb, entry)
 {
+  console.log(entry);
   var aeEntry = document.getElementById("AddEditEntry");
-
   var submitBtn = document.getElementById("submitAddEditBtn");
   if(numb == 0)
     {
     aeEntry.innerHTML = "Edit";
+    var entryName = document.getElementById("inputEntryName");
+    entryName.setAttribute("value", entry.name);
+    var entryURL = document.getElementById("inputURL");
+    entryURL.setAttribute("value", entry.link);
+    var entryUsername = document.getElementById("inputUsername");
+    entryUsername.setAttribute("value", entry.username);
+    var entryPassword = document.getElementById("inputPassword");
+    entryPassword.setAttribute("value", entry.password);
+    var entryNotes = document.getElementById("textNotes");
+    entryNotes.setAttribute("value", entry.notes);
+    var entryFavourite = document.getElementById("checkIsFavourite");
     //submitBtn.setAttribute("onclick", "updateCategoryName('"+currentcatname+"', document.getElementById('categoryName').value)");
   }
   if(numb == 1)
