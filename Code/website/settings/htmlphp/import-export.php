@@ -1,8 +1,49 @@
+<script>
+
+function readSingleFile(evt) {
+   var f = evt.target.files[0];
+
+   if (f) {
+     var r = new FileReader();
+     r.onload = function(e) {
+       var contents = e.target.result;
+       console.log(contents);
+       contents = crypt(contents,true);
+
+       $.ajax({
+           dataType: 'json',
+           type: 'POST',
+           url: url+"/import?token="+getCookie("token"),
+           data: { "lines": [contents]},
+           success: function(data)
+           {
+               console.log(data);
+               getCategories();
+               if(['status'] == "success")
+               {
+                   console.log("success");
+               }
+
+               else if(['status'] == "error")
+               {
+                   console.log("error");
+               }
+           }
+       });
+     }
+     r.readAsText(f);
+   }
+ }
+
+</script>
+
+
 <div>
 <article id="export">
-<h3>Export your password</h3>
-<p>If you choose to export your passwords you can import them in another password manager or wos was i</p>
-<button type="button" class="btn btn-primary" onclick="exportRequest();">
+<h3>Export your passwords</h3>
+<p>If you choose to export your passwords you can import them in another password manager</p>
+<p>Hint: This will not transfer your application settings, only your user and login information</p>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
   Export
 </button>
 
@@ -16,16 +57,10 @@
         </button>
       </div>
       <div class="modal-body">
-       <div class="form-group">
-      <label for="selectFormat">format</label>
-       <select class="form-control" id="selectFormat">
-           <option>.csv</option>
-           <option>.json</option>
-       </select>
-  </div>
+       <button type="button" class="btn btn-primary" onclick="download()">JSON</button>
+       <br>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-primary">Finish</button>
       </div>
     </div>
@@ -37,13 +72,10 @@
 
 <article id="import">
   <h3>Import your passwords</h3>
-  <p>Import your passwords from .csv or .json file</p>
-
   <form>
     <div class="form-group">
-      <button type="button" class="btn btn-primary" id="import-button">Select file</button>
-        <input id="import-input" type="file" name="file" accept=".pdf">
-      <button type="submit" class="btn btn-primary">Import</button>
+    <input  type="file" id="inputFile" multiple size="50" accept=".json">
+      <button type="button" class="btn btn-primary">Import</button>
     </div>
   </form>
 </article>

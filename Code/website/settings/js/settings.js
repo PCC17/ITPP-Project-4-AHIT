@@ -4,6 +4,15 @@ $(document).ready(function () {
     $('#content').toggleClass('active');
   });
   getAccount();
+  var file;
+
+   document.getElementById('inputFile').addEventListener('change', readSingleFile, false);
+
+  $.get(url+"/export?token="+getCookie("token"), function(data){
+  console.log(data);
+});
+
+
 });
 
 $('#import-button').click(function() {
@@ -37,19 +46,8 @@ function domAccount() {
   var inputEmail = document.getElementById("inputEmail");
   inputEmail.setAttribute("value", user.email);
 
-  var inputCountrySelect = document.getElementById("inputCountrySelect");
-  inputCountrySelect.innerHTML="";
-  for (var i = 0; i < countries.length; i++) {
-    var option = document.createElement('option');
-    option.innerHTML = categories[i].name;
-    inputCountrySelect.appendChild(option);
-  }
-
-
 }
 
-// csv TO json
-//var csv is the CSV file with headers
 function csvJSON(csv){
 
   var lines=csv.split("\n");
@@ -70,13 +68,41 @@ function csvJSON(csv){
 	  result.push(obj);
 
   }
-  //return result; //JavaScript object
-  return JSON.stringify(result); //JSON
+  return JSON.stringify(result);
 }
 
+function importChanged()
+{
+  var jsonfile = document.getElementById("inputFile").files[0];
+  console.log(jsonfile);
 
+  importFile(jsonfile);
+}
 
-// LOGOUT FUNCTION
+function importFile(file){
+  $.ajax({
+      dataType: 'json',
+      type: 'POST',
+      url: url+"/import?token="+getCookie("token"),
+      data: { "lines": [file]},
+      success: function(data)
+      {
+          console.log(data);
+          getCategories();
+          if(['status'] == "success")
+          {
+              console.log("success");
+          }
+
+          else if(['status'] == "error")
+          {
+              console.log("error");
+          }
+      }
+
+  });
+}
+
 function logout()
 {
     if(!getCookie("token")=="")
@@ -90,9 +116,63 @@ function logout()
     }
 }
 
-function exportRequest(){
-  $.get(url+"/export?token="+getCookie("token"), function(data){
-    console.log("expooorttt");
-    console.log(data);
-  })
+
+var HttpClient = function() {
+    this.get = function(aUrl, aCallback) {
+        var anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.onreadystatechange = function() {
+            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                aCallback(anHttpRequest.responseText);
+        }
+
+        anHttpRequest.open( "GET", aUrl, true );
+        anHttpRequest.send( null );
+    }
+}
+
+function crypt( str,  encrypt)
+{
+  arrayOfLines = str.match(/[^\r\n]+/g);
+  for(var i = 0; i < arrayOfLines.length; i++)
+  {
+    var sp = arrayOfLines[i].split(';');
+    if(encrypt)
+    {
+      sp[3] = encryptValue(sp[3], getCookie("token"));
+    }
+    else {
+      sp[3] = decryptValue(sp[3], getCookie("token"));
+    }
+    arrayOfLines[i] = "";
+    for(var j = 0; j < sp.length; j++)
+    {
+      arrayOfLines[i] += sp[j] + ";";
+    }
+    console.log(arrayOfLines[i]);
+  }
+  str= "";
+  for(var i = 0; i < arrayOfLines.length; i++)
+  {
+    str += arrayOfLines[i] + '\n';
+  }
+  return str;
+}
+
+function download() {
+  var client = new HttpClient();
+  client.get( url+"/export?token="+getCookie("token"), function(response) {
+  var element = document.createElement('a')
+  response = crypt(response, false);
+    console.log(response);
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(response));
+  element.setAttribute('download', "export.csv");
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+});
+
 }

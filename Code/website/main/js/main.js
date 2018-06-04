@@ -70,12 +70,18 @@ function domCategories(){
         catnameChild.innerHTML = categories[i].name;
         catname.appendChild(catnameChild);
 
+        var delicon = document.createElement('i');
+        delicon.setAttribute("data-toggle", "modal");
+        delicon.setAttribute("href", "#deleteCategoryModal");
+        delicon.setAttribute("onclick", "checkDeleteCategory('"+categories[i].name+"');")
+        delicon.className = 'fa fa-trash icon-sidebar';
+        catnameChild.appendChild(delicon);
+
         var editicon = document.createElement('i');
         editicon.setAttribute("data-toggle", "modal");
         editicon.setAttribute("href", "#categoryModal");
         editicon.setAttribute("onclick", "checkEditCategory('"+categories[i].name+"');");
         editicon.className = 'fa fa-edit icon-sidebar';
-        //editicon.href = "#categoryModal";
         catnameChild.appendChild(editicon);
     }
 }
@@ -108,6 +114,12 @@ function domEntries() {
         var cardheader = document.createElement('div');
         cardheader.className = 'card-header';
         cardheader.innerHTML = entries[i].name;
+        var cardentrydel = document.createElement('i');
+        cardentrydel.className = 'fa fa-trash entry-icon';
+        cardentrydel.setAttribute("href", "#deleteEntryModal");
+        cardentrydel.setAttribute("data-toggle", "modal");
+        cardentrydel.setAttribute("onclick", "checkDeleteEntry('"+entries[i].name+"', '"+categories[j].name+"');")
+        cardheader.appendChild(cardentrydel);
         var cardentryedit = document.createElement('i');
         cardentryedit.className = 'fa fa-edit entry-icon';
         cardentryedit.setAttribute("href", "#entryModal");
@@ -401,16 +413,6 @@ function checkEditEntry(entrystr, catstr)
     entryNotes.setAttribute("value", entry.notes);
     var entryFavourite = document.getElementById("checkIsFavourite");
     //submitBtn.setAttribute("onclick", "updateCategoryName('"+currentcatname+"', document.getElementById('categoryName').value)");
-    //add Delete Button
-    var modalFooter = document.getElementById("entryModalFooter");
-    var deleteBtn = document.createElement("button");
-    deleteBtn.type = "button";
-    deleteBtn.className = "btn btn-danger mr-auto";
-    deleteBtn.setAttribute("data-toggle", "modal");
-    deleteBtn.setAttribute("data-dismiss", "modal");
-    deleteBtn.setAttribute("href", "#deleteEntryModal");
-    deleteBtn.innerHTML = "Delete";
-    modalFooter.appendChild(deleteBtn);
 }
 
 function checkAddEntry() {
@@ -429,6 +431,71 @@ function copyEntryPassword() {
   var copytext = selectText('cardEntryPassword');
   document.execCommand("copy");
 }
+
+function checkDeleteCategory(name) {
+    console.log("check");
+  var catdelbtn = document.getElementById("deleteBtnCategoryModal");
+  catdelbtn.setAttribute("onclick", "deleteCategory('"+name+"');");
+}
+
+function deleteCategory(name) {
+  $.ajax({
+
+      dataType: 'json',
+      type: 'DELETE',
+      url: url+ '/category?token='+getCookie("token"),
+      data: {'name': name},
+      success: function(data)
+      {
+        getCategories();
+          console.log(data);
+          if(['status'] == "success")
+          {
+              console.log("success");
+          }
+
+          else if(['status'] == "error")
+          {
+              console.log("error");
+          }
+      }
+
+  })
+}
+
+function checkDeleteEntry(entry, category) {
+  console.log("check");
+  var entrydelbtn = document.getElementById("deleteBtnEntryModal");
+  console.log(category);
+  console.log(entry);
+  entrydelbtn.setAttribute("onclick", "deleteEntry('"+category+"', '"+entry+"');");
+}
+
+function deleteEntry(category, entryname) {
+  $.ajax({
+
+      dataType: 'json',
+      type: 'DELETE',
+      url: url+ '/' + category + '/entry?token='+getCookie("token"),
+      data: {'name': entryname},
+      success: function(data)
+      {
+        getEntries();
+          console.log(data);
+          if(['status'] == "success")
+          {
+              console.log("success");
+          }
+
+          else if(['status'] == "error")
+          {
+              console.log("error");
+          }
+      }
+
+  })
+}
+
 
 function selectText(element) {
   var doc = document,
@@ -605,5 +672,57 @@ function searchIconchange(){
     console.log(2);
     y.className = "searchicon fa fa-times fa-2x nav-icon";
     searchchanging = false;
+  }
+}
+
+
+//password
+var stringCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var stringNumbers = "1234567890";
+var stringSpecialCharacters = "!§$%@€,;.:--_~*+<>|`´`&/()=?²³{[}\\]}";
+function generatePassword(characters, numbers, specialCharacters, length)
+{
+  var string = "";
+  if(!(characters || numbers || specialCharacters))
+    characters = true;
+
+    if(characters)
+      string += stringCharacters;
+    if(numbers)
+      string += stringNumbers;
+    if(specialCharacters)
+      string += stringSpecialCharacters;
+    //return generateSequence(string,length);
+    var inputPassword = document.getElementById("inputPassword");
+    inputPassword.innerHTML = "";
+    inputPassword.innerHTML = string;
+}
+
+function generateSequence(characters, length)
+{
+  var charArray = characters.split('');
+  var res = "";
+  for(var i = 0; i < length; i++)
+  {
+    res += characters[Math.floor((Math.random() * charArray.length))];
+  }
+  //nur zum testen gleich hier der aufruf ob passwort sicher ist, sonst einfach by change oder dergleichen aufrufen
+  checkPassword(res);
+  //
+  return res;
+}
+
+function checkPassword(pwd) {
+  var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+  var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+
+  if (strongRegex.test(pwd)) {
+    console.log("strong");
+  }
+  else if (mediumRegex.test(pwd) && pwd.length > 10) {
+      console.log("medium");
+  }
+  else {
+    console.log("weak")
   }
 }
