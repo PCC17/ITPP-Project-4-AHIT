@@ -9,8 +9,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="#categoryModal" onclick="checkAddEditCategory(1);">Category</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="#entryModal"onclick="checkAddEditEntry(1);">Entry</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="#categoryModal" onclick="checkAddCategory();">Category</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" href="#entryModal"onclick="checkAddEntry();">Entry</button>
       </div>
     </div>
   </div>
@@ -85,7 +85,8 @@
 
         </form>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" id="entryModalFooter">
+
         <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="addEntry(document.getElementById('inputSelect').value, document.getElementById('inputEntryName').value, document.getElementById('inputURL').value, document.getElementById('inputUsername').value, document.getElementById('inputPassword').value, document.getElementById('textNotes').value, document.getElementById('checkIsFavourite').checked)">Save</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
@@ -114,12 +115,49 @@
             </div>
        </div>
 
-        <div class="modal-footer">
-        <button type="submit" id="submitAddEditBtn" class="btn btn-primary" data-dismiss="modal">Save</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+        <div class="modal-footer" id="categoryModalFooter">
+          <button type="button" class="btn btn-danger mr-auto" data-toggle="modal" data-dismiss="modal" href="#deleteCategoryModal">Delete</button>
+          <button type="submit" id="submitAddEditBtn" class="btn btn-primary" data-dismiss="modal">Save</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
 
        </div>
+    </div>
+  </div>
+</div>
+
+<!-- deleteEntryModal -->
+<div class="modal fade" id="deleteEntryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Entry?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger mr-auto" data-toggle="modal" data-dismiss="modal" onclick="deleteEntry(document.getElementById('inputSelect').value, document.getElementById('inputEntryName').value);">Delete</button>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- deleteCategoryModal -->
+<div class="modal fade" id="deleteCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Category?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger mr-auto" data-toggle="modal" data-dismiss="modal" onclick="deleteCategory(document.getElementById('inputSelect').value);">Delete</button>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>
