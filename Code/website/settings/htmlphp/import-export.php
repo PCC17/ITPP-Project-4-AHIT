@@ -74,8 +74,8 @@ function readSingleFile(evt) {
   <h3>Import your passwords</h3>
   <form>
     <div class="form-group">
+      <input type="file" id="inputFile" multiple size="50" accept=".json">
       <button type="button" class="btn btn-primary">Import</button>
-    <input type="file" id="inputFile" multiple size="50" accept=".json">
     </div>
   </form>
 </article>
