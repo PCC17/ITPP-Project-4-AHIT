@@ -11,6 +11,11 @@ $(document).ready(function () {
     checkToken();
     getCategories();
     getEntries();
+
+    $.get(url+"/user?token="+getCookie("token"), function(data){
+    user = JSON.parse(data);
+    document.getElementById("helloUser").innerHTML += user.firstname;
+    });
 });
 
 function getCategories()
@@ -26,12 +31,6 @@ for(var i = 0; i < categories.length; i++)
     categories[i].passEntry[j].password = decryptValue(categories[i].passEntry[j].password, getCookie("password_local"));
   }
 }
-/*
-var categoriesArrey = Object.keys(categories).map(function (key) { return categories[key]; });
-var test3 = Object.entries(JSON.parse(data));
-console.log(test3);
-console.log(categories);
-*/
 domCategories();
 domEntries();
 });
@@ -572,6 +571,18 @@ function searchChanged() {
     var cardheader = document.createElement('div');
     cardheader.className = 'card-header';
     cardheader.innerHTML = searchedEntries[i].name;
+    var cardentrydel = document.createElement('i');
+    cardentrydel.className = 'fa fa-trash entry-icon';
+    cardentrydel.setAttribute("href", "#deleteEntryModal");
+    cardentrydel.setAttribute("data-toggle", "modal");
+    cardentrydel.setAttribute("onclick", "checkDeleteEntry('"+searchedEntries[i].name+"', search);")
+    cardheader.appendChild(cardentrydel);
+    var cardentryedit = document.createElement('i');
+    cardentryedit.className = 'fa fa-edit entry-icon';
+    cardentryedit.setAttribute("href", "#entryModal");
+    cardentryedit.setAttribute("data-toggle", "modal");
+    cardentryedit.setAttribute("onclick", "checkEditEntry('"+JSON.stringify(searchedEntries[i])+"', '"+JSON.stringify("searchCat")+"');");
+    cardheader.appendChild(cardentryedit);
     card.appendChild(cardheader);
     var cardbody = document.createElement('ul');
     cardbody.className = 'list-group list-group-flush';
@@ -588,16 +599,20 @@ function searchChanged() {
 
     var cardentryuser = document.createElement('li');
     cardentryuser.className = 'list-group-item';
-    cardentryuser.innerHTML = "<b>Username:</b><br>" + searchedEntries[i].username;
+    cardentryuser.innerHTML = "<b>Username:</b><br><x id=\"cardEntryUser\">" + searchedEntries[i].username;
     var cardentryusercopy = document.createElement('i');
-    cardentryusercopy.className = 'fa fa-copy';
-    cardentryusercopy.setAttribute("onclick", "copyEntryUsername();")
+    cardentryusercopy.className = 'fa fa-copy entry-icon';
+    cardentryusercopy.setAttribute("onclick", "copyEntryUsername();");
     cardentryuser.appendChild(cardentryusercopy);
     cardbody.appendChild(cardentryuser);
 
     var cardentrypw = document.createElement('li');
     cardentrypw.className = 'list-group-item';
-    cardentrypw.innerHTML = "<b>Password:</b><br>" + searchedEntries[i].password;
+    cardentrypw.innerHTML = "<b>Password:</b><br><x id=\"cardEntryPassword\">" + searchedEntries[i].password;
+    var cardentrypwcopy = document.createElement('i');
+    cardentrypwcopy.className = 'fa fa-copy entry-icon';
+    cardentrypwcopy.setAttribute("onclick", "copyEntryPassword();")
+    cardentrypw.appendChild(cardentrypwcopy);
     cardbody.appendChild(cardentrypw);
 
     var cardentrynotes = document.createElement('li');
@@ -607,6 +622,8 @@ function searchChanged() {
 
     var content = document.getElementById('content');
     tabpane.appendChild(entry);
+
+
   }
 
     document.getElementById("searchLink").click();
