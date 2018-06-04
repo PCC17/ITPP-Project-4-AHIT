@@ -64,8 +64,18 @@
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
             <div class="col-sm-9">
-              <input type="password" class="form-control" id="inputPassword" placeholder="samplepassword" required>
+              <div class="row">
+                <label for="passwordLength" class="col-sm-3 col-form-label">Length</label>
+                <div class="col-sm-4">
+                  <input type="number" class="form-control" id="passwordLength" default="128"></input>
+                </div>
+                <div class="col-sm-4">
+                  <button type="button" class="btn btn-secondary" onclick="generatePassword(1, 1, 1, document.getElementById('passwordLength').value);">Generate</button>
+                </div>
+              </div>
+              <input type="text" class="form-control" id="inputPassword" placeholder="samplepassword" required>
             </div>
+
           </div>
 
           <div class="form-group row">
@@ -116,7 +126,6 @@
        </div>
 
         <div class="modal-footer" id="categoryModalFooter">
-          <button type="button" class="btn btn-danger mr-auto" data-toggle="modal" data-dismiss="modal" href="#deleteCategoryModal">Delete</button>
           <button type="submit" id="submitAddEditBtn" class="btn btn-primary" data-dismiss="modal">Save</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
@@ -137,7 +146,7 @@
         </button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger mr-auto" data-toggle="modal" data-dismiss="modal" onclick="deleteEntry(document.getElementById('inputSelect').value, document.getElementById('inputEntryName').value);">Delete</button>
+        <button type="button" id="deleteBtnEntryModal" class="btn btn-danger mr-auto" data-toggle="modal" data-dismiss="modal">Delete</button>
         <button type="button" class="btn btn-secondary" data-toggle="modal" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -155,7 +164,7 @@
         </button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger mr-auto" data-toggle="modal" data-dismiss="modal" onclick="deleteCategory(document.getElementById('inputSelect').value);">Delete</button>
+        <button type="button" id="deleteBtnCategoryModal" class="btn btn-danger mr-auto" data-toggle="modal" data-dismiss="modal">Delete</button>
         <button type="button" class="btn btn-secondary" data-toggle="modal" data-dismiss="modal">Close</button>
       </div>
     </div>
