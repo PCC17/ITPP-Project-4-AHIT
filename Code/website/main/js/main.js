@@ -11,11 +11,6 @@ $(document).ready(function () {
     checkToken();
     getCategories();
     getEntries();
-
-    $.get(url+"/user?token="+getCookie("token"), function(data){
-    user = JSON.parse(data);
-    document.getElementById("helloUser").innerHTML += user.firstname;
-    });
 });
 
 function getCategories()
@@ -31,6 +26,12 @@ for(var i = 0; i < categories.length; i++)
     categories[i].passEntry[j].password = decryptValue(categories[i].passEntry[j].password, getCookie("password_local"));
   }
 }
+/*
+var categoriesArrey = Object.keys(categories).map(function (key) { return categories[key]; });
+var test3 = Object.entries(JSON.parse(data));
+console.log(test3);
+console.log(categories);
+*/
 domCategories();
 domEntries();
 });
@@ -227,7 +228,7 @@ var _cfKey = cfKey;
 var _cfValue= cfValue;
 var _peIsFavourite = isFavourite;
 $.ajax({
-
+//async : false,
     dataType: 'json',
     type: 'POST',
     url: url+"/"+_category+"/entry?token="+getCookie("token"),
@@ -370,19 +371,17 @@ function checkFavCat(){
 
 function checkEditCategory(catname)
 {
-  getCategoryOptions();
   var aeCat = document.getElementById("AddEditCat");
   var catField = document.getElementById("categoryName");
-  var submitBtn = document.getElementById("submitAddEditBtn");
+  var submitBtn = document.getElementById("submitAddEditCategoryBtn");
     aeCat.innerHTML = "Edit";
     catField.setAttribute("value", catname);
     submitBtn.setAttribute("onclick", "updateCategoryName('"+catname+"', document.getElementById('categoryName').value)");
 }
 
 function checkAddCategory() {
-  getCategoryOptions();
   var aeCat = document.getElementById("AddEditCat");
-  var submitBtn = document.getElementById("submitAddEditBtn");
+  var submitBtn = document.getElementById("submitAddEditCategoryBtn");
   aeCat.innerHTML = "Add";
   submitBtn.setAttribute("onclick", "addCategory(document.getElementById('categoryName').value)");
 }
@@ -393,9 +392,9 @@ function checkEditEntry(entrystr, catstr)
   var category = JSON.parse(catstr);
   console.log(entry);
   var aeEntry = document.getElementById("AddEditEntry");
-  var submitBtn = document.getElementById("submitAddEditBtn");
+  var submitBtn = document.getElementById("submitAddEditEntryBtn");
     aeEntry.innerHTML = "Edit";
-    //getCategoryOptions();
+    getCategoryOptions();
     var catSelect = document.getElementById("inputSelect");
     var option = document.createElement('option');
     option.innerHTML = category.name;
@@ -411,14 +410,35 @@ function checkEditEntry(entrystr, catstr)
     var entryNotes = document.getElementById("textNotes");
     entryNotes.setAttribute("value", entry.notes);
     var entryFavourite = document.getElementById("checkIsFavourite");
-    //submitBtn.setAttribute("onclick", "updateCategoryName('"+currentcatname+"', document.getElementById('categoryName').value)");
+    submitBtn.setAttribute("onclick", "checkUpdateEntry('"+category.name+"', '"+entry.name+"');");
+}
+
+function checkUpdateEntry(oldcat, oldname) {
+  updateEntry(oldcat, oldname,
+  document.getElementById("inputSelect").value,
+  document.getElementById("inputEntryName").value,
+  document.getElementById("inputURL").value,
+  document.getElementById("inputUsername").value,
+  document.getElementById("inputPassword").value,
+  document.getElementById("textNotes").value,
+  document.getElementById("checkIsFavourite").value);
+}
+
+function updateEntry(oldcat, oldname, newcat, newname, link, username, password, notes, isFavourite) {
+  console.log("update");
+  console.log(newname);
+  deleteEntry(oldcat, oldname);
+  addEntry(newcat, newname, link, username, password, notes, isFavourite);
+  getEntries();
+  domEntries();
 }
 
 function checkAddEntry() {
+  getCategoryOptions();
   var aeEntry = document.getElementById("AddEditEntry");
-  var submitBtn = document.getElementById("submitAddEditBtn");
+  var submitBtn = document.getElementById("submitAddEditEntryBtn");
   aeEntry.innerHTML = "Add";
-  //submitBtn.setAttribute("onclick", "addCategory(document.getElementById('categoryName').value)");
+  submitBtn.setAttribute("onclick", "addEntry(document.getElementById('inputSelect').value, document.getElementById('inputEntryName').value, document.getElementById('inputURL').value, document.getElementById('inputUsername').value, document.getElementById('inputPassword').value, document.getElementById('textNotes').value, document.getElementById('checkIsFavourite').checked)");
 }
 
 function copyEntryUsername() {
@@ -472,7 +492,7 @@ function checkDeleteEntry(entry, category) {
 
 function deleteEntry(category, entryname) {
   $.ajax({
-
+async : false,
       dataType: 'json',
       type: 'DELETE',
       url: url+ '/' + category + '/entry?token='+getCookie("token"),
@@ -571,18 +591,6 @@ function searchChanged() {
     var cardheader = document.createElement('div');
     cardheader.className = 'card-header';
     cardheader.innerHTML = searchedEntries[i].name;
-    var cardentrydel = document.createElement('i');
-    cardentrydel.className = 'fa fa-trash entry-icon';
-    cardentrydel.setAttribute("href", "#deleteEntryModal");
-    cardentrydel.setAttribute("data-toggle", "modal");
-    cardentrydel.setAttribute("onclick", "checkDeleteEntry('"+searchedEntries[i].name+"', search);")
-    cardheader.appendChild(cardentrydel);
-    var cardentryedit = document.createElement('i');
-    cardentryedit.className = 'fa fa-edit entry-icon';
-    cardentryedit.setAttribute("href", "#entryModal");
-    cardentryedit.setAttribute("data-toggle", "modal");
-    cardentryedit.setAttribute("onclick", "checkEditEntry('"+JSON.stringify(searchedEntries[i])+"', '"+JSON.stringify("searchCat")+"');");
-    cardheader.appendChild(cardentryedit);
     card.appendChild(cardheader);
     var cardbody = document.createElement('ul');
     cardbody.className = 'list-group list-group-flush';
@@ -599,20 +607,16 @@ function searchChanged() {
 
     var cardentryuser = document.createElement('li');
     cardentryuser.className = 'list-group-item';
-    cardentryuser.innerHTML = "<b>Username:</b><br><x id=\"cardEntryUser\">" + searchedEntries[i].username;
+    cardentryuser.innerHTML = "<b>Username:</b><br>" + searchedEntries[i].username;
     var cardentryusercopy = document.createElement('i');
-    cardentryusercopy.className = 'fa fa-copy entry-icon';
-    cardentryusercopy.setAttribute("onclick", "copyEntryUsername();");
+    cardentryusercopy.className = 'fa fa-copy';
+    cardentryusercopy.setAttribute("onclick", "copyEntryUsername();")
     cardentryuser.appendChild(cardentryusercopy);
     cardbody.appendChild(cardentryuser);
 
     var cardentrypw = document.createElement('li');
     cardentrypw.className = 'list-group-item';
-    cardentrypw.innerHTML = "<b>Password:</b><br><x id=\"cardEntryPassword\">" + searchedEntries[i].password;
-    var cardentrypwcopy = document.createElement('i');
-    cardentrypwcopy.className = 'fa fa-copy entry-icon';
-    cardentrypwcopy.setAttribute("onclick", "copyEntryPassword();")
-    cardentrypw.appendChild(cardentrypwcopy);
+    cardentrypw.innerHTML = "<b>Password:</b><br>" + searchedEntries[i].password;
     cardbody.appendChild(cardentrypw);
 
     var cardentrynotes = document.createElement('li');
@@ -622,11 +626,9 @@ function searchChanged() {
 
     var content = document.getElementById('content');
     tabpane.appendChild(entry);
-
-
   }
 
-    document.getElementById("searchLink").click();
+
 }
 function getEntryNames() {
 
