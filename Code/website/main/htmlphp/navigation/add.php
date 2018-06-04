@@ -97,7 +97,7 @@
       </div>
       <div class="modal-footer" id="entryModalFooter">
 
-        <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="addEntry(document.getElementById('inputSelect').value, document.getElementById('inputEntryName').value, document.getElementById('inputURL').value, document.getElementById('inputUsername').value, document.getElementById('inputPassword').value, document.getElementById('textNotes').value, document.getElementById('checkIsFavourite').checked)">Save</button>
+        <button type="submit" id="submitAddEditEntryBtn" class="btn btn-primary" data-dismiss="modal">Save</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -126,7 +126,7 @@
        </div>
 
         <div class="modal-footer" id="categoryModalFooter">
-          <button type="submit" id="submitAddEditBtn" class="btn btn-primary" data-dismiss="modal">Save</button>
+          <button type="submit" id="submitAddEditCategoryBtn" class="btn btn-primary" data-dismiss="modal">Save</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
 
