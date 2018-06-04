@@ -520,56 +520,113 @@ return range;
 
 function searchChanged() {
 
+  var tabpane = document.getElementById("search");
+  tabpane.innerHTML = "";
+  var searchedEntries = [];
+  var searchedEntriesName = [];
   if(searching == true)
   {
     var input = document.getElementById("searchBar").value;
-
-    console.log(input.split(''));
-
-    for(var i = 0; i < entries.length; i++)
-    {
-      console.log(entries[i]);
-    }
 
     if(input.length == 1)
     {
       for(var i = 0; i < entryNames.length; i++)
       {
         if(entryNames[i].includes(input))
-        console.log("nur ein char in input");
+        {
+    }
       }
     }
+
     for(var i = 0; i < entryNames.length; i++)
     {
       if (entryNames[i].includes(input))
       {
-        console.log(entryNames[i]);
+        searchedEntriesName.push(entryNames[i]);
       }
     }
 
+    for(var j = 0; j < categories.length; j++)
+    {
+      var entries = categories[j].passEntry;
+      for(var k = 0; k< entries.length; k++)
+      {
+        for (var i = 0; i < searchedEntriesName.length; i++) {
+          if(entries[k].name == searchedEntriesName[i])
+          {
+          searchedEntries.push(entries[k]);
+        }
+        }
+
+      }
   }
+
+  }
+
+  for (var i = 0; i < searchedEntries.length; i++) {
+    var entry = document.createElement('article');
+    entry.className = 'entry';
+    var card = document.createElement('div');
+    card.className = 'card mycard';
+    entry.appendChild(card);
+    var cardheader = document.createElement('div');
+    cardheader.className = 'card-header';
+    cardheader.innerHTML = searchedEntries[i].name;
+    card.appendChild(cardheader);
+    var cardbody = document.createElement('ul');
+    cardbody.className = 'list-group list-group-flush';
+    card.appendChild(cardbody);
+
+    var cardentryurl = document.createElement('li');
+    cardentryurl.className = 'list-group-item';
+    cardentryurl.innerHTML = "<b>URL:</b><br>";
+    var cardentrya = document.createElement('a');
+    cardentrya.href = searchedEntries[i].link;
+    cardentrya.innerHTML = searchedEntries[i].link;
+    cardentryurl.appendChild(cardentrya);
+    cardbody.appendChild(cardentryurl);
+
+    var cardentryuser = document.createElement('li');
+    cardentryuser.className = 'list-group-item';
+    cardentryuser.innerHTML = "<b>Username:</b><br>" + searchedEntries[i].username;
+    var cardentryusercopy = document.createElement('i');
+    cardentryusercopy.className = 'fa fa-copy';
+    cardentryusercopy.setAttribute("onclick", "copyEntryUsername();")
+    cardentryuser.appendChild(cardentryusercopy);
+    cardbody.appendChild(cardentryuser);
+
+    var cardentrypw = document.createElement('li');
+    cardentrypw.className = 'list-group-item';
+    cardentrypw.innerHTML = "<b>Password:</b><br>" + searchedEntries[i].password;
+    cardbody.appendChild(cardentrypw);
+
+    var cardentrynotes = document.createElement('li');
+    cardentrynotes.className = 'list-group-item';
+    cardentrynotes.innerHTML = "<b>Notes:</b><br>" + searchedEntries[i].notes;
+    cardbody.appendChild(cardentrynotes);
+
+    var content = document.getElementById('content');
+    tabpane.appendChild(entry);
+  }
+
+
 }
 function getEntryNames() {
 
     for(var i = 0; i < categories.length; i++)
     {
       var entries = categories[i].passEntry;
-
-      for(var j = 0; i< entries.length; i++)
+      for(var j = 0; j< entries.length; j++)
       {
-      entryNames.push(entries[i].name);
+      entryNames.push(entries[j].name);
       }
-
     }
-    console.log(entryNames);
-
 
 }
 
 function searchStart() {
 
   getEntryNames();
-
   if(searching == false)
   {
     searching = true;
@@ -583,6 +640,7 @@ function searchStart() {
       catnameChild.setAttribute("role", "tab");
       catnameChild.href = "#" + "search";
       catnameChild.innerHTML = "search";
+      catnameChild.id = "searchLink";
       catname.appendChild(catnameChild);
 
       var editicon = document.createElement('i');
@@ -595,59 +653,10 @@ function searchStart() {
 
       var tabcontent = document.getElementById("tab-content");
 
-/*
       var tabpane = document.createElement('div');
       tabpane.className = 'tab-pane fade';
-      tabpane.id = categories[j].name;
+      tabpane.id = "search";
       tabcontent.appendChild(tabpane);
-*/
-
-/*
-var entry = document.createElement('article');
-entry.className = 'entry';
-var card = document.createElement('div');
-card.className = 'card mycard';
-entry.appendChild(card);
-var cardheader = document.createElement('div');
-cardheader.className = 'card-header';
-cardheader.innerHTML = entries[i].name;
-card.appendChild(cardheader);
-var cardbody = document.createElement('ul');
-cardbody.className = 'list-group list-group-flush';
-card.appendChild(cardbody);
-
-var cardentryurl = document.createElement('li');
-cardentryurl.className = 'list-group-item';
-cardentryurl.innerHTML = "<b>URL:</b><br>";
-var cardentrya = document.createElement('a');
-cardentrya.href = entries[i].link;
-cardentrya.innerHTML = entries[i].link;
-cardentryurl.appendChild(cardentrya);
-cardbody.appendChild(cardentryurl);
-
-var cardentryuser = document.createElement('li');
-cardentryuser.className = 'list-group-item';
-cardentryuser.innerHTML = "<b>Username:</b><br>" + entries[i].username;
-var cardentryusercopy = document.createElement('i');
-cardentryusercopy.className = 'fa fa-copy';
-cardentryusercopy.setAttribute("onclick", "copyEntryUsername();")
-cardentryuser.appendChild(cardentryusercopy);
-cardbody.appendChild(cardentryuser);
-
-var cardentrypw = document.createElement('li');
-cardentrypw.className = 'list-group-item';
-cardentrypw.innerHTML = "<b>Password:</b><br>" + entries[i].password;
-cardbody.appendChild(cardentrypw);
-
-var cardentrynotes = document.createElement('li');
-cardentrynotes.className = 'list-group-item';
-cardentrynotes.innerHTML = "<b>Notes:</b><br>" + entries[i].notes;
-cardbody.appendChild(cardentrynotes);
-
-var content = document.getElementById('content');
-tabpane.appendChild(entry);
-*/
-
 
     }
       var x = document.getElementById("searchBar");
@@ -661,17 +670,17 @@ function searchIconchange(){
 
   if(y.className == "searchicon fa fa-times fa-2x nav-icon" && searchchanging == true)
   {
-    console.log("adw");
     y.className = "searchicon fa fa-search fa-2x nav-icon";
-    var x = document.getElementById("searchedCat");
-    list.removeChild(x);
     searchchanging = false;
   }
   if(y.className =="searchicon fa fa-search fa-2x nav-icon" && searchchanging == true)
   {
-    console.log(2);
+
     y.className = "searchicon fa fa-times fa-2x nav-icon";
     searchchanging = false;
+    searchStart();
+    var link = document.getElementById("searchLink");
+    link.setActive;
   }
 }
 
