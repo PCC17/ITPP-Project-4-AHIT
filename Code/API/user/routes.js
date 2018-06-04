@@ -54,7 +54,7 @@ module.exports = function (app, passport) {
     app.route('/export')
         .get(authenticate, controller.export);
     app.route('/import')
-        .get(authenticate, controller.import);
+        .post(authenticate, controller.import);
     //end export / import
 
     //end restricted area

@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 var schema_pass_entry = new Schema({
     name: { type: String, required: true },
-    order: { type: String, required: true },
+    order: { type: String, required: false },
     link: { type: String, required: false },
     image: { type: String, required: false },
     username: { type: String, required: true },
@@ -20,7 +20,7 @@ var schema_pass_entry = new Schema({
 
 var schema_pass_category = new Schema( {
     name: { type: String, required: true },
-    order: { type: String, required: true},
+    order: { type: String, required: false},
     passEntry: [schema_pass_entry]
 });
 

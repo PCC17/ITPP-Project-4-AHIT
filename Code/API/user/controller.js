@@ -5,8 +5,8 @@ var sampleData = require('../data/sample');
 
 var mongoose = require('mongoose');
 var ModelUser = mongoose.model('ModelUser');
-var ModelPassCategory = mongoose.model('ModelUser');
-var ModelPassEntry = mongoose.model('ModelUser');
+var ModelPassCategory = mongoose.model('ModelPassCategory');
+var ModelPassEntry = mongoose.model('ModelPassEntry');
 var ModelCountry = mongoose.model('ModelCountry');
 
 //debug area
@@ -75,7 +75,70 @@ exports.debug_restricted = function (req, res) {
 
 //export import area
 exports.import = function (req, res) {
-    res.send("Secret Area");
+
+
+      var email = req.payload.email;
+     ModelUser.findOne({ 'local.email': email },
+         function (err, user) {
+             if (err) {
+                 console.log(err);
+                 res.send(messages_state.getError(err));
+             }
+             else if (user) {
+               for (var i = 0; i < req.body.lines.length; i++) {
+                 console.log("run");
+                 console.log(req.body.lines.length);
+                 var arr = req.body.lines[i].split(";");
+                 var arrayLength = user.passCategory.length;
+                 var exists = false;
+                 var index = -1;
+                 for (var j = 0; j < arrayLength; j++) {
+                     if (user.passCategory[j].name == arr[0]) {
+                         exists = true;
+                         console.log("exiiisstststst");
+                         index = j;
+                     }
+                 }
+                 if (!exists) {
+                   user.passCategory.addToSet(new ModelPassCategory({name:arr[0]}));
+                   console.log("adddddd");
+                 }
+             }
+             for (var i = 0; i < req.body.lines.length; i++) {
+               console.log("hello");
+              var arr = req.body.lines[i].split(";");
+               var arrayLength = user.passCategory.length;
+               var index = -1;
+               for (var j = 0; j < arrayLength; j++) {
+                   if (user.passCategory[j].name == arr[0]) {
+                       console.log(arr[0]+arr[1]+arr[2]+arr[3]+arr[4]);
+                       var exists = false;
+                       for (var k = 0; k < user.passCategory[j].passEntry.length; k++) {
+                         if(user.passCategory[j].passEntry[k].name == arr[1])
+                         {
+                           exists = true;
+                         }
+                       }
+                       if(!exists)
+                       {
+                         user.passCategory[j].passEntry.addToSet(new ModelPassEntry({name: arr[1], username: arr[2], password: arr[3], link: arr[4]}));
+                       }
+                   }
+               }
+           }
+             user.save(
+               function (err, results) {
+                     if (err) {
+                         console.log(err);
+                         res.send(messages_state.getError(err));
+                     }
+                     else if (results) {
+                         console.log(results);
+                         res.send(messages_state.getSuccess());
+                     }
+                 });
+           }
+    });
 }
 exports.export = function (req, res) {
   var email = req.payload.email;
@@ -271,7 +334,7 @@ exports.getEntries = function (req, res) {
         }
     );
 }
-exports.createEntry = function (req, res) {
+var createEntry = function  (req, res) {
   console.log("helloo" + JSON.stringify(req.body));
     var email = req.payload.email;
    ModelUser.findOne({ 'local.email': email },
@@ -312,8 +375,12 @@ exports.createEntry = function (req, res) {
 
        });
 }
+
+exports.createEntry = createEntry;
+
+
 exports.updateEntry = function (req, res) {
-    var email = req.payload.email;
+  /*  var email = req.payload.email;
     ModelUser.findOneAndUpdate({
         'local.email': email, 'passCategory.passEntry.name': req.body.name
     }, { $set: { "passCategory.$.name": req.body.newname } },
@@ -326,21 +393,121 @@ exports.updateEntry = function (req, res) {
             else if (doc) {
                 res.send(messages_state.getSuccess());
             }
+        });*/
+
+
+        var email = req.payload.email;
+
+        ModelUser.findOne({ 'local.email': email },
+            function (err, user) {
+            if (err) {
+                console.log(err);
+                res.send(messages_state.getError(err));
+            }
+            else if (user) {
+                var arrayLength = user.passCategory.length;
+                var exists = false;
+                var index = -1;
+                for (var i = 0; i < arrayLength; i++) {
+                    if (user.passCategory[i].name == req.params.category) {
+                        exists = true;
+                        index = i;
+                    }
+                }
+                if (exists) {
+                  arrayLength = user.passCategory[index].passEntry.length;
+                  exists = false;
+                  for (var i = 0; i < arrayLength; i++) {
+                    console.log(user.passCategory[index].passEntry[i].name);
+                    console.log(req.body);
+                      if (user.passCategory[index].passEntry[i].name == req.body.name) {
+                        console.log("erstellen wir ihn")
+                          user.passCategory[index].passEntry.splice(i, 1);
+                          user.save(
+                              function (err, results) {
+                                  if (err) {
+                                      console.log(err);
+                                      res.send(messages_state.getError(err));
+                                  }
+                                  else if (results) {
+                                      console.log(results);
+                                      createEntry(req, res);
+                                  }
+                              });
+                          exists = true;
+
+                          break;
+                      }
+                  }
+
+                  if(!exists)
+                  {
+                    res.send(messages_state.getError(err));
+                  }
+
+                }
+                else {
+                    res.send(messages_state.getError(err));
+                }
+            }
+            else {
+                res.send(messages_state.getError(err));
+            }
+
         });
 }
 exports.deleteEntry = function (req, res) {
-    var email = req.payload.email;
+  var email = req.payload.email;
 
-    ModelUser.findOneAndUpdate({ 'local.email': email },
-        { $pull: { 'passCategory': { 'name': req.body.name } } },
-        function (err, user) {
-            if (err)
+  ModelUser.findOne({ 'local.email': email },
+      function (err, user) {
+      if (err) {
+          console.log(err);
+          res.send(messages_state.getError(err));
+      }
+      else if (user) {
+          var arrayLength = user.passCategory.length;
+          var exists = false;
+          var index = -1;
+          for (var i = 0; i < arrayLength; i++) {
+              if (user.passCategory[i].name == req.params.category) {
+                  exists = true;
+                  index = i;
+              }
+          }
+          if (exists) {
+            arrayLength = user.passCategory[index].passEntry.length;
+            exists = false;
+            for (var i = 0; i < arrayLength; i++) {
+                if (user.passCategory[index].passEntry[i].name == req.body.name) {
+                    user.passCategory[index].passEntry.splice(i, 1);
+                    exists = true;
+                    break;
+                }
+            }
+            if (exists) {
+              user.save(
+                  function (err, results) {
+                      if (err) {
+                          console.log(err);
+                          res.send(messages_state.getError(err));
+                      }
+                      else if (results) {
+                          console.log(results);
+                          res.send(messages_state.getSuccess());
+                      }
+                  });
+            }
+            else {
                 res.send(messages_state.getError(err));
-            else if (user)
-                res.send(messages_state.getSuccess());
-        }
-    );
+            }
+          }
+          else {
+              res.send(messages_state.getError(err));
+          }
+      }
 
+  });
 }
 
 //end create update delete entry area
