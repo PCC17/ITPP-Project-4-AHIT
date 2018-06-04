@@ -38,37 +38,6 @@
         <button type="cancel" class="btn btn-secondary">Cancel</button>
       </form>
 
-        <br>
 
-      <form class="form-signin" id="needs-validation2" novalidate>
-        <h3 class="form-signin-heading heading-font">Reset Password</h3>
-
-        <div class="form-group row">
-          <label for="inputPassword" class="col-sm-3 col-form-label">Old Password</label>
-          <div class="col-sm-6">
-            <input type="password" class="form-control" id="inputPassword" placeholder="samplepassword" required>
-            <div class="invalid-feedback">Please provide a valid password.</div>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="inputPasswordAgain" class="col-sm-3 col-form-label">New Password</label>
-          <div class="col-sm-6">
-            <input type="password" class="form-control" id="inputPasswordAgain" placeholder="samplepassword" required>
-            <div class="invalid-feedback">Please provide a valid password.</div>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="inputRepeatPassword" class="col-sm-3 col-form-label">Repeat password</label>
-          <div class="col-sm-6">
-            <input type="password" class="form-control" id="inputRepeatPassword" placeholder="samplepassword" required>
-            <div class="invalid-feedback">Please provide a valid password.</div>
-          </div>
-        </div>
-
-        <button type="button" class="btn btn-primary">Save</button>
-        <button type="cancel" class="btn btn-secondary">Cancel</button>
-      </form>
 
 </div>
