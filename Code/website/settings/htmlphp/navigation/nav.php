@@ -17,9 +17,6 @@
   <nav class="sidebar blue-grey lighten-4" id="sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="pill" href="#pills-general" role="tab" aria-controls="pills-general">General Settings <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account">Account Settings</a>
             </li>
             <li class="nav-item">

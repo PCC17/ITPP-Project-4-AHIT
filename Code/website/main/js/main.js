@@ -609,7 +609,7 @@ function searchChanged() {
     tabpane.appendChild(entry);
   }
 
-
+    document.getElementById("searchLink").click();
 }
 function getEntryNames() {
 
