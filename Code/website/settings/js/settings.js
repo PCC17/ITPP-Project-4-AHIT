@@ -176,3 +176,20 @@ function download() {
 });
 
 }
+
+
+
+function checkMobile()
+{
+  console.log("chekcing");
+
+  if((navigator.userAgent).indexOf("Mobile"))
+  {
+    console.log("mobile");
+    $('#sidebar').toggleClass('active');
+    $('#content').toggleClass('active');
+  }
+  else
+  console.log("ned mobile");
+
+}

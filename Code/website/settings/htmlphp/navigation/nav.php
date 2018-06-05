@@ -17,17 +17,17 @@
   <nav class="sidebar blue-grey lighten-4" id="sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account">Account Details</a>
+              <a class="nav-link active" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account" onclick="checkMobile();">Account Details</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#pills-importexport" role="tab" aria-controls="pills-importexport">Import / Export</a>
+              <a class="nav-link" data-toggle="pill" href="#pills-importexport" role="tab" aria-controls="pills-importexport" onclick="checkMobile();">Import / Export</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#pills-about" role="tab" aria-controls="pills-about">About</a>
+              <a class="nav-link" data-toggle="pill" href="#pills-about" role="tab" aria-controls="pills-about" onclick="checkMobile();">About</a>
             </li>
             <hr>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#pills-logout" role="tab" aria-controls="pills-logout" onclick="logout()">Logout</a>
+              <a class="nav-link" data-toggle="pill" href="#pills-logout" role="tab" aria-controls="pills-logout" onclick="logout(); checkMobile();">Logout</a>
             </li>
           </ul>
   </nav>
