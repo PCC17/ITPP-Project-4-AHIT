@@ -11,6 +11,11 @@ $(document).ready(function () {
     checkToken();
     getCategories();
     getEntries();
+    $("#entryModal").on("shown.bs.modal", function () {
+      var bodyel = document.body;
+      bodyel.className = "modal-open";
+      console.log(bodyel);
+    });
 
     $.get(url+"/user?token="+getCookie("token"), function(data){
 user = JSON.parse(data);
@@ -481,6 +486,7 @@ function updateEntry(oldcat, oldname, newcat, newname, link, username, password,
 }
 
 function checkAddEntry() {
+
   var catSelect = document.getElementById("inputSelect");
   //var option = document.createElement('option');
   //option.innerHTML = category.name;
@@ -502,6 +508,7 @@ function checkAddEntry() {
   var submitBtn = document.getElementById("submitAddEditEntryBtn");
   aeEntry.innerHTML = "Add";
   submitBtn.setAttribute("onclick", "addEntry(document.getElementById('inputSelect').value, document.getElementById('inputEntryName').value, document.getElementById('inputURL').value, document.getElementById('inputUsername').value, document.getElementById('inputPassword').value, document.getElementById('textNotes').value, document.getElementById('checkIsFavourite').checked)");
+  var modal = document.getElementById("entryModal").children;
 }
 
 function copyEntryUsername() {
