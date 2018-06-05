@@ -876,15 +876,14 @@ function checkLink(link)
 
 function checkMobile()
 {
-  console.log("chekcing");
 
-  if((navigator.userAgent).indexOf("Mobile"))
+  if(typeof window.orientation !== 'undefined')
   {
     console.log("mobile");
     $('#sidebar').toggleClass('active');
     $('#content').toggleClass('active');
   }
   else
-  console.log("ned mobile");
+  console.log("not mobile");
 
 }
