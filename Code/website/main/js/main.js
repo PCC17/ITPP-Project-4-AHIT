@@ -17,6 +17,7 @@ $(document).ready(function () {
       console.log(bodyel);
     });
 
+
     $.get(url+"/user?token="+getCookie("token"), function(data){
 user = JSON.parse(data);
 document.getElementById("helloUser").innerHTML += user.firstname;
@@ -86,6 +87,7 @@ function domCategories(){
     console.log(JSON.stringify(categories[0]));
     for(var i = 0; i < categories.length; i++)
     {
+
         var catname = document.createElement('li');
         catname.className = 'nav-item navy my-nav-left';
         var sidebar = document.getElementById("sidebar");
@@ -101,6 +103,7 @@ function domCategories(){
         catnameChild.setAttribute("data-toggle", "pill");
         catnameChild.setAttribute("role", "tab");
         catnameChild.setAttribute("id", categories[i].name + "li");
+        catnameChild.setAttribute("onclick","checkMobile();");
         catnameChild.href = "#" + categories[i].name;
 
         catnameChild.innerHTML = categories[i].name;
@@ -179,8 +182,8 @@ function domEntries() {
         cardentryurl.className = 'list-group-item';
         cardentryurl.innerHTML = "<b>URL:</b><br>";
         var cardentrya = document.createElement('a');
-        cardentrya.href = entries[i].link;
-        cardentrya.innerHTML = entries[i].link;
+        cardentrya.href = checkLink(entries[i].link);
+        cardentrya.innerHTML = checkLink(entries[i].link);
         cardentryurl.appendChild(cardentrya);
         cardbody.appendChild(cardentryurl);
 
@@ -403,7 +406,10 @@ function getCategoryOptions() {
   for (var i = 0; i < categories.length; i++) {
     var option = document.createElement('option');
     option.innerHTML = categories[i].name;
-    select.appendChild(option);
+    if(categories[i].name != "Favorites")
+    {
+      select.appendChild(option);
+    }
   }
 }
 
@@ -817,10 +823,10 @@ function generatePassword(characters, numbers, specialCharacters, length)
       string += stringNumbers;
     if(specialCharacters)
       string += stringSpecialCharacters;
-    //return generateSequence(string,length);
+    var pwd= generateSequence(string,length);
     var inputPassword = document.getElementById("inputPassword");
-    inputPassword.innerHTML = "";
-    inputPassword.innerHTML = string;
+    inputPassword.value = "";
+    inputPassword.value = pwd;
 }
 
 function generateSequence(characters, length)
@@ -837,17 +843,47 @@ function generateSequence(characters, length)
   return res;
 }
 
-function checkPassword(pwd) {
+function checkPassword() {
   var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
   var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
 
-  if (strongRegex.test(pwd)) {
-    console.log("strong");
+  var inputPassword = document.getElementById("inputPassword");
+
+  if (strongRegex.test(inputPassword.value) ||  inputPassword.value.length > 20 ){
+    inputPassword.setAttribute("Style","Color: green;");
   }
-  else if (mediumRegex.test(pwd) && pwd.length > 10) {
-      console.log("medium");
+  else if (mediumRegex.test(inputPassword.value) && inputPassword.value.length > 10) {
+      inputPassword.setAttribute("Style","Color: orange;");
   }
   else {
-    console.log("weak")
+    inputPassword.setAttribute("Style","Color: red;");
   }
+}
+
+
+function checkLink(link)
+{
+  if(!link.includes("https://") && !link.includes("http://"))
+  {
+    return "http://"+link;
+  }
+  else
+    return link;
+
+
+}
+
+function checkMobile()
+{
+  console.log("chekcing");
+
+  if((navigator.userAgent).indexOf("Mobile"))
+  {
+    console.log("mobile");
+    $('#sidebar').toggleClass('active');
+    $('#content').toggleClass('active');
+  }
+  else
+  console.log("ned mobile");
+
 }

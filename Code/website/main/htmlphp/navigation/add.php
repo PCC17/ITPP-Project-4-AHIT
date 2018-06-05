@@ -73,7 +73,7 @@
                   <button type="button" class="btn btn-secondary" onclick="generatePassword(1, 1, 1, document.getElementById('passwordLength').value);">Generate</button>
                 </div>
               </div>
-              <input type="text" class="form-control" id="inputPassword" placeholder="samplepassword" required>
+              <input type="text" class="form-control" id="inputPassword" placeholder="samplepassword" required onkeyup="checkPassword();">
             </div>
 
           </div>
