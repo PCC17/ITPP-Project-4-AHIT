@@ -17,7 +17,7 @@
   <nav class="sidebar blue-grey lighten-4" id="sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account">Account Settings</a>
+              <a class="nav-link active" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account">Account Details</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="pill" href="#pills-importexport" role="tab" aria-controls="pills-importexport">Import / Export</a>

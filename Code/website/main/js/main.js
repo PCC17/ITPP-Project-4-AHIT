@@ -73,16 +73,24 @@ function checkfavEntries() {
 }
 
 function domCategories(){
+  categories.reverse();
     var t = document.getElementById("sortable");
+    //var sidebardiv = document.createElement("div");
+    //sortable.appendChild(sidebardiv);
     t.innerHTML="";
     console.log(JSON.stringify(categories[0]));
     for(var i = 0; i < categories.length; i++)
     {
         var catname = document.createElement('li');
-
-
         catname.className = 'nav-item navy my-nav-left';
-        list.appendChild(catname);
+        var sidebar = document.getElementById("sidebar");
+        //if(categories[i].name != "Favorites"){
+          list.appendChild(catname);
+        //}
+        //else{
+        //  catname.setAttribute("id", "favoriteCatElement");
+        //  list.appendChild(catname);
+        //}
         var catnameChild = document.createElement('a');
         catnameChild.className = 'nav-link';
         catnameChild.setAttribute("data-toggle", "pill");
@@ -106,6 +114,11 @@ function domCategories(){
         editicon.setAttribute("onclick", "checkEditCategory('"+categories[i].name+"');");
         editicon.className = 'fa fa-edit icon-sidebar';
         catnameChild.appendChild(editicon);
+        }
+        else{
+          var favicon = document.createElement('i');
+          favicon.className = 'fa fa-star icon-sidebar';
+          catnameChild.appendChild(favicon);
         }
     }
 }
@@ -138,6 +151,7 @@ function domEntries() {
         var cardheader = document.createElement('div');
         cardheader.className = 'card-header';
         cardheader.innerHTML = entries[i].name;
+        if(categories[j].name != "Favorites"){
         var cardentrydel = document.createElement('i');
         cardentrydel.className = 'fa fa-trash entry-icon';
         cardentrydel.setAttribute("href", "#deleteEntryModal");
@@ -150,6 +164,7 @@ function domEntries() {
         cardentryedit.setAttribute("data-toggle", "modal");
         cardentryedit.setAttribute("onclick", "checkEditEntry('"+JSON.stringify(entries[i])+"', '"+JSON.stringify(categories[j])+"');");
         cardheader.appendChild(cardentryedit);
+      }
         card.appendChild(cardheader);
         var cardbody = document.createElement('ul');
         cardbody.className = 'list-group list-group-flush';

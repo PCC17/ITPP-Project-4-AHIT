@@ -98,8 +98,8 @@
           </div>
         </div>
 
-        <button type="button" class="btn btn-lg btn-primary btn-block" onclick="register(document.getElementById('inputFirstName').value, document.getElementById('inputLastName').value, document.getElementById('inputUsername').value, document.getElementById('inputEmail').value, document.getElementById('inputBirthdate').value, document.getElementById('inputPassword').value)">Register</button>
-        <p class="text-center">Already registered? <a href="../login/">Login</a></p>
+        <br><button type="button" class="btn btn-lg btn-primary btn-block" onclick="register(document.getElementById('inputFirstName').value, document.getElementById('inputLastName').value, document.getElementById('inputUsername').value, document.getElementById('inputEmail').value, document.getElementById('inputBirthdate').value, document.getElementById('inputPassword').value)">Register</button>
+        <br><p class="text-center">Already registered? <a href="../login/">Login</a></p>
       </form>
 
     </div>

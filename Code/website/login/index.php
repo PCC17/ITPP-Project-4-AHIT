@@ -20,14 +20,8 @@
           <label for="inputPassword">Password</label>
           <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
         </div>
-        <div class="checkbox">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input">Remember me
-          </label>
-        </div>
         <button type="button" class="btn btn-lg btn-primary btn-block" onclick="login(document.getElementById('inputEmail').value, document.getElementById('inputPassword').value)">Login</button>
-        <p class="text-center">Not yet registered? <a href="../register/">Register</a></p>
-        <p class="text-center"><a href="#">Forgot your password?</a></p>
+        <br><p class="text-center">Not yet registered? <a href="../register/">Register</a></p>
       </form>
 
     </div>
