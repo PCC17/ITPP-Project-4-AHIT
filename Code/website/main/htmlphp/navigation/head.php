@@ -14,7 +14,7 @@
 	<i class="fa fa-plus fa-2x nav-icon" data-toggle="modal" data-dismiss="modal" href="#modalPlus"></i>
 
     <span class="navbar-text" id="helloUser">
-    Hello
+    Hello, 
     </span>
 
   <input class="nav-search search form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchBar" onkeyup="searchChanged();">

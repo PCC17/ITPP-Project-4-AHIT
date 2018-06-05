@@ -43,12 +43,12 @@
           <div class="form-group row">
             <label for="inputEntryName" class="col-sm-3 col-form-label">Entry Name</label>
             <div class="col-sm-9">
-              <input type="name" class="form-control" id="inputEntryName" placeholder="entryname" required>
+              <input type="text" class="form-control" id="inputEntryName" placeholder="entryname" value="">
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="inputEntryName" class="col-sm-3 col-form-label">URL (optional)</label>
+            <label for="inputURL" class="col-sm-3 col-form-label">URL (optional)</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="inputURL" placeholder="google.at">
             </div>

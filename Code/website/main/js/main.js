@@ -20,6 +20,7 @@ document.getElementById("helloUser").innerHTML += user.firstname;
 
 function getCategories()
 {
+  /*
   console.log("getcategoires");
 $.get(url+"/categories?token="+getCookie("token"), function(data){
 categories = Object.keys(JSON.parse(data)).map(function (key) { return JSON.parse(data)[key];});
@@ -34,19 +35,37 @@ for(var i = 0; i < categories.length; i++)
 domCategories();
 domEntries();
 });
+*/
+jQuery.ajax({
+        url: url+"/categories?token="+getCookie("token"),
+        success: function (data) {
+          categories = Object.keys(JSON.parse(data)).map(function (key) { return JSON.parse(data)[key];});
+          console.log(categories);
+          for(var i = 0; i < categories.length; i++)
+          {
+            for(var j = 0; j < categories[i].passEntry.length; j++)
+            {
+              categories[i].passEntry[j].password = decryptValue(categories[i].passEntry[j].password, getCookie("password_local"));
+            }
+          }
+          domCategories();
+          domEntries();
+        },
+        async: false
+    });
 }
 
 function getEntries() {
-  console.log("getEntries");
+  /*console.log("getEntries");
 for(var i = 0; i < categories.length; i++)
 {
   var _catname = categories[i].name;
   $.get(url+_catname+"/entries?token="+getCookie("token"), function(data) {
     console.log(data)
   });
-}
-domEntries();
-checkfavEntries();
+}*/
+//domEntries();
+//checkfavEntries();
 }
 
 function checkfavEntries() {
@@ -56,19 +75,24 @@ function checkfavEntries() {
 function domCategories(){
     var t = document.getElementById("sortable");
     t.innerHTML="";
+    console.log(JSON.stringify(categories[0]));
     for(var i = 0; i < categories.length; i++)
     {
         var catname = document.createElement('li');
+
+
         catname.className = 'nav-item navy my-nav-left';
         list.appendChild(catname);
         var catnameChild = document.createElement('a');
         catnameChild.className = 'nav-link';
         catnameChild.setAttribute("data-toggle", "pill");
         catnameChild.setAttribute("role", "tab");
+        catnameChild.setAttribute("id", categories[i].name + "li");
         catnameChild.href = "#" + categories[i].name;
+
         catnameChild.innerHTML = categories[i].name;
         catname.appendChild(catnameChild);
-
+        if(categories[i].name != "Favorites"){
         var delicon = document.createElement('i');
         delicon.setAttribute("data-toggle", "modal");
         delicon.setAttribute("href", "#deleteCategoryModal");
@@ -82,6 +106,7 @@ function domCategories(){
         editicon.setAttribute("onclick", "checkEditCategory('"+categories[i].name+"');");
         editicon.className = 'fa fa-edit icon-sidebar';
         catnameChild.appendChild(editicon);
+        }
     }
 }
 
@@ -166,6 +191,8 @@ function domEntries() {
         tabpane.appendChild(entry);
       }
     }
+
+    console.log("finish");
 }
 
 function addCategory(name){
@@ -227,7 +254,7 @@ var _cfKey = cfKey;
 var _cfValue= cfValue;
 var _peIsFavourite = isFavourite;
 $.ajax({
-//async : false,
+async : false,
     dataType: 'json',
     type: 'POST',
     url: url+"/"+_category+"/entry?token="+getCookie("token"),
@@ -240,10 +267,15 @@ $.ajax({
             "notes": _peNotes,
             "customFields": [{"key": _cfKey,"value": _cfValue}],
             "isfavourite": _peIsFavourite},
+    async:false,
     success: function(data)
     {
         console.log(data);
+
+        getCategories();
         getEntries();
+        console.log("select");
+        document.getElementById(_category+"li").click();
         if(['status'] == "success")
         {
             console.log("success");
@@ -256,8 +288,7 @@ $.ajax({
         }
     }
 
-})
-
+});
 }
 
 function updateCategory(name, newName, orderNumber){
@@ -395,11 +426,11 @@ function checkEditEntry(entrystr, catstr)
     aeEntry.innerHTML = "Edit";
     getCategoryOptions();
     var catSelect = document.getElementById("inputSelect");
-    var option = document.createElement('option');
-    option.innerHTML = category.name;
-    catSelect.appendChild(option);
+    //var option = document.createElement('option');
+    //option.innerHTML = category.name;
+    catSelect.value = category.name;
     var entryName = document.getElementById("inputEntryName");
-    entryName.setAttribute("value", entry.name);
+    entryName.value=entry.name;
     var entryURL = document.getElementById("inputURL");
     entryURL.setAttribute("value", entry.link);
     var entryUsername = document.getElementById("inputUsername");
@@ -409,6 +440,8 @@ function checkEditEntry(entrystr, catstr)
     var entryNotes = document.getElementById("textNotes");
     entryNotes.setAttribute("value", entry.notes);
     var entryFavourite = document.getElementById("checkIsFavourite");
+    console.log(entry);
+    entryFavourite.checked = entry.isfavourite;
     submitBtn.setAttribute("onclick", "checkUpdateEntry('"+category.name+"', '"+entry.name+"');");
 }
 
@@ -428,11 +461,27 @@ function updateEntry(oldcat, oldname, newcat, newname, link, username, password,
   console.log(newname);
   deleteEntry(oldcat, oldname);
   addEntry(newcat, newname, link, username, password, notes, isFavourite);
-  getEntries();
-  domEntries();
+  //getEntries();
+  //domEntries();
 }
 
 function checkAddEntry() {
+  var catSelect = document.getElementById("inputSelect");
+  //var option = document.createElement('option');
+  //option.innerHTML = category.name;
+  catSelect.value = " ";
+  var entryName = document.getElementById("inputEntryName");
+  entryName.value="";
+  var entryURL = document.getElementById("inputURL");
+  entryURL.setAttribute("value", "");
+  var entryUsername = document.getElementById("inputUsername");
+  entryUsername.setAttribute("value", "");
+  var entryPassword = document.getElementById("inputPassword");
+  entryPassword.setAttribute("value", "");
+  var entryNotes = document.getElementById("textNotes");
+  entryNotes.setAttribute("value", "");
+  var entryFavourite = document.getElementById("checkIsFavourite");
+  //submitBtn.setAttribute("onclick", "checkUpdateEntry('"+category.name+"', '"+entry.name+"');");
   getCategoryOptions();
   var aeEntry = document.getElementById("AddEditEntry");
   var submitBtn = document.getElementById("submitAddEditEntryBtn");
@@ -498,7 +547,10 @@ async : false,
       data: {'name': entryname},
       success: function(data)
       {
+        getCategories();
         getEntries();
+        console.log("select");
+        document.getElementById(category+"li").click();
           console.log(data);
           if(['status'] == "success")
           {

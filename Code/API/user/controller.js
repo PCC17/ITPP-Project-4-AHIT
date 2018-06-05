@@ -262,7 +262,7 @@ exports.deleteCategory = function (req, res) {
             else if (user)
                 res.send(messages_state.getSuccess());
         }
-    );
+    )
 
 }
 exports.getCategories = function (req, res) {
@@ -274,6 +274,18 @@ exports.getCategories = function (req, res) {
             if (err)
                 res.send(messages_state.getError(err));
             else if (user) {
+              var cat = new ModelPassCategory({name:"Favorites"});
+              for(var i = 0; i < user.passCategory.length; i++)
+              {
+                for(var j = 0; j < user.passCategory[i].passEntry.length; j++)
+                {
+                  if(user.passCategory[i].passEntry[j].isfavourite)
+                  {
+                    cat.passEntry.push(user.passCategory[i].passEntry[j]);
+                  }
+                }
+              }
+              user.passCategory.push(cat);
                 res.send(JSON.stringify(user.passCategory));
             }
         }
