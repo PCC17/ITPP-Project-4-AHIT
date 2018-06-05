@@ -189,19 +189,39 @@ function domEntries() {
 
         var cardentryuser = document.createElement('li');
         cardentryuser.className = 'list-group-item';
-        cardentryuser.innerHTML = "<b>Username:</b><br><x id=\"cardEntryUser\">" + entries[i].username;
+        if(categories[j].name != "Favorites"){
+        cardentryuser.innerHTML = "<b>Username:</b><br><x id=\"cardEntryUser"+entries[i].name+"\">" + entries[i].username;
+      }
+      else{
+        cardentryuser.innerHTML = "<b>Username:</b><br><x id=\"cardFavEntryUser"+entries[i].name+"\">" + entries[i].username;
+      }
         var cardentryusercopy = document.createElement('i');
         cardentryusercopy.className = 'fa fa-copy entry-icon';
-        cardentryusercopy.setAttribute("onclick", "copyEntryUsername();");
+        if(categories[j].name != "Favorites"){
+        cardentryusercopy.setAttribute("onclick", "copyEntryUsername(cardEntryUser"+entries[i].name+");");
+      }
+      else{
+        cardentryusercopy.setAttribute("onclick", "copyEntryUsername(cardFavEntryUser"+entries[i].name+");");
+      }
         cardentryuser.appendChild(cardentryusercopy);
         cardbody.appendChild(cardentryuser);
 
         var cardentrypw = document.createElement('li');
         cardentrypw.className = 'list-group-item';
-        cardentrypw.innerHTML = "<b>Password:</b><br><x id=\"cardEntryPassword\">" + entries[i].password;
+        if(categories[j].name != "Favorites"){
+        cardentrypw.innerHTML = "<b>Password:</b><br><x id=\"cardEntryPassword"+entries[i].name+"\">" + entries[i].password;
+      }
+      else{
+        cardentrypw.innerHTML = "<b>Password:</b><br><x id=\"cardFavEntryPassword"+entries[i].name+"\">" + entries[i].password;
+      }
         var cardentrypwcopy = document.createElement('i');
         cardentrypwcopy.className = 'fa fa-copy entry-icon';
-        cardentrypwcopy.setAttribute("onclick", "copyEntryPassword();")
+        if(categories[j].name != "Favorites"){
+        cardentrypwcopy.setAttribute("onclick", "copyEntryPassword(cardEntryPassword"+entries[i].name+");");
+      }
+      else{
+        cardentrypwcopy.setAttribute("onclick", "copyEntryPassword(cardFavEntryPassword"+entries[i].name+");");
+      }
         cardentrypw.appendChild(cardentrypwcopy);
         cardbody.appendChild(cardentrypw);
 
@@ -517,13 +537,15 @@ function checkAddEntry() {
   var modal = document.getElementById("entryModal").children;
 }
 
-function copyEntryUsername() {
-  var copytext = selectText('cardEntryUser');
+function copyEntryUsername(id) {
+  console.log(id.id);
+  var copytext = selectText(id.id);
   document.execCommand("copy");
 }
 
-function copyEntryPassword() {
-  var copytext = selectText('cardEntryPassword');
+function copyEntryPassword(id) {
+  console.log(id.id);
+  var copytext = selectText(id.id);
   document.execCommand("copy");
 }
 
@@ -703,19 +725,19 @@ function searchChanged() {
 
     var cardentryuser = document.createElement('li');
     cardentryuser.className = 'list-group-item';
-    cardentryuser.innerHTML = "<b>Username:</b><br><x id=\"cardEntryUser\">" + searchedEntries[i].username;
+    cardentryuser.innerHTML = "<b>Username:</b><br><x id=\"cardSearchEntryUser\">" + searchedEntries[i].username;
     var cardentryusercopy = document.createElement('i');
     cardentryusercopy.className = 'fa fa-copy entry-icon';
-    cardentryusercopy.setAttribute("onclick", "copyEntryUsername();");
+    cardentryusercopy.setAttribute("onclick", "copyEntryUsername(cardSearchEntryUser"+searchedEntries[i].name+");");
     cardentryuser.appendChild(cardentryusercopy);
     cardbody.appendChild(cardentryuser);
 
     var cardentrypw = document.createElement('li');
     cardentrypw.className = 'list-group-item';
-    cardentrypw.innerHTML = "<b>Password:</b><br><x id=\"cardEntryPassword\">" + searchedEntries[i].password;
+    cardentrypw.innerHTML = "<b>Password:</b><br><x id=\"cardSearchEntryPassword\">" + searchedEntries[i].password;
     var cardentrypwcopy = document.createElement('i');
     cardentrypwcopy.className = 'fa fa-copy entry-icon';
-    cardentrypwcopy.setAttribute("onclick", "copyEntryPassword();")
+    cardentrypwcopy.setAttribute("onclick", "copyEntryPassword(cardSearchEntryPassword"+searchedEntries[i].password+");")
     cardentrypw.appendChild(cardentrypwcopy);
     cardbody.appendChild(cardentrypw);
 
