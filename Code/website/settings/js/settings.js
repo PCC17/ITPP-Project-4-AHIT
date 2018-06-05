@@ -180,7 +180,6 @@ function download() {
 
 
 function checkMobile()
-function checkMobile()
 {
 
   if(typeof window.orientation !== 'undefined')
