@@ -613,16 +613,12 @@ function searchChanged() {
   {
     var input = document.getElementById("searchBar").value;
 
-    if(input.length == 1)
+    if(input.length == 0)
     {
-      for(var i = 0; i < entryNames.length; i++)
-      {
-        if(entryNames[i].includes(input))
-        {
+      tabpane.innerHTML = "";
     }
-      }
-    }
-
+    else
+    {
     for(var i = 0; i < entryNames.length; i++)
     {
       if (entryNames[i].includes(input))
@@ -633,21 +629,30 @@ function searchChanged() {
 
     for(var j = 0; j < categories.length; j++)
     {
+
+      if(categories[j].name != "Favorites")
+      {
       var entries = categories[j].passEntry;
+
       for(var k = 0; k< entries.length; k++)
       {
         for (var i = 0; i < searchedEntriesName.length; i++) {
           if(entries[k].name == searchedEntriesName[i])
           {
-          searchedEntries.push(entries[k]);
-        }
+            if(!searchedEntries.includes(entries[k]))
+            {
+              searchedEntries.push(entries[k]);
+            }
+
+          }
         }
 
       }
+    }
   }
+}
 
   }
-
   for (var i = 0; i < searchedEntries.length; i++) {
     var entry = document.createElement('article');
     entry.className = 'entry';
@@ -658,13 +663,13 @@ function searchChanged() {
     cardheader.className = 'card-header';
     cardheader.innerHTML = searchedEntries[i].name;
     var cardentrydel = document.createElement('i');
-    cardentrydel.className = 'fa fa-trash entry-icon';
+    cardentrydel.className = 'entry-icon';
     cardentrydel.setAttribute("href", "#deleteEntryModal");
     cardentrydel.setAttribute("data-toggle", "modal");
     cardentrydel.setAttribute("onclick", "checkDeleteEntry('"+searchedEntries[i].name+"', search);")
     cardheader.appendChild(cardentrydel);
     var cardentryedit = document.createElement('i');
-    cardentryedit.className = 'fa fa-edit entry-icon';
+    cardentryedit.className = 'entry-icon';
     cardentryedit.setAttribute("href", "#entryModal");
     cardentryedit.setAttribute("data-toggle", "modal");
     cardentryedit.setAttribute("onclick", "checkEditEntry('"+JSON.stringify(searchedEntries[i])+"', '"+JSON.stringify("searchCat")+"');");
@@ -714,16 +719,18 @@ function searchChanged() {
 
 }
 function getEntryNames() {
-
+    entryNames = [];
     for(var i = 0; i < categories.length; i++)
     {
-      var entries = categories[i].passEntry;
-      for(var j = 0; j< entries.length; j++)
-      {
-      entryNames.push(entries[j].name);
+        if(categories[i].name!="Favorites")
+        {
+        var entries = categories[i].passEntry;
+        for(var j = 0; j< entries.length; j++)
+        {
+          entryNames.push(entries[j].name);
+        }
       }
     }
-
 }
 
 function searchStart() {
@@ -741,7 +748,7 @@ function searchStart() {
       catnameChild.setAttribute("data-toggle", "pill");
       catnameChild.setAttribute("role", "tab");
       catnameChild.href = "#" + "search";
-      catnameChild.innerHTML = "search";
+      catnameChild.innerHTML = "Search";
       catnameChild.id = "searchLink";
       catname.appendChild(catnameChild);
 
@@ -749,7 +756,7 @@ function searchStart() {
       editicon.setAttribute("data-toggle", "modal");
       editicon.setAttribute("href", "#categoryModal");
       editicon.setAttribute("onclick", "checkAddEdit(0);")
-      editicon.className = 'fa fa-edit icon-sidebar';
+      editicon.className = 'icon-sidebar';
       //editicon.href = "#categoryModal";
       catnameChild.appendChild(editicon);
 
