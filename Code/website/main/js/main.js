@@ -17,6 +17,7 @@ $(document).ready(function () {
       console.log(bodyel);
     });
 
+    document.getElementById("Favoritesli").click();
 
     $.get(url+"/user?token="+getCookie("token"), function(data){
 user = JSON.parse(data);
@@ -897,15 +898,14 @@ function checkLink(link)
 
 function checkMobile()
 {
-  console.log("chekcing");
 
-  if((navigator.userAgent).indexOf("Mobile"))
+  if(typeof window.orientation !== 'undefined')
   {
     console.log("mobile");
     $('#sidebar').toggleClass('active');
     $('#content').toggleClass('active');
   }
   else
-  console.log("ned mobile");
+  console.log("not mobile");
 
 }
