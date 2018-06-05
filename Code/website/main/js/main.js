@@ -17,6 +17,7 @@ $(document).ready(function () {
       console.log(bodyel);
     });
 
+    document.getElementById("Favoritesli").click();
 
     $.get(url+"/user?token="+getCookie("token"), function(data){
 user = JSON.parse(data);
