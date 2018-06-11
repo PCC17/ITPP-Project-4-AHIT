@@ -17,7 +17,7 @@ $(document).ready(function () {
       console.log(bodyel);
     });
 
-    document.getElementById("Favoritesli").click();
+    document.getElementById("favorites").click();
 
     $.get(url+"/user?token="+getCookie("token"), function(data){
 user = JSON.parse(data);
@@ -103,13 +103,14 @@ function domCategories(){
         catnameChild.className = 'nav-link';
         catnameChild.setAttribute("data-toggle", "pill");
         catnameChild.setAttribute("role", "tab");
-        catnameChild.setAttribute("id", "b"+categories[i]._id);
+        
         catnameChild.setAttribute("onclick","checkMobile();");
         catnameChild.href = "#" + "a"+categories[i]._id;
 
         catnameChild.innerHTML = categories[i].name;
         catname.appendChild(catnameChild);
         if(categories[i].name != "Favorites"){
+		catnameChild.setAttribute("id", "b"+categories[i]._id);
         var delicon = document.createElement('i');
         delicon.setAttribute("data-toggle", "modal");
         delicon.setAttribute("href", "#deleteCategoryModal");
@@ -125,6 +126,7 @@ function domCategories(){
         catnameChild.appendChild(editicon);
         }
         else{
+		catnameChild.setAttribute("id", "favorites");
           var favicon = document.createElement('i');
           favicon.className = 'fa fa-star icon-sidebar';
           catnameChild.appendChild(favicon);
@@ -285,6 +287,15 @@ $.post(url+"/category?token="+getCookie("token"), {"name": "ASDF","order": 0,"pa
 
 }
 
+function getCategoryId(name)
+{
+	for(var i = 0; i< categories.length; i++)
+	{
+		if(categories[i].name == name)
+			return categories[i]._id;
+	}
+}
+
 function addEntry(category, name, link, username, password, notes, isFavourite, cfKey, cfValue) {
 
 var _category = category;
@@ -319,8 +330,9 @@ async : false,
 
         getCategories();
         getEntries();
+		console.log(getCategoryId(category))
         console.log("select");
-        document.getElementById(_category+"li").click();
+        document.getElementById("b"+getCategoryId(category)).click();
         if(['status'] == "success")
         {
             console.log("success");
@@ -602,7 +614,8 @@ async : false,
         getCategories();
         getEntries();
         console.log("select");
-        document.getElementById(category+"li").click();
+		console.log(category);
+        document.getElementById("b"+getCategoryId(category)).click();
           console.log(data);
           if(['status'] == "success")
           {

@@ -41,7 +41,7 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-var url = "http://itp.lime-tree.eu:4445";
+var url = "https://api.itp.lime-tree.eu";
 
 function checkToken()
 {
