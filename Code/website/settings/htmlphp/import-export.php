@@ -51,18 +51,13 @@ function readSingleFile(evt) {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="myModalLabel">Choose a format</h5>
+        <h5 class="modal-title" id="myModalLabel">Download</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-       <button type="button" class="btn btn-primary" onclick="download()">JSON</button>
-       <br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Finish</button>
-      </div>
+       <button type="button" class="btn btn-primary" onclick="download()">CSV</button>
     </div>
   </div>
 </div>
@@ -74,8 +69,8 @@ function readSingleFile(evt) {
   <h3>Import your passwords</h3>
   <form>
     <div class="form-group">
-      <input type="file" id="inputFile" multiple size="50" accept=".json">
       <button type="button" class="btn btn-primary">Import</button>
+      <input type="file" id="inputFile" multiple size="50" accept=".json" >
     </div>
   </form>
 </article>
