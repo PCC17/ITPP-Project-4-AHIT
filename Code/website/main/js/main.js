@@ -150,13 +150,16 @@ function domEntries() {
     tabpane.className = 'tab-pane fade';
     tabpane.id ="a"+categories[j]._id;
     tabcontent.appendChild(tabpane);
+    var row = document.createElement('div');
+    row.className = 'row';
+    tabpane.appendChild(row);
 
     var entries = categories[j].passEntry;
     for(var i = 0; i < entries.length; i++)
     {
       console.log("3");
         var entry = document.createElement('article');
-        entry.className = 'entry';
+        entry.className = 'entry col-md-3 col-lg-2 col-sm-6';
         var card = document.createElement('div');
         card.className = 'card mycard';
         entry.appendChild(card);
@@ -235,7 +238,7 @@ function domEntries() {
         cardbody.appendChild(cardentrynotes);
 
         var content = document.getElementById('content');
-        tabpane.appendChild(entry);
+        row.appendChild(entry);
       }
     }
 

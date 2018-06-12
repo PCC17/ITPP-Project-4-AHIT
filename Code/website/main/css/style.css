@@ -1,3 +1,7 @@
+.container {
+	max-width: calc(100% - 250px);
+}
+
 #favoritesli{
 	margin-bottom: 20px;
 }
@@ -31,7 +35,7 @@
 }
 
 .mycard {
-	width: 15rem;
+	width: 100%;
 }
 
 .wrapper {
@@ -93,9 +97,10 @@
 }
 
 .entry{
-	margin-right: 20px;
+	/*margin-right: 20px;*/
 	float: left;
-	margin-bottom: 15px;
+	/*margin-bottom: 15px; */
+
 
 }
 
@@ -144,6 +149,10 @@ body.modal-open {
 	}
 	.mycard {
 		width: 100%;
+	}
+
+	.container {
+		max-width: 100%;
 	}
 }
 
