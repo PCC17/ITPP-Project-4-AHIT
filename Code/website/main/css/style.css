@@ -139,6 +139,12 @@ body.modal-open {
 	#sidebarCollapse span {
 			display: none;
 	}
+	.entry {
+		width: 100%;
+	}
+	.mycard {
+		width: 100%;
+	}
 }
 
 @media (max-width: 768px) {
