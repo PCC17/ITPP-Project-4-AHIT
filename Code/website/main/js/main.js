@@ -159,7 +159,7 @@ function domEntries() {
     {
       console.log("3");
         var entry = document.createElement('article');
-        entry.className = 'entry col-md-3 col-lg-2 col-sm-6';
+        entry.className = 'entry col-sm-6 col-md-4 col-lg-3 col-xl-3';
         var card = document.createElement('div');
         card.className = 'card mycard';
         entry.appendChild(card);
