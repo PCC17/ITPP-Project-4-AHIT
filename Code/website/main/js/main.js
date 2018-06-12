@@ -103,7 +103,7 @@ function domCategories(){
         catnameChild.className = 'nav-link';
         catnameChild.setAttribute("data-toggle", "pill");
         catnameChild.setAttribute("role", "tab");
-        
+
         catnameChild.setAttribute("onclick","checkMobile();");
         catnameChild.href = "#" + "a"+categories[i]._id;
 
@@ -461,6 +461,7 @@ function checkFavCat(){
 
 function checkEditCategory(catname)
 {
+
   var aeCat = document.getElementById("AddEditCat");
   var catField = document.getElementById("categoryName");
   var submitBtn = document.getElementById("submitAddEditCategoryBtn");
@@ -528,27 +529,26 @@ function updateEntry(oldcat, oldname, newcat, newname, link, username, password,
 function checkAddEntry() {
 
   var catSelect = document.getElementById("inputSelect");
-  //var option = document.createElement('option');
-  //option.innerHTML = category.name;
-  catSelect.value = " ";
-  var entryName = document.getElementById("inputEntryName");
-  entryName.value="";
-  var entryURL = document.getElementById("inputURL");
-  entryURL.setAttribute("value", "");
-  var entryUsername = document.getElementById("inputUsername");
-  entryUsername.setAttribute("value", "");
-  var entryPassword = document.getElementById("inputPassword");
-  entryPassword.setAttribute("value", "");
-  var entryNotes = document.getElementById("textNotes");
-  entryNotes.setAttribute("value", "");
-  var entryFavourite = document.getElementById("checkIsFavourite");
-  //submitBtn.setAttribute("onclick", "checkUpdateEntry('"+category.name+"', '"+entry.name+"');");
   getCategoryOptions();
   var aeEntry = document.getElementById("AddEditEntry");
   var submitBtn = document.getElementById("submitAddEditEntryBtn");
   aeEntry.innerHTML = "Add";
   submitBtn.setAttribute("onclick", "addEntry(document.getElementById('inputSelect').value, document.getElementById('inputEntryName').value, document.getElementById('inputURL').value, document.getElementById('inputUsername').value, document.getElementById('inputPassword').value, document.getElementById('textNotes').value, document.getElementById('checkIsFavourite').checked)");
   var modal = document.getElementById("entryModal").children;
+
+  var catSelect = document.getElementById("inputSelect");
+  catSelect.value = " ";
+  var entryName = document.getElementById("inputEntryName");
+  entryName.value="";
+  var entryURL = document.getElementById("inputURL");
+  entryURL.value= "";
+  var entryUsername = document.getElementById("inputUsername");
+  entryUsername.value = "";
+  var entryPassword = document.getElementById("inputPassword");
+  entryPassword.value = "";
+  var entryNotes = document.getElementById("textNotes");
+  entryNotes.value = "";
+  var entryFavourite = document.getElementById("checkIsFavourite");
 }
 
 function copyEntryUsername(id) {

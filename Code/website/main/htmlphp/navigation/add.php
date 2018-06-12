@@ -55,7 +55,7 @@
           </div>
 
           <div class="form-group row">
-            <label for="inputUsername" class="col-sm-3 col-form-label">Username (optional)</label>
+            <label for="inputUsername" class="col-sm-3 col-form-label">Username/Email</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="inputUsername" placeholder="johndoe">
             </div>
